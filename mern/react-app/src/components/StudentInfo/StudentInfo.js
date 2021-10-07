@@ -11,22 +11,23 @@ export function StudentInfo (props) {
   return (
     <div className={styles.wrapperComponent}>
       <div className={styles.wrapperHeader}>
-        <Typography ml={2} mt="auto" mb="auto" variant="h6" gutterBottom component="div">
+        <Typography ml={2} mt={1} mb={1} variant="h6" color="white" fontWeight="bold" gutterBottom component="div">
           Student Information
         </Typography>
       </div>
       <div className={styles.wrapperInputSection}>
-        <Box sx={{ flexGrow: 1, ml: 2, mr:2, mb: 2, mt: 0 }}>
+        <Box sx={{ flexGrow: 1, ml: 2, mr:2, mb: 2, mt: 2 }}>
           <Grid container spacing={2} columns={16}>
-            <Grid item xs={8} md={4} align="center" justify="center">
+            <Grid item xs={8} align="center" justify="center">
               <TextField
                 size="small"
                 id="outlined-basic"
                 label="First Name"
                 variant="outlined"
+                bgcolor="red"
                 onChange={(e) => props.onFirstNameChange(e.target.value)}/>
             </Grid>
-            <Grid item xs={8} md={4} align="center" justify="center">
+            <Grid item xs={8} align="center" justify="center">
               <TextField
                 size="small"
                 id="outlined-basic"
@@ -34,7 +35,7 @@ export function StudentInfo (props) {
                 variant="outlined"
                 onChange={(e) => props.onLastNameChange(e.target.value)}/>
             </Grid>
-            <Grid item xs={8} md={4} align="center" justify="center">
+            <Grid item xs={8} align="center" justify="center">
               <TextField
                 type="number"
                 size="small"
@@ -43,7 +44,7 @@ export function StudentInfo (props) {
                 variant="outlined"
                 onChange={(e) => props.onGradeChange(e.target.value)}/>
             </Grid>
-            <Grid item xs={8} md={4} align="center" justify="center">
+            <Grid item xs={8} align="center" justify="center">
               <TextField
                 size="small"
                 id="outlined-basic"
@@ -51,7 +52,7 @@ export function StudentInfo (props) {
                 variant="outlined"
                 onChange={(e) => props.onInstrumentChange(e.target.value)}/>
             </Grid>
-            <Grid item xs={8} md={4} align="center" justify="center">
+            <Grid item xs={8} align="center" justify="center">
               <TextField
                 size="small"
                 id="outlined-basic"
@@ -62,7 +63,7 @@ export function StudentInfo (props) {
                 }}
                 onChange={(e) => props.onHeightChange(e.target.value)}/>
             </Grid>
-            <Grid item xs={8} md={4} align="center" justify="center">
+            <Grid item xs={8} align="center" justify="center">
               <TextField
                 size="small"
                 id="outlined-basic"
@@ -73,7 +74,7 @@ export function StudentInfo (props) {
                 }}
                 onChange={(e) => props.onChestChange(e.target.value)}/>
             </Grid>
-            <Grid item xs={8} md={4} align="center" justify="center">
+            <Grid item xs={8} align="center" justify="center">
               <TextField
                 size="small"
                 id="outlined-basic"
@@ -84,7 +85,7 @@ export function StudentInfo (props) {
                 }}
                 onChange={(e) => props.onWaistChange(e.target.value)}/>
             </Grid>
-            <Grid item xs={8} md={4} align="center" justify="center">
+            <Grid item xs={8} align="center" justify="center">
               <TextField
                 size="small"
                 id="outlined-basic"

@@ -1,8 +1,13 @@
 import React from 'react';
+import { UniformAssignPage } from './UniformAssignPage';
 
 function App() {
 
-  return null
+  return (
+    <div>
+      <UniformAssignPage/>
+    </div>
+  );
 }
 
 export default App;
