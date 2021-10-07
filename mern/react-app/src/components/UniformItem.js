@@ -1,31 +1,22 @@
 import React from 'react';
-import './UniformItem.css';
 import Checkbox from '@mui/material/Checkbox';
 import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 
-const style = {
-
-    display: 'grid',
-    gridTemplateColumns: 'repeat(4, 1fr)'
-}
-export default function UniformItem() {
+export default function UniformItem({uniform}) {
     return (
         <>
-            <Card>
-                <CardContent sx={style}>
-
-                    <Checkbox size="large"></Checkbox>
-                    <Typography >Type</Typography>
-                    <Typography>ID</Typography>
-                    <Typography>Size</Typography>
-
-                </CardContent>
-
-                
+            <Card sx={{minWidth: 275,  p: 2}}>
+                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-evenly'}}>
+                    <div>
+                        <Checkbox size="large"></Checkbox>
+                    </div>
+                    <Typography>{uniform.type}</Typography>
+                    <Typography>{uniform.id}</Typography>
+                    <Typography>{uniform.size}</Typography>
+                </Box>
             </Card>
         </>
-        
     )
 }
