@@ -1,34 +1,21 @@
 .wrapperComponent {
   height: 100%;
   width: 100%;
-  border: 1px solid black;
 }
 
-.wrapperField {
-  height: 25%;
-  width: 50%;
-  float: left;
-}
-
-.infoLabel {
-  float: left;
+.wrapperHeader {
+  height:15%;
+  width: 100%;
+  margin: 0px;
   padding: 0px;
-  margin: 0px 0px 0px 20px;
   border: 0px;
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
+  display: flex;
 }
 
-.infoInput {
-  float: right;
-  padding: 2px 2px 2px 6px;
-  margin: 0px 20px 0px 0px;
+.wrapperInputSection {
+  height: 85%;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
   border: 0px;
-  height: 40%;
-  border: 1px solid black;
-  width: 40%;
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
 }

@@ -1,53 +1,103 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './StudentInfo.module.css';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import InputAdornment from '@mui/material/InputAdornment';
+import Typography from '@mui/material/Typography';
 
-export function StudentInfo () {
-
-  const [studentInfo, setStudentInfo] = useState({
-    firstName: "",
-    lastName: "",
-    grade: "",
-    height: "",
-    instrument: "",
-    chest: "",
-    head: "",
-    waist: "",
-  });
+export function StudentInfo (props) {
 
   return (
     <div className={styles.wrapperComponent}>
-      <div className={styles.wrapperField}>
-        <p className={styles.infoLabel}>First Name</p>
-        <input className={styles.infoInput} onChange={(e) => setStudentInfo({...studentInfo, firstName: e.target.value})} type="text" id="fname" name="fname"/>
+      <div className={styles.wrapperHeader}>
+        <Typography ml={2} mt="auto" mb="auto" variant="h6" gutterBottom component="div">
+          Student Information
+        </Typography>
       </div>
-      <div className={styles.wrapperField}>
-        <p className={styles.infoLabel}>Last Name</p>
-        <input className={styles.infoInput} type="text" id="lname" name="lname"/>
-      </div>
-      <div className={styles.wrapperField}>
-        <p className={styles.infoLabel}>Grade</p>
-        <input className={styles.infoInput} type="text" id="grade" name="grade"/>
-      </div>
-      <div className={styles.wrapperField}>
-        <p className={styles.infoLabel}>Instrument</p>
-        <input className={styles.infoInput} type="text" id="instrument" name="instrument"/>
-      </div>
-      <div className={styles.wrapperField}>
-        <p className={styles.infoLabel}>Height</p>
-        <input className={styles.infoInput} type="text" id="height" name="height"/>
-      </div>
-      <div className={styles.wrapperField}>
-        <p className={styles.infoLabel}>Bust/Chest</p>
-        <input className={styles.infoInput} type="text" id="chest" name="chest"/>
-      </div>
-      <div className={styles.wrapperField}>
-        <p className={styles.infoLabel}>Waist</p>
-        <input className={styles.infoInput} type="text" id="waist" name="waist"/>
-      </div>
-      <div className={styles.wrapperField}>
-        <p className={styles.infoLabel}>Head</p>
-        <input className={styles.infoInput} type="text" id="head" name="head"/>
+      <div className={styles.wrapperInputSection}>
+        <Box sx={{ flexGrow: 1, ml: 2, mr:2, mb: 2, mt: 0 }}>
+          <Grid container spacing={2} columns={16}>
+            <Grid item xs={8} md={4} align="center" justify="center">
+              <TextField
+                size="small"
+                id="outlined-basic"
+                label="First Name"
+                variant="outlined"
+                onChange={(e) => props.onFirstNameChange(e.target.value)}/>
+            </Grid>
+            <Grid item xs={8} md={4} align="center" justify="center">
+              <TextField
+                size="small"
+                id="outlined-basic"
+                label="Last Name"
+                variant="outlined"
+                onChange={(e) => props.onLastNameChange(e.target.value)}/>
+            </Grid>
+            <Grid item xs={8} md={4} align="center" justify="center">
+              <TextField
+                type="number"
+                size="small"
+                id="outlined-basic"
+                label="Grade"
+                variant="outlined"
+                onChange={(e) => props.onGradeChange(e.target.value)}/>
+            </Grid>
+            <Grid item xs={8} md={4} align="center" justify="center">
+              <TextField
+                size="small"
+                id="outlined-basic"
+                label="Instrument"
+                variant="outlined"
+                onChange={(e) => props.onInstrumentChange(e.target.value)}/>
+            </Grid>
+            <Grid item xs={8} md={4} align="center" justify="center">
+              <TextField
+                size="small"
+                id="outlined-basic"
+                label="Height"
+                variant="outlined"
+                InputProps={{
+                  endAdornment: <InputAdornment position="end">in</InputAdornment>,
+                }}
+                onChange={(e) => props.onHeightChange(e.target.value)}/>
+            </Grid>
+            <Grid item xs={8} md={4} align="center" justify="center">
+              <TextField
+                size="small"
+                id="outlined-basic"
+                label="Chest"
+                variant="outlined"
+                InputProps={{
+                  endAdornment: <InputAdornment position="end">in</InputAdornment>,
+                }}
+                onChange={(e) => props.onChestChange(e.target.value)}/>
+            </Grid>
+            <Grid item xs={8} md={4} align="center" justify="center">
+              <TextField
+                size="small"
+                id="outlined-basic"
+                label="Waist"
+                variant="outlined"
+                InputProps={{
+                  endAdornment: <InputAdornment position="end">in</InputAdornment>,
+                }}
+                onChange={(e) => props.onWaistChange(e.target.value)}/>
+            </Grid>
+            <Grid item xs={8} md={4} align="center" justify="center">
+              <TextField
+                size="small"
+                id="outlined-basic"
+                label="Head"
+                variant="outlined"
+                InputProps={{
+                  endAdornment: <InputAdornment position="end">in</InputAdornment>,
+                }}
+                onChange={(e) => props.onHeadChange(e.target.value)}/>
+            </Grid>
+          </Grid>
+        </Box>
       </div>
     </div>
-  )
+  );
 }
