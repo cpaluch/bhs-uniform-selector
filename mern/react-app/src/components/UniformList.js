@@ -2,13 +2,13 @@ import React from 'react'
 import UniformItem from './UniformItem'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent';
-import { Typography } from '@mui/material';
+import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+
+import Button from '@mui/material/Button';
 
 export default function UniformList({ uniforms }) {
     return (
-
-
         <Box sx={{
             width: '400px',
             display: 'grid',
@@ -16,8 +16,8 @@ export default function UniformList({ uniforms }) {
             gap: 1,
             gridTemplateRows: 'auto',
             gridTemplateAreas: `"title title . . filter"
-          "content content content content content"
-          ". . . assign assign"`,
+                                "content content content content content"
+                                ". . . assign assign"`,
           }}>
 
             <Box sx={{ gridArea: 'title', backgroundColor: 'blue'}}>
@@ -34,14 +34,16 @@ export default function UniformList({ uniforms }) {
                     <Typography variant='h2'align='center' sx={{ fontWeight: 'bold', fontSize: 'large'}}>Size</Typography>
                 </CardContent>
 
-                { uniforms.map(uniform => {
+                {uniforms.map(uniform => {
                     return <UniformItem uniform={ uniform }></UniformItem>
                 })}
             </Card>
 
-            <Box sx={{ gridArea: 'assign'}}>
-                assignButton
-            </Box>
+            
+            <Button sx={{ gridArea: 'assign'}}>
+                Assign
+            </Button>
+           
         </Box>
         
     )
