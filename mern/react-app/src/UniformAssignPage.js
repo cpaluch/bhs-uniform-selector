@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './UniformAssignPage.module.css';
 import { StudentInfo } from './components/StudentInfo/StudentInfo';
+import { AdditionalNotes } from './components/AdditionalNotes/AdditionalNotes';
 
 export function UniformAssignPage () {
 
@@ -14,6 +15,8 @@ export function UniformAssignPage () {
     waist: "",
     head: "",
   });
+
+  const [additionalNotes, setAdditionalNotes] = useState("");
 
   const handleFirstNameChange = (fname) => {
     setStudentInfo({...studentInfo, firstName: fname});
@@ -47,8 +50,13 @@ export function UniformAssignPage () {
     setStudentInfo({...studentInfo, head: head});
   }
 
+  const handleAdditionalNotesChange = (notes) => {
+    setAdditionalNotes(notes);
+  }
+
   return (
     <div className={styles.float_container}>
+      <div className={styles.headerWrapper}/>
       <div className={styles.studentInfoComponentWrapper}>
         <StudentInfo
           onFirstNameChange={handleFirstNameChange}
@@ -60,6 +68,14 @@ export function UniformAssignPage () {
           onWaistChange={handleWaistChange}
           onHeadChange={handleHeadChange}/>
       </div>
+      <div className={styles.uniformListComponentWrapper}>
+        <p>Uniform List Component Here</p>
+      </div>
+      <div className={styles.additionalNotesComponentWrapper}>
+        <AdditionalNotes
+          onAdditionalNotesChange={handleAdditionalNotesChange}/>
+      </div>
+      <div className={styles.footerWrapper}/>
     </div>
   );
 
