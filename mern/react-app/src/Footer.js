@@ -1,12 +1,36 @@
 import React, { Component } from 'react'
-import Button from "@mui/material/Button"
+import Box from "@mui/material/Box"
+import Container from "@mui/material/Container"
+import { Grid, Link, Typography } from '@mui/material'
 
 export default class Footer extends Component {
     render() {
         return (
-            <div>
-                <Button varient="contained">Hello World</Button>
-            </div>
+            <footer>
+                <Box bgcolor="text.secondary" color="white">
+                    <Container maxWidth="lg">
+                        <Grid container >
+                            <Grid>
+                                <Box margin="20px">
+                                    <Typography borderBottom={1}>Collaboration</Typography>
+                                    <Link color="inherit" underline="none">Blacksburg High School</Link>
+                                </Box>
+                            </Grid>
+                            <Grid>
+                               <Box margin="20px">
+                                    <Typography borderBottom={1}>Support</Typography>
+                                    <Link color="inherit" underline="none">Virginia Tech CS Department</Link>
+                                </Box>
+                            </Grid>
+                            <Grid>
+                                <Box margin="30px">
+                                    <Typography>Developed By: The Band Goons</Typography>
+                                </Box>
+                            </Grid>
+                        </Grid>
+                    </Container>
+                </Box>
+            </footer>
         )
     }
 }
