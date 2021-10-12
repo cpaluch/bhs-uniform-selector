@@ -1,4 +1,3 @@
-import './App.css';
 import UniformList from './components/UniformList';
 import React from 'react';
 
