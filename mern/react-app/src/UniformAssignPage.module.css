@@ -23,9 +23,21 @@
   background-color: blue;
 }
 
+.studentSelectComponentWrapper {
+  float: left;
+  height: 21%;
+  width: 40%;
+  left: 0px;
+  top: 0px;
+  overflow: hidden;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+}
+
 .studentInfoComponentWrapper {
   float: left;
-  height: 42%;
+  height: 28%;
   width: 40%;
   left: 0px;
   top: 0px;
@@ -37,7 +49,7 @@
 
 .additionalNotesComponentWrapper {
   float: left;
-  height: 42%;
+  height: 35%;
   width: 40%;
   left: 0px;
   overflow: hidden;
@@ -50,7 +62,6 @@
   float: left;
   height: 84%;
   width: 60%;
-  background-color: red;
   right: 0px;
   float: right;
 }

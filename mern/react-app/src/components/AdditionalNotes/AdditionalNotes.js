@@ -14,11 +14,12 @@ export function AdditionalNotes (props) {
       </div>
       <div className={styles.wrapperInputSection}>
         <Box
-          sx={{ ml: 2, mr:2, mb: 2, mt: 2, width: 'auto' }}>
+          sx={{ margin: 2 }}>
           <TextField
             size="small"
-            id="outlined-basic"
+            id="tf-ad-notes"
             variant="outlined"
+            label="Type additional notes here"
             multiline
             rows={6}
             maxrows={6}
