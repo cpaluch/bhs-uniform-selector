@@ -28,6 +28,7 @@ export function StudentSelect (props) {
           <Grid container spacing={2} columns={12}>
             <Grid item xs={12} align="center" justify="center">
               <Autocomplete
+                size="small"
                 disablePortal
                 id="cb-student-select"
                 options={testStudentData}

@@ -29,7 +29,6 @@
   width: 40%;
   left: 0px;
   top: 0px;
-  overflow: hidden;
   vertical-align: middle;
   display: flex;
   align-items: center;
@@ -41,7 +40,6 @@
   width: 40%;
   left: 0px;
   top: 0px;
-  overflow: hidden;
   vertical-align: middle;
   display: flex;
   align-items: center;
@@ -52,7 +50,6 @@
   height: 35%;
   width: 40%;
   left: 0px;
-  overflow: hidden;
   vertical-align: middle;
   display: flex;
   align-items: center;
