@@ -18,6 +18,11 @@ export default function ReportsTable() {
         { type: 'Clarinet', id: '3', size: 'L', lastName: 'Anderson', firstName: 'Jared'},
         { type: 'I dont know', id: '4', size: 'XL', lastName: 'Paluch', firstName: 'Cole'},
         { type: 'Squidwards Band', id: '5', size: 'XXL', lastName: 'Hefner', firstName: 'Noah'},
+        { type: 'Marching Band', id: '6', size: 'S', lastName: 'Nachabe', firstName: 'Foad'},
+        { type: 'Drum Line', id: '7', size: 'M', lastName: 'Nelli', firstName: 'Ashish'},
+        { type: 'Clarinet', id: '8', size: 'L', lastName: 'Anderson', firstName: 'Jared'},
+        { type: 'I dont know', id: '9', size: 'XL', lastName: 'Paluch', firstName: 'Cole'},
+        { type: 'Squidwards Band', id: '10', size: 'XXL', lastName: 'Hefner', firstName: 'Noah'},
       ];
       
   return (
@@ -27,7 +32,7 @@ export default function ReportsTable() {
             Reports Page
         </Typography>
       </div>
-      <div style={{ height: 700, width: '100%' }}>
+      <div className={styles.boxLimits}>
         <DataGrid
           rows={rows}
           columns={columns}
