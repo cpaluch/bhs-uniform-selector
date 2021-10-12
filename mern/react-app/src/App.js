@@ -1,5 +1,4 @@
 import React from 'react';
-import { UniformAssignPage} from './UniformAssignPage'
 import {ReportsPage} from './ReportsPage'
 
 function App() {
