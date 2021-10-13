@@ -1,0 +1,13 @@
+.float_container {
+  border: 0px;
+  padding: 0px;
+  width: 100vw;
+  height: 100vh;
+}
+
+.studentInfoComponentWrapper {
+  height: 40%;
+  width: 30%;
+  left: 0px;
+  top: 0px;
+}
