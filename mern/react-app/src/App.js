@@ -3,7 +3,7 @@ import {ReportsPage} from './ReportsPage'
 
 function App() {
 
-  return <ReportsPage></ReportsPage>;
+  return null;
 }
 
 export default App;
