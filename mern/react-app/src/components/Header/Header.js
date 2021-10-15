@@ -2,7 +2,11 @@ import React, { Component } from 'react'
 import AppBar from "@mui/material/AppBar"
 import Link from "@mui/material/Link"
 import ToolBar from "@mui/material/Toolbar"
+import UniformAssignPage from '../../UniformAssignPage'
+import ReportsPage from '../../ReportsPage'
 import { CardMedia, Typography } from '@mui/material'
+import styles from './Header.module.css'
+import { NavLink } from 'react-router-dom'
 
 export default class Header extends Component {
     render() {
@@ -13,10 +17,12 @@ export default class Header extends Component {
                     <Typography variant="h6" flexGrow="1" margin="20px">
                         Blacksburg Bands Uniform Select
                     </Typography>
-                    <Link color="inherit" underline="none" margin="20px">Add Uniforms</Link>
-                    <Link color="inherit" underline="none" margin="20px">Uniform Selection</Link>
-                    <Link color="inherit" underline="none" margin="20px">Reports</Link>
-                    <Link color="inherit" underline="none" margin="20px">Help</Link>
+                    <ul className={styles.link_box}>
+                        <li className={styles.nav_link} ><NavLink style={{ textDecoration: 'none', color: 'inherit' }} to="">Add Uniforms</NavLink></li>
+                        <li className={styles.nav_link} ><NavLink style={{ textDecoration: 'none', color: 'inherit' }} to="/assign-uniforms">Uniform Selection</NavLink></li>
+                        <li className={styles.nav_link} ><NavLink style={{ textDecoration: 'none', color: 'inherit' }} to="/reports">Reports</NavLink></li>
+                        <li className={styles.nav_link} ><NavLink style={{ textDecoration: 'none', color: 'inherit' }} to="">Help</NavLink></li>
+                    </ul>
                 </ToolBar>
             </AppBar>
         )

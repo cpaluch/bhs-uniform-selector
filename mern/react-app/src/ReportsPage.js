@@ -1,15 +1,17 @@
 import React from 'react';
 import ReportsTable from './components/ReportsTable/ReportsTable';
 import styles from './ReportsPage.module.css';
+import Header from './components/Header/Header'
+import Footer from './components/Footer/Footer'
 
-export function ReportsPage(){
+export default function ReportsPage(){
     return (
         <div className={styles.float_container}>
-            <div className={styles.headerWrapper}/>
+            <Header className={styles.headerWrapper}/>
                 <div className={styles.reportsPageComponentWrapper}>
-                    <ReportsTable></ReportsTable>
+                    <ReportsTable/>
                 </div>
-            <div className={styles.footerWrapper}/>
+            <Footer className={styles.footerWrapper}/>
         </div>
     )
 } 

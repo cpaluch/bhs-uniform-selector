@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import styles from './UniformAssignPage.module.css';
+import Header from './components/Header/Header'
+import Footer from './components/Footer/Footer'
 import { StudentInfo } from './components/StudentInfo/StudentInfo';
 import { AdditionalNotes } from './components/AdditionalNotes/AdditionalNotes';
 import { StudentSelect } from './components/StudentSelect/StudentSelect';
 
-export function UniformAssignPage () {
+export default function UniformAssignPage () {
 
   // Will change how this is stored once back end is incorporated
   const [student, setStudent] = useState("");
@@ -54,7 +56,7 @@ export function UniformAssignPage () {
 
   return (
     <div className={styles.float_container}>
-      <div className={styles.headerWrapper}/>
+      <Header className={styles.headerWrapper}/>
       <div className={styles.studentSelectComponentWrapper}>
         <StudentSelect
           onStudentChange={handleStudentChange}/>
@@ -75,7 +77,6 @@ export function UniformAssignPage () {
         <AdditionalNotes
           onAdditionalNotesChange={handleAdditionalNotesChange}/>
       </div>
-      <div className={styles.footerWrapper}/>
     </div>
   );
 
