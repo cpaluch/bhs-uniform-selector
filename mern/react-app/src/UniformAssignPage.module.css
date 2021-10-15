@@ -5,9 +5,60 @@
   height: 100vh;
 }
 
-.studentInfoComponentWrapper {
-  height: 40%;
-  width: 30%;
+.headerWrapper {
+  float: left;
+  height: 10%;
+  width: 100%;
+  top: 0px;
+  left: 0px;
+  background-color: blue;
+}
+
+.footerWrapper {
+  float: left;
+  height: 6%;
+  width: 100%;
+  bottom: 0px;
+  left: 0px;
+  background-color: blue;
+}
+
+.studentSelectComponentWrapper {
+  float: left;
+  height: 21%;
+  width: 40%;
   left: 0px;
   top: 0px;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+}
+
+.studentInfoComponentWrapper {
+  float: left;
+  height: 28%;
+  width: 40%;
+  left: 0px;
+  top: 0px;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+}
+
+.additionalNotesComponentWrapper {
+  float: left;
+  height: 35%;
+  width: 40%;
+  left: 0px;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+}
+
+.uniformListComponentWrapper {
+  float: left;
+  height: 84%;
+  width: 60%;
+  right: 0px;
+  float: right;
 }

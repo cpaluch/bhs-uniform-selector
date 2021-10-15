@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import styles from './UniformAssignPage.module.css';
 import { StudentInfo } from './components/StudentInfo/StudentInfo';
+import { AdditionalNotes } from './components/AdditionalNotes/AdditionalNotes';
+import { StudentSelect } from './components/StudentSelect/StudentSelect';
 
 export function UniformAssignPage () {
 
+  // Will change how this is stored once back end is incorporated
+  const [student, setStudent] = useState("");
+
   const [studentInfo, setStudentInfo] = useState({
-    firstName: "",
-    lastName: "",
     grade: "",
     instrument: "",
     height: "",
@@ -15,12 +18,10 @@ export function UniformAssignPage () {
     head: "",
   });
 
-  const handleFirstNameChange = (fname) => {
-    setStudentInfo({...studentInfo, firstName: fname});
-  }
+  const [additionalNotes, setAdditionalNotes] = useState("");
 
-  const handleLastNameChange = (lname) => {
-    setStudentInfo({...studentInfo, lastName: lname});
+  const handleStudentChange = (student) => {
+    setStudent(student);
   }
 
   const handleGradeChange = (grade) => {
@@ -47,12 +48,22 @@ export function UniformAssignPage () {
     setStudentInfo({...studentInfo, head: head});
   }
 
+  const handleAdditionalNotesChange = (notes) => {
+    setAdditionalNotes(notes);
+  }
+
   return (
     <div className={styles.float_container}>
+      <div className={styles.headerWrapper}/>
+      <div className={styles.studentSelectComponentWrapper}>
+        <StudentSelect
+          onStudentChange={handleStudentChange}/>
+      </div>
+      <div className={styles.uniformListComponentWrapper}>
+        <p>Uniform List Component Here</p>
+      </div>
       <div className={styles.studentInfoComponentWrapper}>
         <StudentInfo
-          onFirstNameChange={handleFirstNameChange}
-          onLastNameChange={handleLastNameChange}
           onGradeChange={handleGradeChange}
           onInstrumentChange={handleInstrumentChange}
           onHeightChange={handleHeightChange}
@@ -60,6 +71,11 @@ export function UniformAssignPage () {
           onWaistChange={handleWaistChange}
           onHeadChange={handleHeadChange}/>
       </div>
+      <div className={styles.additionalNotesComponentWrapper}>
+        <AdditionalNotes
+          onAdditionalNotesChange={handleAdditionalNotesChange}/>
+      </div>
+      <div className={styles.footerWrapper}/>
     </div>
   );
 
