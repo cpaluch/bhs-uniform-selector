@@ -1,5 +1,5 @@
 import React from 'react';
-import { DataGrid } from '@material-ui/data-grid';
+import { DataGrid } from '@mui/x-data-grid';
 import styles from './ReportsTable.module.css';
 import Typography from '@mui/material/Typography';
 
@@ -11,7 +11,7 @@ export default function ReportsTable() {
         { field: 'lastName', headerName: 'Last name', width: 150 },
         { field: 'firstName', headerName: 'First name', width: 150 },
       ];
-      
+
       const rows = [
         { type: 'Marching Band', id: '1', size: 'S', lastName: 'Nachabe', firstName: 'Foad'},
         { type: 'Drum Line', id: '2', size: 'M', lastName: 'Nelli', firstName: 'Ashish'},
@@ -24,7 +24,7 @@ export default function ReportsTable() {
         { type: 'I dont know', id: '9', size: 'XL', lastName: 'Paluch', firstName: 'Cole'},
         { type: 'Squidwards Band', id: '10', size: 'XXL', lastName: 'Hefner', firstName: 'Noah'},
       ];
-      
+
   return (
     <div className={styles.wrapperComponent}>
       <div className={styles.wrapperHeader}>
