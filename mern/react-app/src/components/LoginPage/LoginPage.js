@@ -11,6 +11,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import styles from '../StudentInfo/StudentInfo.module.css';
+import Header from '../Header/Header'
+import Footer from '../Footer/Footer'
 
 
 const theme = createTheme();
@@ -18,20 +20,17 @@ const theme = createTheme();
 export default function SignIn() {
 
   return (
+  <div>
+    <Header/>
     <ThemeProvider theme={theme}>
-      <Box
-      sx={{
-        width: "100%",
-        height: 100,
-        bgcolor: 'primary.dark',
-      }}
-      />
+      
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         
         <Box
           sx={{
-            marginTop: 4,
+            marginTop: 10,
+            marginBottom: 20,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -99,5 +98,8 @@ export default function SignIn() {
       />
     */}
     </ThemeProvider>
+    <Footer/>
+  </div>
+   
   );
 }
