@@ -57,9 +57,7 @@ export default function UniformAssignPage () {
 
   return (
     <div className={styles.float_container}>
-      <div className={styles.headerWrapper}>
-        <Header/>
-      </div>
+      <Header/>
       <div className={styles.studentSelectComponentWrapper}>
         <StudentSelect
           onStudentChange={handleStudentChange}/>

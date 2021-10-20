@@ -5,17 +5,8 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import InputAdornment from '@mui/material/InputAdornment';
 import Typography from '@mui/material/Typography';
-import Autocomplete from '@mui/material/Autocomplete';
 
 export function StudentInfo (props) {
-
-  const testStudentData = [
-    {label: "Noah Hefner"},
-    {label: "Cole Paluch"},
-    {label: "Jared Anderson"},
-    {label: "Ashish Nelli"},
-    {label: "Foad Nachabe"}
-  ];
 
   return (
     <div className={styles.wrapperComponent}>

@@ -7,11 +7,15 @@ import Footer from './components/Footer/Footer'
 export default function ReportsPage(){
     return (
         <div className={styles.float_container}>
-            <Header className={styles.headerWrapper}/>
-                <div className={styles.reportsPageComponentWrapper}>
-                    <ReportsTable/>
-                </div>
-            <Footer className={styles.footerWrapper}/>
+          <div className={styles.headerWrapper}>
+            <Header/>
+          </div>
+          <div className={styles.reportsPageComponentWrapper}>
+              <ReportsTable/>
+          </div>
+          <div className={styles.footerWrapper}>
+            <Footer/>
+          </div>
         </div>
     )
-} 
+}
