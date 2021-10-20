@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import AppBar from "@mui/material/AppBar"
 import Link from "@mui/material/Link"
 import ToolBar from "@mui/material/Toolbar"
+import Box from '@mui/material/Box'
 import UniformAssignPage from '../../UniformAssignPage'
 import ReportsPage from '../../ReportsPage'
 import { CardMedia, Typography } from '@mui/material'
@@ -11,10 +12,11 @@ import { NavLink } from 'react-router-dom'
 export default class Header extends Component {
     render() {
         return (
+          <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
                 <ToolBar>
                     <img src="images/bruins.png" alt="logo" height="50" width="50"/>
-                    <Typography variant="h6" flexGrow="1" margin="20px">
+                    <Typography variant="h6" flexGrow="1" ml="20px" sx={{ flexGrow: 1 }}>
                         Blacksburg Bands Uniform Select
                     </Typography>
                     <ul className={styles.link_box}>
@@ -25,6 +27,7 @@ export default class Header extends Component {
                     </ul>
                 </ToolBar>
             </AppBar>
+          </Box>
         )
     }
 }

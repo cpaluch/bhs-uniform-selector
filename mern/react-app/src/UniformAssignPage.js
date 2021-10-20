@@ -57,7 +57,9 @@ export default function UniformAssignPage () {
 
   return (
     <div className={styles.float_container}>
-      <Header className={styles.headerWrapper}/>
+      <div className={styles.headerWrapper}>
+        <Header/>
+      </div>
       <div className={styles.studentSelectComponentWrapper}>
         <StudentSelect
           onStudentChange={handleStudentChange}/>
@@ -77,6 +79,9 @@ export default function UniformAssignPage () {
       <div className={styles.additionalNotesComponentWrapper}>
         <AdditionalNotes
           onAdditionalNotesChange={handleAdditionalNotesChange}/>
+      </div>
+      <div className={styles.footerWrapper}>
+        <Footer/>
       </div>
     </div>
   );
