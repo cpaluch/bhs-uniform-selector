@@ -1,4 +1,4 @@
-const { uuid } = require("uuidv4")
+const { v4: uuid_v4 } = require('uuid');
 
 module.exports = {
     getAllStudents,
@@ -10,12 +10,12 @@ let Students = [
     {
       "first_name" : "John",
       "last_name" : "Doe",
-      "student_id" : uuid()
+      "student_id" : uuid_v4()
     },
     {
       "first_name" : "Jane",
       "last_name" : "Doe",
-      "student_id" : uuid()
+      "student_id" : uuid_v4()
     }
   ]
 
@@ -41,7 +41,7 @@ async function addStudent(body) {
   let new_student = {
     "first_name" : first_name,
     "last_name" : last_name,
-    "student_id" : uuid()
+    "student_id" : uuid_v4()
   }
 
   
