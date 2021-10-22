@@ -8,5 +8,4 @@ function getAllStudents(req, res, next) {
     studentService.getAllStudents()
     .then(students => res.json(students))
     .catch(err => next(err));
-
 }

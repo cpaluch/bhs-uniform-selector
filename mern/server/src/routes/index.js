@@ -33,4 +33,8 @@ router.get('/allStudents', function(req, res, next) {
   res.send(temp_student_list)
 })
 
+router.post('/assignUniforms', function(req, res, next) {
+  
+})
+
 module.exports = router;
