@@ -29,6 +29,7 @@ async function getAllUniforms() {
         }
     });
 }
+
 //pre: uniforms is an object with list of updated uniforms as ID's and updated student ID
 // uniforms = { "uniform_id" : number[], "student_id" : number }
 async function updateUniforms(uniforms) {
