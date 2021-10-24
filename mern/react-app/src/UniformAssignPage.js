@@ -56,28 +56,31 @@ export default function UniformAssignPage () {
   }
 
   return (
-    <div className={styles.float_container}>
-      <Header className={styles.headerWrapper}/>
-      <div className={styles.studentSelectComponentWrapper}>
-        <StudentSelect
-          onStudentChange={handleStudentChange}/>
+    <div>
+      <div className={styles.float_container}>
+        <Header className={styles.headerWrapper}/>
+        <div className={styles.studentSelectComponentWrapper}>
+          <StudentSelect
+            onStudentChange={handleStudentChange}/>
+        </div>
+        <div className={styles.uniformListComponentWrapper}>
+          <UniformList uniforms={{}}></UniformList>
+        </div>
+        <div className={styles.studentInfoComponentWrapper}>
+          <StudentInfo
+            onGradeChange={handleGradeChange}
+            onInstrumentChange={handleInstrumentChange}
+            onHeightChange={handleHeightChange}
+            onChestChange={handleChestChange}
+            onWaistChange={handleWaistChange}
+            onHeadChange={handleHeadChange}/>
+        </div>
+        <div className={styles.additionalNotesComponentWrapper}>
+          <AdditionalNotes
+            onAdditionalNotesChange={handleAdditionalNotesChange}/>
+        </div>
       </div>
-      <div className={styles.uniformListComponentWrapper}>
-        <UniformList uniforms={{}}></UniformList>
-      </div>
-      <div className={styles.studentInfoComponentWrapper}>
-        <StudentInfo
-          onGradeChange={handleGradeChange}
-          onInstrumentChange={handleInstrumentChange}
-          onHeightChange={handleHeightChange}
-          onChestChange={handleChestChange}
-          onWaistChange={handleWaistChange}
-          onHeadChange={handleHeadChange}/>
-      </div>
-      <div className={styles.additionalNotesComponentWrapper}>
-        <AdditionalNotes
-          onAdditionalNotesChange={handleAdditionalNotesChange}/>
-      </div>
+      <Footer/>
     </div>
   );
 
