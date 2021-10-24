@@ -1,7 +1,16 @@
 import React from 'react';
-import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid, GridToolbarContainer, GridToolbarExport, gridClasses,} from '@mui/x-data-grid';
 import styles from './ReportsTable.module.css';
 import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+
+function CustomToolbar() {
+  return (
+    <GridToolbarContainer className={gridClasses.toolbarContainer}>
+      <GridToolbarExport />
+    </GridToolbarContainer>
+  );
+}
 
 export default function ReportsTable() {
     const columns = [
@@ -35,10 +44,12 @@ export default function ReportsTable() {
         <Typography ml={2} mt={1} mb={1} variant="h6" color="white" fontWeight="bold" gutterBottom component="div">
             Reports Page
         </Typography>
-        {/* <GridToolbarExport /> */}
       </div>
       <div className={styles.boxLimits}>
         <DataGrid
+          components={{
+            Toolbar: CustomToolbar,
+          }}
           rows={rows}
           columns={columns.map((columns) => ({...columns, sortable: false, }))}
           pageSize={8}
@@ -47,6 +58,9 @@ export default function ReportsTable() {
           checkboxSelection
         />
       </div>
+      <Button variant="contained">
+        Remove Student
+      </Button>
     </div>
   );
 }
