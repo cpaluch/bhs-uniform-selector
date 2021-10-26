@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
 import AppBar from "@mui/material/AppBar"
-import Link from "@mui/material/Link"
 import ToolBar from "@mui/material/Toolbar"
-import UniformAssignPage from '../../UniformAssignPage'
-import ReportsPage from '../../ReportsPage'
-import { CardMedia, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 import styles from './Header.module.css'
 import { NavLink } from 'react-router-dom'
 
