@@ -1,4 +1,10 @@
 import React, { Component } from 'react'
+import styles from './AddUniforms.module.css';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
 
 export class AddUniforms extends Component {
     render() {
@@ -13,14 +19,14 @@ export class AddUniforms extends Component {
               <Box sx={{ flexGrow: 1, ml: 2, mr:2, mb: 2, mt: 2 }}>
                 <Grid container spacing={2} columns={12}>
                   <Grid item xs={12} align="center" justify="center">
-                    <Autocomplete
+                    {/* <Autocomplete
                       size="small"
                       disablePortal
                       id="cb-student-select"
                       options={testStudentData}
                       renderInput={(params) => <TextField {...params} label="Select Student" />}
                       isOptionEqualToValue={(option, value) => option.id === value.id}
-                      onChange={(e) => props.onStudentChange(e.target.innerText)}/>
+                      onChange={(e) => props.onStudentChange(e.target.innerText)}/> */}
                   </Grid>
                 </Grid>
               </Box>

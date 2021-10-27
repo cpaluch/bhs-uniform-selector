@@ -11,7 +11,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import styles from '../StudentInfo/StudentInfo.module.css';
-import Header from '../Header/Header'
+import HeaderLogin from '../Header/HeaderLogin'
 import Footer from '../Footer/Footer'
 
 
