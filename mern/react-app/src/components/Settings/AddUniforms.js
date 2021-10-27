@@ -94,7 +94,7 @@ export default function AddUniforms() {
               />
             </Grid>
             <Grid item xs={12} align="right" justify="right">
-              <Button variant="contained">Add Uniform</Button>
+              <Button variant="contained">Add</Button>
             </Grid>
           </Grid>
         </Box>

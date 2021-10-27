@@ -1,13 +1,60 @@
-import React, { Component } from 'react'
+import React from "react";
+import { DataGrid } from "@mui/x-data-grid";
+import styles from "./ManageUsers.module.css";
+import Typography from "@mui/material/Typography";
 
-export class ManageUsers extends Component {
-    render() {
-        return (
-            <div>
-                
-            </div>
-        )
-    }
+export default function ManageUsers() {
+  const columns = [
+    { field: "id", headerName: "ID", width: 50 },
+    { field: "firstName", headerName: "First Name", width: 200 },
+    { field: "lastName", headerName: "Last Name", width: 200 },
+    { field: "email", headerName: "Email", width: 200 },
+  ];
+
+  const rows = [
+    { id: "1", firstName: "Ashish", lastName: "Nelli", email: "123@gmail.com" },
+    { id: "2", firstName: "Cole", lastName: "Paluch", email: "abcd@gmail.com" },
+    { id: "3", firstName: "Noah", lastName: "Hefner", email: "efg@gmail.com" },
+    {
+      id: "4",
+      firstName: "Jared",
+      lastName: "Anderson",
+      email: "678@gmail.com",
+    },
+    {
+      id: "5",
+      firstName: "Foad",
+      lastName: "Nachabe",
+      email: "1009@yahoo.com",
+    },
+  ];
+
+  return (
+    <div className={styles.wrapperComponent}>
+      <div className={styles.wrapperHeader}>
+        <Typography
+          ml={1}
+          pl={1}
+          mt={1}
+          mb={1}
+          variant="h6"
+          color="white"
+          fontWeight="bold"
+          gutterBottom
+          component="div"
+        >
+          Users
+        </Typography>
+      </div>
+      <div className={styles.boxLimits}>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          pageemail={8}
+          rowsPerPageOptions={[8]}
+          checkboxSelection
+        />
+      </div>
+    </div>
+  );
 }
-
-export default ManageUsers
