@@ -18,10 +18,6 @@ export default class Header extends Component {
                         Blacksburg Bands Uniform Select
                     </Typography>
                     <ul className={styles.link_box}>
-                        <li className={styles.nav_link} ><NavLink style={{ textDecoration: 'none', color: 'inherit' }} to="">Add Uniforms</NavLink></li>
-                        <li className={styles.nav_link} ><NavLink style={{ textDecoration: 'none', color: 'inherit' }} to="/assign-uniforms">Uniform Selection</NavLink></li>
-                        <li className={styles.nav_link} ><NavLink style={{ textDecoration: 'none', color: 'inherit' }} to="/reports">Reports</NavLink></li>
-                        <li className={styles.nav_link} ><NavLink style={{ textDecoration: 'none', color: 'inherit' }} to="">Settings</NavLink></li>
                         <li className={styles.nav_link} ><NavLink style={{ textDecoration: 'none', color: 'inherit' }} to="">Help</NavLink></li>
                     </ul>
                 </ToolBar>
