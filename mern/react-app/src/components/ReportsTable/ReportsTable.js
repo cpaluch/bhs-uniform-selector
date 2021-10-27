@@ -1,28 +1,41 @@
 import React from 'react';
-import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid, GridToolbarContainer, GridToolbarExport, gridClasses,} from '@mui/x-data-grid';
 import styles from './ReportsTable.module.css';
 import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+
+function CustomToolbar() {
+  return (
+    <GridToolbarContainer className={gridClasses.toolbarContainer}>
+      <GridToolbarExport />
+    </GridToolbarContainer>
+  );
+}
 
 export default function ReportsTable() {
     const columns = [
         { field: 'type', headerName: 'Type of Uniform', width: 200},
+        { field: 'piece', headerName: 'Piece of Uniform', width: 200},
         { field: 'id', headerName: 'Uniform ID', width: 200 },
-        { field: 'size', headerName: 'Size', width: 500 },
+        { field: 'size', headerName: 'Size', width: 300 },
         { field: 'lastName', headerName: 'Last name', width: 150 },
         { field: 'firstName', headerName: 'First name', width: 150 },
+        // { field: 'stdID', headerName: 'Meh', width: 150 },
       ];
 
       const rows = [
-        { type: 'Marching Band', id: '1', size: 'S', lastName: 'Nachabe', firstName: 'Foad'},
-        { type: 'Drum Line', id: '2', size: 'M', lastName: 'Nelli', firstName: 'Ashish'},
-        { type: 'Clarinet', id: '3', size: 'L', lastName: 'Anderson', firstName: 'Jared'},
-        { type: 'I dont know', id: '4', size: 'XL', lastName: 'Paluch', firstName: 'Cole'},
-        { type: 'Squidwards Band', id: '5', size: 'XXL', lastName: 'Hefner', firstName: 'Noah'},
-        { type: 'Marching Band', id: '6', size: 'S', lastName: 'Nachabe', firstName: 'Foad'},
-        { type: 'Drum Line', id: '7', size: 'M', lastName: 'Nelli', firstName: 'Ashish'},
-        { type: 'Clarinet', id: '8', size: 'L', lastName: 'Anderson', firstName: 'Jared'},
-        { type: 'I dont know', id: '9', size: 'XL', lastName: 'Paluch', firstName: 'Cole'},
-        { type: 'Squidwards Band', id: '10', size: 'XXL', lastName: 'Hefner', firstName: 'Noah'},
+        { type: 'Marching Band', piece: 'Hat', id: 'Hat 1', size: 'S', lastName: 'Nachabe', firstName: 'Foad', stdID: 1},
+        { type: 'Marching Band', piece: 'Jumpsuit', id: 'Jumpsuit 2', size: 'M', lastName: 'Nelli', firstName: 'Ashish', stdID: 2},
+        { type: 'Marching Band', piece: 'Jacket', id: 'Jacket 3', size: 'L', lastName: 'N/A', firstName: 'N/A', stdID: -1},
+        { type: 'Marching Band', piece: 'Poncho', id: 'Poncho 4', size: 'XL', lastName: 'N/A', firstName: 'N/A', stdID: -1},
+        { type: 'HS Concert Band', piece: 'Dress', id: 'Dress 5', size: 'XXL', lastName: 'Hefner', firstName: 'Noah', stdID: 3},
+        { type: 'HS Concert Band', piece: 'Shirt', id: 'Shirt 6', size: 'S', lastName: 'Nachabe', firstName: 'Foad', stdID: 1},
+        { type: 'HS Concert Band', piece: 'Jacket', id: 'Jacket 7', size: 'M', lastName: 'Nelli', firstName: 'Ashish', stdID: 2},
+        { type: 'HS Concert Band', piece: 'Pants', id: 'Pants 8', size: 'L', lastName: 'Anderson', firstName: 'Jared', stdID: 4},
+        { type: 'MS Concert Band', piece: 'Dress', id: 'Dress 9', size: 'XL', lastName: 'Paluch', firstName: 'Cole', stdID: 5},
+        { type: 'MS Concert Band', piece: 'Shirt', id: 'Shirt 10', size: 'XXL', lastName: 'Hefner', firstName: 'Noah', stdID: 3},
+        { type: 'MS Concert Band', piece: 'Jacket', id: 'Jacket 11', size: 'L', lastName: 'Anderson', firstName: 'Jared', stdID: 4},
+        { type: 'MS Concert Band', piece: 'Pants', id: 'Pants 12', size: 'XL', lastName: 'Paluch', firstName: 'Cole', stdID: 5},
       ];
 
   return (
@@ -34,13 +47,20 @@ export default function ReportsTable() {
       </div>
       <div className={styles.boxLimits}>
         <DataGrid
+          components={{
+            Toolbar: CustomToolbar,
+          }}
           rows={rows}
-          columns={columns}
+          columns={columns.map((columns) => ({...columns, sortable: false, }))}
           pageSize={8}
           rowsPerPageOptions={[8]}
+          isRowSelectable={(param) => param.row.stdID > 0}
           checkboxSelection
         />
       </div>
+      <Button variant="contained">
+        Remove Student
+      </Button>
     </div>
   );
 }
