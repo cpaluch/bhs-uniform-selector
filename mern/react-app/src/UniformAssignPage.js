@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './UniformAssignPage.module.css';
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
@@ -9,9 +9,10 @@ import UniformList from './components/UniformList/UniformList';
 
 export default function UniformAssignPage () {
 
-  // Will change how this is stored once back end is incorporated
-  const [student, setStudent] = useState("");
+  // Student that is selected in select student component
+  const [selectedStudent, setSelectedStudent] = useState("");
 
+  // Student information fields
   const [studentInfo, setStudentInfo] = useState({
     grade: "",
     instrument: "",
@@ -21,10 +22,55 @@ export default function UniformAssignPage () {
     head: "",
   });
 
+  // Additional notes content, as a string
   const [additionalNotes, setAdditionalNotes] = useState("");
 
+  // List of all students, from database
+  const [allStudents, setAllStudents] = useState([]);
+
+  // List of all uniforms, from database
+  const [allUniforms, setAllUniforms] = useState([]);
+
+  useEffect(() => {
+    // This is where we will make the API call to the DB and load the list of
+    // students into the allStudents state and load the list of all uniforms
+    // into the allUniforms state. For now, we just use some dummy data. This
+    // code will only run once when the page loads.
+
+    async function wrapStudentQuery() {
+      // API CALL HERE
+      setAllStudents([
+        {label: "Noah Hefner"},
+        {label: "Cole Paluch"},
+        {label: "Jared Anderson"},
+        {label: "Ashish Nelli"},
+        {label: "Foad Nachabe"}
+      ]);
+    }
+
+    async function wrapUniformQuery() {
+      // API CALL HERE
+      setAllUniforms([
+        { type: 'Gauntlet', id: '1', size: 'Small'},
+        { type: 'Gauntlet', id: '2', size: 'Medium'},
+        { type: 'Gauntlet', id: '3', size: 'Large'},
+        { type: 'Hat', id: '4', size: 'X-Large'},
+        { type: 'Hat', id: '5', size: 'XX-Large'},
+        { type: 'Hat', id: '6', size: 'Small'},
+        { type: 'Jacket', id: '7', size: 'Medium'},
+        { type: 'Jacket', id: '8', size: 'Large'},
+        { type: 'Jacket', id: '9', size: 'X-Large'},
+        { type: 'Jacket', id: '10', size: 'XX-Large'},
+      ]);
+    }
+
+    wrapStudentQuery();
+    wrapUniformQuery();
+
+  }, []);
+
   const handleStudentChange = (student) => {
-    setStudent(student);
+    setSelectedStudent(student);
   }
 
   const handleGradeChange = (grade) => {
@@ -56,31 +102,32 @@ export default function UniformAssignPage () {
   }
 
   return (
-    <div>
-      <div className={styles.float_container}>
-        <Header className={styles.headerWrapper}/>
-        <div className={styles.studentSelectComponentWrapper}>
-          <StudentSelect
-            onStudentChange={handleStudentChange}/>
-        </div>
-        <div className={styles.uniformListComponentWrapper}>
-          <UniformList uniforms={{}}></UniformList>
-        </div>
-        <div className={styles.studentInfoComponentWrapper}>
-          <StudentInfo
-            onGradeChange={handleGradeChange}
-            onInstrumentChange={handleInstrumentChange}
-            onHeightChange={handleHeightChange}
-            onChestChange={handleChestChange}
-            onWaistChange={handleWaistChange}
-            onHeadChange={handleHeadChange}/>
-        </div>
-        <div className={styles.additionalNotesComponentWrapper}>
-          <AdditionalNotes
-            onAdditionalNotesChange={handleAdditionalNotesChange}/>
-        </div>
+    <div className={styles.float_container}>
+      <Header/>
+      <div className={styles.studentSelectComponentWrapper}>
+        <StudentSelect
+          allStudents={allStudents}
+          onStudentChange={handleStudentChange}/>
       </div>
-      <Footer/>
+      <div className={styles.uniformListComponentWrapper}>
+        <UniformList uniforms={allUniforms}/>
+      </div>
+      <div className={styles.studentInfoComponentWrapper}>
+        <StudentInfo
+          onGradeChange={handleGradeChange}
+          onInstrumentChange={handleInstrumentChange}
+          onHeightChange={handleHeightChange}
+          onChestChange={handleChestChange}
+          onWaistChange={handleWaistChange}
+          onHeadChange={handleHeadChange}/>
+      </div>
+      <div className={styles.additionalNotesComponentWrapper}>
+        <AdditionalNotes
+          onAdditionalNotesChange={handleAdditionalNotesChange}/>
+      </div>
+      <div className={styles.footerWrapper}>
+        <Footer/>
+      </div>
     </div>
   );
 
