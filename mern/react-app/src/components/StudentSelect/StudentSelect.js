@@ -8,14 +8,6 @@ import TextField from '@mui/material/TextField';
 
 export function StudentSelect (props) {
 
-  const testStudentData = [
-    {label: "Noah Hefner"},
-    {label: "Cole Paluch"},
-    {label: "Jared Anderson"},
-    {label: "Ashish Nelli"},
-    {label: "Foad Nachabe"}
-  ];
-
   return (
     <div className={styles.wrapperComponent}>
       <div className={styles.wrapperHeader}>
@@ -31,7 +23,7 @@ export function StudentSelect (props) {
                 size="small"
                 disablePortal
                 id="cb-student-select"
-                options={testStudentData}
+                options={props.allStudents}
                 renderInput={(params) => <TextField {...params} label="Select Student" />}
                 isOptionEqualToValue={(option, value) => option.id === value.id}
                 onChange={(e) => props.onStudentChange(e.target.innerText)}/>
