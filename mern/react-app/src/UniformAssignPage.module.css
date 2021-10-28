@@ -55,8 +55,19 @@
 
 .uniformListComponentWrapper {
   float: left;
-  height: 84%;
+  height: 75%;
   width: 60%;
   right: 0px;
   float: right;
+}
+
+.buttonsWrapper {
+  float: left;
+  height: 9%;
+  width: 60%;
+  right: 0px;
+  float: right;
+  vertical-align: center;
+  display: flex;
+  align-items: center;
 }
