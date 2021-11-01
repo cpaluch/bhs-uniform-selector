@@ -1,9 +1,9 @@
 .wrapperComponent {
   height: 90vh;
-  width: 50vw;
-  max-width: 1300px;
+  width: 90vw;
   margin-left: 50px;
   margin-top: 20px;
+  display: flex;
 }
 
 .wrapperHeader {
@@ -15,6 +15,20 @@
   border: 1px solid blue;
   background-color: blue;
   border-bottom: 1px solid black;
+}
+
+.wrapperAddUser {
+  margin-left: 30px;
+  width: 45%;
+  height: auto;
+}
+
+.wrapperSelectSection {
+  height: auto;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
 }
 
 .boxLimits {

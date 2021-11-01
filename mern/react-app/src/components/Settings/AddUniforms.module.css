@@ -3,7 +3,7 @@
   width: 100%;
   border: 1px solid black;
   background-color: #f0f0f0;
-  max-width: 450px;
+  max-width: 600px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -25,4 +25,23 @@
   margin: 0px;
   padding: 0px;
   border: 0px;
+}
+
+.headerWrapper {
+  float: left;
+  height: 10%;
+  width: 100%;
+  top: 0px;
+  margin-bottom: 20px;
+  left: 0px;
+  background-color: blue;
+}
+
+.footerWrapper {
+  float: left;
+  height: 6%;
+  width: 100%;
+  bottom: 0px;
+  left: 0px;
+  background-color: blue;
 }
