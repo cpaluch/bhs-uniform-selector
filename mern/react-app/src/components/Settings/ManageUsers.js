@@ -1,7 +1,7 @@
 import React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import styles from "./ManageUsers.module.css";
-import Typography from "@mui/material/Typography";
+import { Typography, Button, Grid, TextField, Box } from "@mui/material";
 
 export default function ManageUsers() {
   const columns = [
@@ -31,29 +31,81 @@ export default function ManageUsers() {
 
   return (
     <div className={styles.wrapperComponent}>
-      <div className={styles.wrapperHeader}>
-        <Typography
-          ml={1}
-          pl={1}
-          mt={1}
-          mb={1}
-          variant="h6"
-          color="white"
-          fontWeight="bold"
-          gutterBottom
-          component="div"
-        >
-          Users
-        </Typography>
+      <div className={styles.wrapperAddUser}>
+        <div className={styles.wrapperHeader}>
+          <Typography
+            ml={1}
+            pl={1}
+            mt={1}
+            mb={1}
+            variant="h6"
+            color="white"
+            fontWeight="bold"
+            gutterBottom
+            component="div"
+          >
+            Users
+          </Typography>
+        </div>
+        <div className={styles.boxLimits}>
+          <DataGrid
+            rows={rows}
+            columns={columns}
+            pageemail={8}
+            rowsPerPageOptions={[8]}
+            checkboxSelection
+          />
+          <Button>Remove User</Button>
+        </div>
       </div>
-      <div className={styles.boxLimits}>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          pageemail={8}
-          rowsPerPageOptions={[8]}
-          checkboxSelection
-        />
+      <div className={styles.wrapperAddUser}>
+        <div className={styles.wrapperHeader}>
+          <Typography
+            ml={2}
+            mt={1}
+            mb={1}
+            variant="h6"
+            color="white"
+            fontWeight="bold"
+            gutterBottom
+            component="div"
+          >
+            Add User
+          </Typography>
+        </div>
+        <div className={styles.boxLimits}>
+          <Box sx={{ flexGrow: 1, ml: 2, mr: 2, mb: 2, mt: 2 }}>
+            <Grid container spacing={2} columns={2}>
+              <Grid item xs={12} align="center" justify="center">
+                <TextField
+                  fullWidth
+                  id="outlined-basic"
+                  label="First Name"
+                  variant="outlined"
+                />
+              </Grid>
+              <Grid item xs={12} align="center" justify="center">
+                <TextField
+                  fullWidth
+                  id="outlined-basic"
+                  label="Last Name"
+                  variant="outlined"
+                />
+              </Grid>
+              <Grid item xs={12} align="center" justify="center">
+                <TextField
+                  fullWidth
+                  id="outlined-basic"
+                  label="Email"
+                  variant="outlined"
+                />
+              </Grid>
+              <Grid item xs={12} align="right" justify="right">
+                <Button variant="contained">Add</Button>
+              </Grid>
+            </Grid>
+          </Box>
+        </div>
       </div>
     </div>
   );
