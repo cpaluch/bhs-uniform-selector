@@ -20,7 +20,7 @@ export default function AddUniforms() {
 
   let select;
 
-  if (selectVal == "10") {
+  if (selectVal === "10") {
     select = (
       <FormControl fullWidth>
         <InputLabel>Uniform Piece</InputLabel>
@@ -32,7 +32,7 @@ export default function AddUniforms() {
         </Select>
       </FormControl>
     );
-  } else if (selectVal == "20" || selectVal == "30") {
+  } else if (selectVal === "20" || selectVal === "30") {
     select = (
       <FormControl fullWidth>
         <InputLabel>Uniform Piece</InputLabel>
