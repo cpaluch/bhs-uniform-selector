@@ -1,0 +1,42 @@
+.wrapperComponent {
+  height: 90vh;
+  width: 90vw;
+  margin-left: 50px;
+  margin-top: 20px;
+  display: flex;
+}
+
+.wrapperHeader {
+  height: auto;
+  width: 100%;
+  max-width: 1290px;
+  margin: 0px;
+  display: flex;
+  border: 1px solid blue;
+  background-color: blue;
+  border-bottom: 1px solid black;
+}
+
+.wrapperAddUser {
+  margin-left: 30px;
+  width: 45%;
+  height: auto;
+}
+
+.wrapperSelectSection {
+  height: auto;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+}
+
+.boxLimits {
+  height: 80%;
+  width: 100%;
+  border: 1px solid black;
+  background-color: #f0f0f0;
+  max-width: 1300px;
+  margin-left: auto;
+  margin-right: auto;
+}

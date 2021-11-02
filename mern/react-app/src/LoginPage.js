@@ -10,9 +10,8 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Header from './components/Header/Header'
-import Footer from './components/Footer/Footer'
-
+import Footer from './components/Footer/Footer';
+import HeaderLogin from './components/Header/HeaderLogin'
 
 const theme = createTheme();
 
@@ -20,7 +19,7 @@ export default function SignIn() {
 
   return (
   <div>
-    <Header/>
+    <HeaderLogin/>
     <ThemeProvider theme={theme}>
 
       <Container component="main" maxWidth="xs">
