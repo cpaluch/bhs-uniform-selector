@@ -53,7 +53,7 @@ export default class Header extends Component {
             <li className={styles.nav_link}>
               <NavLink
                 style={{ textDecoration: "none", color: "inherit" }}
-                to=""
+                to="/help"
               >
                 Help
               </NavLink>
