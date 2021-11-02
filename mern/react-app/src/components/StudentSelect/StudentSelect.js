@@ -24,9 +24,17 @@ export function StudentSelect (props) {
                 disablePortal
                 id="cb-student-select"
                 options={props.allStudents}
-                renderInput={(params) => <TextField {...params} label="Select Student" />}
-                isOptionEqualToValue={(option, value) => option.id === value.id}
-                onChange={(e) => props.onStudentChange(e.target.innerText)}/>
+                getOptionLabel={option => option.first_name + " " + option.last_name}
+                renderInput={
+                  (params) => <TextField {...params} label="Select Student"/>
+                }
+                onChange={(e) => {
+                  if (e.target.dataset.optionIndex === undefined) {
+                    props.onSelectedStudentChange("");
+                  } else {
+                    props.onSelectedStudentChange(props.allStudents[e.target.dataset.optionIndex].id);
+                  }
+                }}/>
             </Grid>
           </Grid>
         </Box>
