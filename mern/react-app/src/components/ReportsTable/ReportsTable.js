@@ -24,18 +24,18 @@ export default function ReportsTable() {
       ];
 
       const rows = [
-        { type: 'Marching Band', piece: 'Hat', id: 'Hat 1', size: 'S', lastName: 'Nachabe', firstName: 'Foad', stdID: 1},
-        { type: 'Marching Band', piece: 'Jumpsuit', id: 'Jumpsuit 2', size: 'M', lastName: 'Nelli', firstName: 'Ashish', stdID: 2},
-        { type: 'Marching Band', piece: 'Jacket', id: 'Jacket 3', size: 'L', lastName: 'N/A', firstName: 'N/A', stdID: -1},
-        { type: 'Marching Band', piece: 'Poncho', id: 'Poncho 4', size: 'XL', lastName: 'N/A', firstName: 'N/A', stdID: -1},
-        { type: 'HS Concert Band', piece: 'Dress', id: 'Dress 5', size: 'XXL', lastName: 'Hefner', firstName: 'Noah', stdID: 3},
-        { type: 'HS Concert Band', piece: 'Shirt', id: 'Shirt 6', size: 'S', lastName: 'Nachabe', firstName: 'Foad', stdID: 1},
-        { type: 'HS Concert Band', piece: 'Jacket', id: 'Jacket 7', size: 'M', lastName: 'Nelli', firstName: 'Ashish', stdID: 2},
-        { type: 'HS Concert Band', piece: 'Pants', id: 'Pants 8', size: 'L', lastName: 'Anderson', firstName: 'Jared', stdID: 4},
-        { type: 'MS Concert Band', piece: 'Dress', id: 'Dress 9', size: 'XL', lastName: 'Paluch', firstName: 'Cole', stdID: 5},
-        { type: 'MS Concert Band', piece: 'Shirt', id: 'Shirt 10', size: 'XXL', lastName: 'Hefner', firstName: 'Noah', stdID: 3},
-        { type: 'MS Concert Band', piece: 'Jacket', id: 'Jacket 11', size: 'L', lastName: 'Anderson', firstName: 'Jared', stdID: 4},
-        { type: 'MS Concert Band', piece: 'Pants', id: 'Pants 12', size: 'XL', lastName: 'Paluch', firstName: 'Cole', stdID: 5},
+        { type: 'Marching Band', piece: 'Hat', id: '1', size: 'S', lastName: 'Nachabe', firstName: 'Foad', stdID: 1},
+        { type: 'Marching Band', piece: 'Jumpsuit', id: '2', size: 'M', lastName: 'Nelli', firstName: 'Ashish', stdID: 2},
+        { type: 'Marching Band', piece: 'Jacket', id: '3', size: 'L', lastName: 'N/A', firstName: 'N/A', stdID: -1},
+        { type: 'Marching Band', piece: 'Poncho', id: '4', size: 'XL', lastName: 'N/A', firstName: 'N/A', stdID: -1},
+        { type: 'HS Concert Band', piece: 'Dress', id: '5', size: 'XXL', lastName: 'Hefner', firstName: 'Noah', stdID: 3},
+        { type: 'HS Concert Band', piece: 'Shirt', id: '6', size: 'S', lastName: 'Nachabe', firstName: 'Foad', stdID: 1},
+        { type: 'HS Concert Band', piece: 'Jacket', id: '7', size: 'M', lastName: 'Nelli', firstName: 'Ashish', stdID: 2},
+        { type: 'HS Concert Band', piece: 'Pants', id: '8', size: 'L', lastName: 'Anderson', firstName: 'Jared', stdID: 4},
+        { type: 'MS Concert Band', piece: 'Dress', id: '9', size: 'XL', lastName: 'Paluch', firstName: 'Cole', stdID: 5},
+        { type: 'MS Concert Band', piece: 'Shirt', id: '10', size: 'XXL', lastName: 'Hefner', firstName: 'Noah', stdID: 3},
+        { type: 'MS Concert Band', piece: 'Jacket', id: '11', size: 'L', lastName: 'Anderson', firstName: 'Jared', stdID: 4},
+        { type: 'MS Concert Band', piece: 'Pants', id: '12', size: 'XL', lastName: 'Paluch', firstName: 'Cole', stdID: 5},
       ];
 
   return (

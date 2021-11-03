@@ -6,22 +6,23 @@ import Typography from '@mui/material/Typography';
 export default function UniformList({ uniforms }) {
 
   const columns = [
-    { field: 'type', headerName: 'Type of Uniform', width: 220 },
+    { field: 'type', headerName: 'Type of Uniform', width: 150 },
+    { field: 'piece', headerName: 'Piece of Uniform', width: 150 },
     { field: 'id', headerName: 'Uniform ID', width: 150 },
-    { field: 'size', headerName: 'Size', width: 150 },
+    { field: 'size', headerName: 'Size', width: 90 },
   ];
   
-  const rows = [
-    { type: 'Gauntlet', id: '1', size: 'Small'},
-    { type: 'Gauntlet', id: '2', size: 'Medium'},
-    { type: 'Gauntlet', id: '3', size: 'Large'},
-    { type: 'Hat', id: '4', size: 'X-Large'},
-    { type: 'Hat', id: '5', size: 'XX-Large'},
-    { type: 'Hat', id: '6', size: 'Small'},
-    { type: 'Jacket', id: '7', size: 'Medium'},
-    { type: 'Jacket', id: '8', size: 'Large'},
-    { type: 'Jacket', id: '9', size: 'X-Large'},
-    { type: 'Jacket', id: '10', size: 'XX-Large'},
+  const rows = [  
+    { type: 'Marching Band', piece: 'Gauntlet', id: '1', size: 'Small'},
+    { type: 'Marching Band', piece: 'Gauntlet', id: '2', size: 'Medium'},
+    { type: 'Marching Band', piece: 'Gauntlet', id: '3', size: 'Large'},
+    { type: 'Marching Band', piece: 'Hat', id: '4', size: 'X-Large'},
+    { type: 'HS Concert Band', piece: 'Hat', id: '5', size: 'XX-Large'},
+    { type: 'HS Concert Band', piece: 'Hat', id: '6', size: 'Small'},
+    { type: 'HS Concert Band', piece: 'Jacket', id: '7', size: 'Medium'},
+    { type: 'HS Concert Band', piece: 'Jacket', id: '8', size: 'Large'},
+    { type: 'MS Concert Band', piece: 'Jacket', id: '9', size: 'X-Large'},
+    { type: 'MS Concert Band', piece: 'Jacket', id: '10', size: 'XX-Large'},
   ];
   
 return (
