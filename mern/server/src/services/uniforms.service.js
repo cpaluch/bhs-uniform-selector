@@ -7,16 +7,16 @@ module.exports = {
 
 let Uniforms = [
     {
-        "type" : "Gaunlet",
-        "uniform_id" : 10,
-        "size" : "Small",
-        "student_id" : 5
+        type : "Gaunlet",
+        uniform_id : 10,
+        size : "Small",
+        student_id : 5
     },
     {
-        "type" : "Hat",
-        "uniform_id" : 11,
-        "student_id" : 11,
-        "size" : "Large"
+        type : "Hat",
+        uniform_id : 11,
+        student_id : 12,
+        size : "Large"
     }
     /*
     {

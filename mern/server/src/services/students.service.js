@@ -8,14 +8,14 @@ module.exports = {
 //Mock array
 let Students = [
     {
-      "first_name" : "John",
-      "last_name" : "Doe",
-      "student_id" : uuid_v4()
+      first_name : "John",
+      last_name : "Doe",
+      student_id : uuid_v4()
     },
     {
-      "first_name" : "Jane",
-      "last_name" : "Doe",
-      "student_id" : uuid_v4()
+      first_name : "Jane",
+      last_name : "Do",
+      student_id : uuid_v4()
     }
   ]
 

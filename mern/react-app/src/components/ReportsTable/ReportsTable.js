@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { DataGrid, GridToolbarContainer, GridToolbarExport, gridClasses,} from '@mui/x-data-grid';
 import styles from './ReportsTable.module.css';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import axios from 'axios';
 
 function CustomToolbar() {
   return (
@@ -23,6 +24,28 @@ export default function ReportsTable() {
         // { field: 'stdID', headerName: 'Meh', width: 150 },
       ];
 
+
+      
+      const [allUniforms, setAllUniforms] = useState([]);
+
+      useEffect(() => {
+        let mount = true
+        getAllUniforms()
+        return () => mount = false
+      }, [])
+
+      const getAllUniforms = async () => {
+
+        return await axios.get("http://localhost:3000/uniforms/allUniforms").then(res => {
+          const uniforms = res.data
+          console.log(uniforms)
+          setAllUniforms(uniforms)
+        })
+        
+      }
+
+
+
       const rows = [
         { type: 'Marching Band', piece: 'Hat', id: 'Hat 1', size: 'S', lastName: 'Nachabe', firstName: 'Foad', stdID: 1},
         { type: 'Marching Band', piece: 'Jumpsuit', id: 'Jumpsuit 2', size: 'M', lastName: 'Nelli', firstName: 'Ashish', stdID: 2},
@@ -38,6 +61,8 @@ export default function ReportsTable() {
         { type: 'MS Concert Band', piece: 'Pants', id: 'Pants 12', size: 'XL', lastName: 'Paluch', firstName: 'Cole', stdID: 5},
       ];
 
+
+
   return (
     <div className={styles.wrapperComponent}>
       <div className={styles.wrapperHeader}>
@@ -50,7 +75,7 @@ export default function ReportsTable() {
           components={{
             Toolbar: CustomToolbar,
           }}
-          rows={rows}
+          rows={allUniforms}
           columns={columns.map((columns) => ({...columns, sortable: false, }))}
           pageSize={8}
           rowsPerPageOptions={[8]}

@@ -7,7 +7,7 @@ export default function UniformList(props) {
 
   const columns = [
     { field: 'type', headerName: 'Type of Uniform', width: 220 },
-    { field: 'bburg_id', headerName: 'Uniform ID', width: 150 },
+    { field: 'id', headerName: 'Uniform ID', width: 150 },
     { field: 'size', headerName: 'Size', width: 150 },
   ];
 

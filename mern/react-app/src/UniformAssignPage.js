@@ -7,7 +7,10 @@ import { AdditionalNotes } from './components/AdditionalNotes/AdditionalNotes';
 import { StudentSelect } from './components/StudentSelect/StudentSelect';
 import UniformList from './components/UniformList/UniformList';
 import Button from '@mui/material/Button';
+
+import axios from 'axios';
 const { v4: uuid_v4 } = require('uuid');
+
 
 export default function UniformAssignPage () {
 
@@ -50,113 +53,45 @@ export default function UniformAssignPage () {
   const getAllStudents = async () => {
 
     // API CALL HERE
-
-    setAllStudents([
-      {
-        first_name: "Noah",
-        last_name: "Hefner",
-        id: uuid_v4()
-      },
-      {
-        first_name: "Cole",
-        last_name: "Paluch",
-        id: uuid_v4()
-      },
-      {
-        first_name: "Jared",
-        last_name: "Anderson",
-        id: uuid_v4()
-      },
-      {
-        first_name: "Ashish",
-        last_name: "Nelli",
-        id: uuid_v4()
-      },
-      {
-        first_name: "Foad",
-        last_name: "Nachabe",
-        id: uuid_v4()
-      }
-    ]);
-
+    axios.get('http://localhost:3000/students/allStudents').then(res => {
+      const students = res.data
+      setAllStudents(students)
+    })
   }
 
   const getAllUniforms = async () => {
 
-    // API CALL HERE
-
-    setAllUniforms([
-      {
-        type: 'Gauntlet',
-        id: uuid_v4(),
-        bburg_id: 1,
-        size: 'Small'
-      },
-      {
-        type: 'Gauntlet',
-        id: uuid_v4(),
-        bburg_id: 2,
-        size: 'Medium'
-      },
-      {
-        type: 'Gauntlet',
-        id: uuid_v4(),
-        bburg_id: 3,
-        size: 'Large'
-      },
-      {
-        type: 'Hat',
-        id: uuid_v4(),
-        bburg_id: 4,
-        size: 'X-Large'
-      },
-      {
-        type: 'Hat',
-        id: uuid_v4(),
-        bburg_id: 5,
-        size: 'XX-Large'
-      },
-      {
-        type: 'Hat',
-        id: uuid_v4(),
-        bburg_id: 6,
-        size: 'Small'
-      },
-      {
-        type: 'Jacket',
-        id: uuid_v4(),
-        bburg_id: 7,
-        size: 'Medium'
-      },
-      {
-        type: 'Jacket',
-        id: uuid_v4(),
-        bburg_id: 8,
-        size: 'Large'
-      },
-      {
-        type: 'Jacket',
-        id: uuid_v4(),
-        bburg_id: 9,
-        size: 'X-Large'
-      },
-      {
-        type: 'Jacket',
-        id: uuid_v4(),
-        bburg_id: 10,
-        size: 'XX-Large'
-      },
-    ]);
+    axios.get("http://localhost:3000/uniforms/allUniforms").then(res => {
+      const uniforms = res.data
+      console.log(uniforms)
+      setAllUniforms(uniforms)
+    })
+    
   }
+
 
   const assign = async () => {
     // POST request here
-    console.log("Assigning uniforms");
-    selectedUniformIDs.forEach((item, i) => {
-      console.log(item);
-    });
-    console.log("to student");
-    console.log(selectedStudentID);
+
+    const data = {
+      uniform_id: selectedUniformIDs,
+      student_id: selectedStudentID
+    }
+
+    const config = {
+      headers : {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }
+
+    axios.post("http://localhost:3000/uniforms/updateUniforms", data, config)
+    // console.log("Assigning uniforms");
+    // selectedUniformIDs.forEach((item, i) => {
+    //   console.log(item);
+    // });
+    // console.log("to student");
+    // console.log(selectedStudentID);
   }
 
   const handleSelectedUniformsChange = (uniform_ids) => {

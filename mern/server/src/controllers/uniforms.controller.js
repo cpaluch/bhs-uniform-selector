@@ -7,7 +7,17 @@ module.exports = {
 
 function getAllUniforms(req, res, next) {
     uniformService.getAllUniforms()
-    .then(uniforms => res.json(uniforms))
+    .then(uniforms => {
+        const gridUniforms = uniforms.map(uniform => {
+            return {
+                type : uniform.type,
+                id : uniform.uniform_id,
+                size : uniform.size,
+                student_id : uniform.student_id
+            };
+        })
+        return res.json(gridUniforms)
+    })
     .catch(err => next(err));
 }
 
