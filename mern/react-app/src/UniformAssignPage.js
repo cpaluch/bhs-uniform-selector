@@ -86,12 +86,6 @@ export default function UniformAssignPage () {
     }
 
     axios.post("http://localhost:3000/uniforms/updateUniforms", data, config)
-    // console.log("Assigning uniforms");
-    // selectedUniformIDs.forEach((item, i) => {
-    //   console.log(item);
-    // });
-    // console.log("to student");
-    // console.log(selectedStudentID);
   }
 
   const handleSelectedUniformsChange = (uniform_ids) => {
@@ -133,6 +127,7 @@ export default function UniformAssignPage () {
   return (
     <div className={styles.float_container}>
       <Header/>
+      
       <div className={styles.studentSelectComponentWrapper}>
         <StudentSelect
           allStudents={allStudents}
@@ -160,7 +155,10 @@ export default function UniformAssignPage () {
         <Button sx={{ml:"auto", mr:"auto"}} variant="contained">
           Sort by Best Fit
         </Button>
-        <Button sx={{ml:"auto", mr:"auto"}} variant="contained" onClick={() => {
+        
+      </div>
+      <div>
+      <Button sx={{ml:"auto", mr:"auto"}} variant="contained" onClick={() => {
           assign()
         }}>
           Assign
