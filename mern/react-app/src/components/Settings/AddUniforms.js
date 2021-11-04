@@ -93,6 +93,14 @@ export default function AddUniforms() {
                 variant="outlined"
               />
             </Grid>
+            <Grid item xs={12} align="center" justify="center">
+              <TextField
+                fullWidth
+                id="outlined-basic"
+                label="Uniform ID"
+                variant="outlined"
+              />
+            </Grid>
             <Grid item xs={12} align="right" justify="right">
               <Button variant="contained">Add</Button>
             </Grid>
