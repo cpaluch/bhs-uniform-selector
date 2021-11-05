@@ -24,6 +24,8 @@ export function StudentSelect (props) {
                 disablePortal
                 id="cb-student-select"
                 options={props.allStudents}
+                
+                isOptionEqualToValue={(option, value) => option.id === value.id}
                 getOptionLabel={option => option.first_name + " " + option.last_name}
                 renderInput={
                   (params) => <TextField {...params} label="Select Student"/>

@@ -12,7 +12,7 @@ export default function UniformAssignPage () {
 
   // Student that is selected in select student component
   // Stored as string
-  const [selectedStudentID, setSelectedStudentID] = useState({});
+  const [selectedStudentID, setSelectedStudentID] = useState('');
 
   // List of selected uniforms in UniformList component
   // Stored as array of strings
@@ -28,6 +28,8 @@ export default function UniformAssignPage () {
     head: "",
   });
 
+
+
   // Additional notes content, as a string
   const [additionalNotes, setAdditionalNotes] = useState("");
 
@@ -36,6 +38,17 @@ export default function UniformAssignPage () {
 
   // List of all uniforms, from database
   const [allUniforms, setAllUniforms] = useState([]);
+
+  const [sortedUniforms, setSortedUniforms] = useState({
+      jacket: [],
+      gauntlet: [],
+      hat: [],
+      pants: []
+  })
+
+
+  // State for the Radio buttons - controls selected uniform type
+  const [uniformPiece, setUniformPiece] = useState('jacket');
 
   useEffect(() => {
     getAllStudents();
@@ -55,7 +68,6 @@ export default function UniformAssignPage () {
 
     axios.get("http://localhost:3000/uniforms/allUniforms").then(res => {
       const uniforms = res.data
-      console.log(uniforms)
       setAllUniforms(uniforms)
     })
     
@@ -79,6 +91,7 @@ export default function UniformAssignPage () {
 
     axios.post("http://localhost:3000/uniforms/updateUniforms", data, config)
   }
+
 
   const handleSelectedUniformsChange = (uniform_ids) => {
     setSelectedUniformIDs(uniform_ids);
@@ -116,6 +129,94 @@ export default function UniformAssignPage () {
     setAdditionalNotes(notes);
   }
 
+  
+  //sets uniform piece from radio group
+  const handleUniformPieceChange = (piece) => {
+    setUniformPiece(piece);
+  }
+
+  const sort = () => {
+    const j = allUniforms.filter((uniform) => (uniform.type === "Jacket"))
+    const h = allUniforms.filter((uniform) => (uniform.type === "Hat"))
+    const g = allUniforms.filter((uniform) => (uniform.type === "Gauntlet"))
+    const p = allUniforms.filter((uniform) => (uniform.type === "Pants"))
+    setSortedUniforms({jacket: j, gauntlet: g, hat: h, pants: p})
+    // setSortedUniforms({...sortedUniforms, sortedJackets: allUniforms.filter((uniform) => (uniform.type === "Jacket"))})
+    // setSortedUniforms({...sortedUniforms, sortedGauntlets: allUniforms.filter((uniform) => (uniform.type === "gauntlet"))})
+    // setSortedUniforms({...sortedUniforms, sortedHats: allUniforms.filter((uniform) => (uniform.type === "hat"))})
+    // setSortedUniforms({...sortedUniforms, sortedPants: allUniforms.filter((uniform) => (uniform.type === "pants"))})
+   console.log(sortedUniforms)
+  }
+
+  useEffect(() => {
+    console.log(sortedUniforms)
+    console.log(allUniforms)
+  }, [sortedUniforms.sortedGauntlets]);
+
+
+  const validation = async () => {
+    let valid = true
+
+    //Ensures a uniform type will be selected
+    if (studentInfo.grade === "") {
+      console.log("error! need uniform type")
+      valid = false
+    }
+    else
+    {
+      console.log(studentInfo.grade)
+    }
+
+    if (studentInfo.chest === '') {
+      valid = false
+      console.log("error!  need chest")
+    }
+    else
+    {
+      console.log(studentInfo.waist)
+    }
+
+    if (studentInfo.waist === ''){
+      valid = false
+      console.log("error! need waist")
+    }
+    else
+    {
+      console.log(studentInfo.waist)
+    }
+
+    if (studentInfo.height === ''){
+      valid = false
+      console.log("error!  need height")
+    }
+    else
+    {
+      console.log(studentInfo.height)
+    }
+  
+    if (studentInfo.head === '') {
+      valid = false
+      console.log("error! need head")
+    }
+    else
+    {
+      console.log(studentInfo.head)
+    }
+      
+    if (selectedStudentID === '') {
+      valid = false
+      console.log("error! need student")
+    }
+    else{
+      console.log(selectedStudentID)
+    }
+    
+    if (valid) {
+      sort()
+    }
+  }
+
+  
   return (
 
     
@@ -133,14 +234,18 @@ export default function UniformAssignPage () {
           onHeadChange={handleHeadChange}/>
         <AdditionalNotes
           onAdditionalNotesChange={handleAdditionalNotesChange}/>
-        <Button sx={{ml:"auto", mr:"auto", mb: "8px"}} variant="contained">
+        <Button sx={{ml:"auto", mr:"auto", mb: "8px"}} variant="contained" onClick={() => { validation()
+
+        }}>
           Sort by Best Fit
         </Button>
       </div>
       <div className={styles.uniform_container}>
       
           <UniformList
-              uniforms={allUniforms}
+              uniforms={sortedUniforms[uniformPiece]}
+              uniformPiece={uniformPiece}
+              onRadioGroupChange={handleUniformPieceChange}
               onSelectedUniformsChange={handleSelectedUniformsChange}/>
 
           <Button sx={{ml:"auto", mr:"auto"}} variant="contained" onClick={() => {

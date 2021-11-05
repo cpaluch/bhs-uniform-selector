@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import InputAdornment from '@mui/material/InputAdornment';
 import Typography from '@mui/material/Typography';
-import MenuItem from '@mui/material/MenuItem';
+import Autocomplete from '@mui/material/Autocomplete';
 
 const uniformTypes = [
   {
@@ -35,21 +35,22 @@ export function StudentInfo (props) {
         <Box sx={{ flexGrow: 1, ml: 2, mr:2, mb: 2, mt: 2 }}>
           <Grid container spacing={2} columns={12}>
             <Grid item xs={12} align="center" justify="center">
-              <TextField
-                select
+            <Autocomplete
                 size="small"
-                id="tf-type"
-                label="Uniform Type"
-                variant="outlined"
-                fullWidth
-                onChange={(e) => props.onGradeChange(e.target.value)}
-              >
-                {uniformTypes.map((uniform) => (
-                  <MenuItem key={uniform.value} value={uniform.value}>
-                    {uniform.label}
-                  </MenuItem>
-                ))}
-              </TextField>
+                disablePortal
+                id="cb-student-select"
+                options={uniformTypes}
+                getOptionLabel={option => option.label}
+                renderInput={
+                  (params) => <TextField {...params} label="Uniform Type"/>
+                }
+                onChange={(e) => {
+                  if (e.target.value === undefined) {
+                    props.onGradeChange("");
+                  } else {
+                    props.onGradeChange(uniformTypes[e.target.value].value);
+                  }
+                }}/>
             </Grid>
             <Grid item xs={6} align="center" justify="center">
               <TextField

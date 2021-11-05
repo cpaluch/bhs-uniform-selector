@@ -11,7 +11,7 @@ import Header from './components/Header/Header';
 import styles from './App.module.css';
 function App() {
   return (
-  <body>
+  <div className={styles.body}>
     <Router>
       <div className={styles.header}>
       <Header/>
@@ -33,7 +33,7 @@ function App() {
 
         </div>
     </Router>
-    </body>
+    </div>
     
     
   );

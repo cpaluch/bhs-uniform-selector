@@ -7,13 +7,25 @@ module.exports = {
 
 let Uniforms = [
     {
-        type : "Gaunlet",
-        uniform_id : 10,
+        type : "Gauntlet",
+        uniform_id : 9,
         size : "Small",
         student_id : 5
     },
     {
         type : "Hat",
+        uniform_id : 8,
+        student_id : 12,
+        size : "Large"
+    },
+    {
+        type : "Jacket",
+        uniform_id : 10,
+        size : "Small",
+        student_id : 5
+    },
+    {
+        type : "Pants",
         uniform_id : 11,
         student_id : 12,
         size : "Large"
