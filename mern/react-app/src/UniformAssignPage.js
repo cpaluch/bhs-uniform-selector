@@ -6,10 +6,18 @@ import { StudentInfo } from './components/StudentInfo/StudentInfo';
 import { AdditionalNotes } from './components/AdditionalNotes/AdditionalNotes';
 import { StudentSelect } from './components/StudentSelect/StudentSelect';
 import UniformList from './components/UniformList/UniformList';
+import { PieceSelect } from './components/PieceSelect/PieceSelect';
 import Button from '@mui/material/Button';
 const { v4: uuid_v4 } = require('uuid');
 
 export default function UniformAssignPage () {
+
+  const allPieces = [
+    {label: "Hat"},
+    {label: "Jacket"},
+    {label: "Pants"},
+    {label: "Gauntlet"}
+  ];
 
   // Student that is selected in select student component
   // Stored as string
@@ -202,6 +210,10 @@ export default function UniformAssignPage () {
         <StudentSelect
           allStudents={allStudents}
           onSelectedStudentChange={handleSelectedStudentChange}/>
+      </div>
+      <div className={styles.pieceSelectComponentWraper}>
+        <PieceSelect
+          allPieces={allPieces}/>
       </div>
       <div className={styles.uniformListComponentWrapper}>
         <UniformList
