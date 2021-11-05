@@ -5,9 +5,25 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import InputAdornment from '@mui/material/InputAdornment';
 import Typography from '@mui/material/Typography';
+import MenuItem from '@mui/material/MenuItem';
+
+const uniformTypes = [
+  {
+    value: 'marching',
+    label: 'Marching Band',
+  },
+  {
+    value: 'concert_hs',
+    label: 'HS Concert Band'
+  },
+  {
+    value: 'concert_ms',
+    label: 'MS Concert Band'
+  },
+];
 
 export function StudentInfo (props) {
-
+  
   return (
     <div className={styles.wrapperComponent}>
       <div className={styles.wrapperHeader}>
@@ -18,22 +34,22 @@ export function StudentInfo (props) {
       <div className={styles.wrapperInputSection}>
         <Box sx={{ flexGrow: 1, ml: 2, mr:2, mb: 2, mt: 2 }}>
           <Grid container spacing={2} columns={12}>
-            <Grid item xs={6} align="center" justify="center">
+            <Grid item xs={12} align="center" justify="center">
               <TextField
-                type="number"
+                select
                 size="small"
-                id="tf-grade"
-                label="Grade"
+                id="tf-type"
+                label="Uniform Type"
                 variant="outlined"
-                onChange={(e) => props.onGradeChange(e.target.value)}/>
-            </Grid>
-            <Grid item xs={6} align="center" justify="center">
-              <TextField
-                size="small"
-                id="tf-instrument"
-                label="Instrument"
-                variant="outlined"
-                onChange={(e) => props.onInstrumentChange(e.target.value)}/>
+                fullWidth
+                onChange={(e) => props.onGradeChange(e.target.value)}
+              >
+                {uniformTypes.map((uniform) => (
+                  <MenuItem key={uniform.value} value={uniform.value}>
+                    {uniform.label}
+                  </MenuItem>
+                ))}
+              </TextField>
             </Grid>
             <Grid item xs={6} align="center" justify="center">
               <TextField

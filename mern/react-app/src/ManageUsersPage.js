@@ -8,13 +8,7 @@ import styles from "./AddUniformsPage.module.css";
 export class Settings extends Component {
   render() {
     return (
-      <div className={styles.float_container}>
-        <Header className={styles.headerWrapper} />
-        <div className={styles.settingsComponentWrapper}>
           <ManageUsers />
-        </div>
-        <Footer className={styles.footerWrapper} />
-      </div>
     );
   }
 }

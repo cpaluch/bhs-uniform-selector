@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReportsTable from './components/ReportsTable/ReportsTable';
 import styles from './ReportsPage.module.css';
-import Header from './components/Header/Header'
-import Footer from './components/Footer/Footer'
 const { v4: uuid_v4 } = require('uuid');
 
 export default function ReportsPage(){
@@ -97,7 +95,6 @@ export default function ReportsPage(){
 
     return (
         <div className={styles.float_container}>
-            <Header className={styles.headerWrapper}/>
                 <div className={styles.reportsPageComponentWrapper}>
                     <ReportsTable
                         uniforms={allUniforms}
@@ -105,7 +102,6 @@ export default function ReportsPage(){
                         onSelectedUniformsChange={handleSelectedUniformsChange}
                     />
                 </div>
-            <Footer className={styles.footerWrapper}/>
         </div>
     )
 } 

@@ -16,8 +16,8 @@ export function StudentSelect (props) {
         </Typography>
       </div>
       <div className={styles.wrapperSelectSection}>
-        <Box sx={{ flexGrow: 1, ml: 2, mr:2, mb: 2, mt: 2 }}>
-          <Grid container spacing={2} columns={12}>
+        <Box sx={{ flexGrow: 0, ml: 2, mr:2, mb: 2, mt: 2 }}>
+          <Grid container columns={12}>
             <Grid item xs={12} align="center" justify="center">
               <Autocomplete
                 size="small"

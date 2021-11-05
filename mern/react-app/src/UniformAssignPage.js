@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import styles from './UniformAssignPage.module.css';
-import Header from './components/Header/Header'
-import Footer from './components/Footer/Footer'
 import { StudentInfo } from './components/StudentInfo/StudentInfo';
 import { AdditionalNotes } from './components/AdditionalNotes/AdditionalNotes';
 import { StudentSelect } from './components/StudentSelect/StudentSelect';
@@ -9,8 +7,6 @@ import UniformList from './components/UniformList/UniformList';
 import Button from '@mui/material/Button';
 
 import axios from 'axios';
-const { v4: uuid_v4 } = require('uuid');
-
 
 export default function UniformAssignPage () {
 
@@ -42,10 +38,6 @@ export default function UniformAssignPage () {
   const [allUniforms, setAllUniforms] = useState([]);
 
   useEffect(() => {
-    // This is where we will make the API call to the DB and load the list of
-    // students into the allStudents state and load the list of all uniforms
-    // into the allUniforms state. For now, we just use some dummy data. This
-    // code will only run once when the page loads.
     getAllStudents();
     getAllUniforms();
   }, []);
@@ -125,20 +117,13 @@ export default function UniformAssignPage () {
   }
 
   return (
+
+    
     <div className={styles.float_container}>
-      <Header/>
-      
-      <div className={styles.studentSelectComponentWrapper}>
+      <div className={styles.form_container}>
         <StudentSelect
           allStudents={allStudents}
           onSelectedStudentChange={handleSelectedStudentChange}/>
-      </div>
-      <div className={styles.uniformListComponentWrapper}>
-        <UniformList
-          uniforms={allUniforms}
-          onSelectedUniformsChange={handleSelectedUniformsChange}/>
-      </div>
-      <div className={styles.studentInfoComponentWrapper}>
         <StudentInfo
           onGradeChange={handleGradeChange}
           onInstrumentChange={handleInstrumentChange}
@@ -146,27 +131,25 @@ export default function UniformAssignPage () {
           onChestChange={handleChestChange}
           onWaistChange={handleWaistChange}
           onHeadChange={handleHeadChange}/>
-      </div>
-      <div className={styles.additionalNotesComponentWrapper}>
         <AdditionalNotes
           onAdditionalNotesChange={handleAdditionalNotesChange}/>
-      </div>
-      <div className={styles.buttonsWrapper}>
-        <Button sx={{ml:"auto", mr:"auto"}} variant="contained">
+        <Button sx={{ml:"auto", mr:"auto", mb: "8px"}} variant="contained">
           Sort by Best Fit
         </Button>
-        
       </div>
-      <div>
-      <Button sx={{ml:"auto", mr:"auto"}} variant="contained" onClick={() => {
-          assign()
-        }}>
-          Assign
-        </Button>
+      <div className={styles.uniform_container}>
+      
+          <UniformList
+              uniforms={allUniforms}
+              onSelectedUniformsChange={handleSelectedUniformsChange}/>
+
+          <Button sx={{ml:"auto", mr:"auto"}} variant="contained" onClick={() => {
+              assign()
+            }}>
+              Assign
+            </Button>
       </div>
-      <div className={styles.footerWrapper}>
-        <Footer/>
-      </div>
+      
     </div>
   );
 
