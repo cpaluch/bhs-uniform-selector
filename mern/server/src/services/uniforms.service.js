@@ -10,24 +10,24 @@ let Uniforms = [
         type : "Gauntlet",
         uniform_id : 9,
         size : "Small",
-        student_id : 5
+        student_id : "N/A"
     },
     {
         type : "Hat",
         uniform_id : 8,
-        student_id : 12,
+        student_id : "N/A",
         size : "Large"
     },
     {
         type : "Jacket",
         uniform_id : 10,
         size : "Small",
-        student_id : 5
+        student_id : "N/A"
     },
     {
         type : "Pants",
         uniform_id : 11,
-        student_id : 12,
+        student_id : "N/A",
         size : "Large"
     }
     /*
@@ -65,7 +65,7 @@ async function getAllUniforms() {
     return new Promise((resolve, reject) => {
         if (Uniforms.length > 0) {
             setTimeout(() => {
-                resolve(Uniforms)
+                resolve(Uniforms.filter((uniform) => (uniform.student_id === "N/A")))
             }, 10)
         }
         else {

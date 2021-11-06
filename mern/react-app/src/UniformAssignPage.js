@@ -68,12 +68,26 @@ export default function UniformAssignPage () {
 
     axios.get("http://localhost:3000/uniforms/allUniforms").then(res => {
       const uniforms = res.data
+      console.log(uniforms)
       setAllUniforms(uniforms)
     })
     
   }
 
 
+  const updateUniformStates = () => {
+    const updatedSortedUniformState = sortedUniforms[uniformPiece].filter((uniform) => {
+
+      for (let index = 0; index < selectedUniformIDs; index++) {
+        const uniform_id = selectedUniformIDs[index];
+
+        return uniform.uniform_id === uniform_id
+            
+    }})
+    setSortedUniforms({...sortedUniforms, [uniformPiece]: updatedSortedUniformState})
+    getAllUniforms()
+  }
+  
   const assign = async () => {
     // POST request here
 
@@ -81,6 +95,8 @@ export default function UniformAssignPage () {
       uniform_id: selectedUniformIDs,
       student_id: selectedStudentID
     }
+
+
 
     const config = {
       headers : {
@@ -90,6 +106,7 @@ export default function UniformAssignPage () {
     }
 
     axios.post("http://localhost:3000/uniforms/updateUniforms", data, config)
+    updateUniformStates()
   }
 
 
@@ -141,18 +158,7 @@ export default function UniformAssignPage () {
     const g = allUniforms.filter((uniform) => (uniform.type === "Gauntlet"))
     const p = allUniforms.filter((uniform) => (uniform.type === "Pants"))
     setSortedUniforms({jacket: j, gauntlet: g, hat: h, pants: p})
-    // setSortedUniforms({...sortedUniforms, sortedJackets: allUniforms.filter((uniform) => (uniform.type === "Jacket"))})
-    // setSortedUniforms({...sortedUniforms, sortedGauntlets: allUniforms.filter((uniform) => (uniform.type === "gauntlet"))})
-    // setSortedUniforms({...sortedUniforms, sortedHats: allUniforms.filter((uniform) => (uniform.type === "hat"))})
-    // setSortedUniforms({...sortedUniforms, sortedPants: allUniforms.filter((uniform) => (uniform.type === "pants"))})
-   console.log(sortedUniforms)
   }
-
-  useEffect(() => {
-    console.log(sortedUniforms)
-    console.log(allUniforms)
-  }, [sortedUniforms.sortedGauntlets]);
-
 
   const validation = async () => {
     let valid = true
@@ -216,10 +222,7 @@ export default function UniformAssignPage () {
     }
   }
 
-  
   return (
-
-    
     <div className={styles.float_container}>
       <div className={styles.form_container}>
         <StudentSelect
