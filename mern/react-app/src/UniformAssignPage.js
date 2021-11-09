@@ -37,15 +37,15 @@ export default function UniformAssignPage () {
   const allUniformTypes = [
     {
       value: 'marching',
-      label: 'Marching Band',
+      label: 'Marching',
     },
     {
       value: 'concert_hs',
-      label: 'HS Concert Band'
+      label: 'HS Concert'
     },
     {
       value: 'concert_ms',
-      label: 'MS Concert Band'
+      label: 'MS Concert'
     },
   ];
 
@@ -62,7 +62,7 @@ export default function UniformAssignPage () {
     grade: "",
     instrument: "",
     height: "",
-    chest: "",
+    chest: 0,
     waist: "",
     head: "",
   });
@@ -92,7 +92,7 @@ export default function UniformAssignPage () {
   // selectedPiece state changes
   useEffect(() => {
     setPresentedUniforms(allUniforms.filter(uniform => {
-      return uniform.type == selectedPiece && uniform.student_id == "";
+      return uniform.piece == selectedPiece && uniform.student_id == "";
     }))
   }, [allUniforms, selectedPiece]);
 
@@ -161,7 +161,7 @@ export default function UniformAssignPage () {
     if (selectedPiece == "") {
       alert("Please select a piece.");
       return false;
-    } else if (selectedPiece == "Jacket" && (studentInfo.chest == "" || studentInfo.height == "")) {
+    } else if (selectedPiece == "Jacket" && (studentInfo.chest == "")) {
       alert("Please input height and chest measurements.")
       return false;
     } else if (selectedPiece == "Hat" && studentInfo.head == "") {
@@ -179,11 +179,26 @@ export default function UniformAssignPage () {
   const sort = () => {
     if (checkSortPrerequisites()) {
       if (selectedPiece == "Jacket") {
-        // Sort jackets
+        var sorted = JSON.parse(JSON.stringify(presentedUniforms));
+        sorted.sort(function(a, b) {
+          return (Math.abs(studentInfo.chest - a.chest) -
+                  Math.abs(studentInfo.chest - b.chest));
+        })
+        setPresentedUniforms(sorted);
       } else if (selectedPiece == "Hat") {
-        // Sort hats
+          var sorted = JSON.parse(JSON.stringify(presentedUniforms));
+          sorted.sort(function(a, b) {
+            return (Math.abs(studentInfo.head - a.head) -
+                    Math.abs(studentInfo.head - b.head));
+          })
+          setPresentedUniforms(sorted);
       } else if (selectedPiece == "Pants") {
-        // Sort pants
+          var sorted = JSON.parse(JSON.stringify(presentedUniforms));
+          sorted.sort(function(a, b) {
+            return (Math.abs(studentInfo.waist - a.waist) -
+                    Math.abs(studentInfo.waist - b.waist));
+          })
+          setPresentedUniforms(sorted);
       } else if (selectedPiece == "Gauntlet") {
         // Do nothing, gauntlets don't have sizes
       }
@@ -246,6 +261,7 @@ export default function UniformAssignPage () {
       <div className={styles.uniformListComponentWrapper}>
         <UniformList
           uniforms={presentedUniforms}
+          selectedPiece={selectedPiece}
           onSelectedUniformsChange={handleSelectedUniformsChange}/>
       </div>
       <div className={styles.studentInfoComponentWrapper}>

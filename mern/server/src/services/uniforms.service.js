@@ -6,93 +6,81 @@ module.exports = {
 }
 
 let Uniforms = [
-    {
-        "type" : "Gauntlet",
-        "uniform_id" : 10,
-        "size" : "Small",
-        "student_id" : "",
-        "id": uuid_v4()
-    },
-    {
-        "type" : "Hat",
-        "uniform_id" : 11,
-        "student_id" : "",
-        "size" : "Large",
-        "id": uuid_v4()
-    },
-    {
-        "type" : "Jacket",
-        "uniform_id" : 12,
-        "size" : "Small",
-        "student_id" : "",
-        "id": uuid_v4()
-    },
-    {
-        "type" : "Jacket",
-        "uniform_id" : 13,
-        "student_id" : "",
-        "size" : "Large",
-        "id": uuid_v4()
-    },
-    {
-        "type" : "Jacket",
-        "uniform_id" : 14,
-        "size" : "Medium",
-        "student_id" : "",
-        "id": uuid_v4()
-    },
-    {
-        "type" : "Pants",
-        "uniform_id" : 15,
-        "student_id" : "",
-        "size" : "Large",
-        "id": uuid_v4()
-    },
-    {
-        "type" : "Pants",
-        "uniform_id" : 16,
-        "size" : "Medium",
-        "student_id" : "",
-        "id": uuid_v4()
-    },
-    {
-        "type" : "Gauntlet",
-        "uniform_id" : 17,
-        "student_id" : "",
-        "size" : "Small",
-        "id": uuid_v4()
-    }
-    /*
-    {
-      type: "Hat",
-      id: uuid_v4(),  // Unique garment ID for backend
-      bburg_id: 10,  // ID assigned by blacksburg school
-      student_id: "18fdd53c-61a4-410e-b68c-b90bba4fe1b4",  // Unique student ID for backend
-      size: {  // Sizing JSON that will differ for each garment type
-        head: 20
-      }
-    },
-    {
-      type: "Pant",
-      id: uuid_v4(),
-      bburg_id: 11,
-      student_id: "18fdd53c-61a4-410e-b68c-b90bba4fe1b4",
-      size: {
-        waist: 34
-      }
-    },
-    {
-      type: "Jacket",
-      id: uuid_v4(),
-      bburg_id: 12,
-      student_id: "",
-      size: {
-        chest: 30,
-        length: "medium"
-      }
-    }
-    */
+
+  {
+    id: uuid_v4(),
+    uniform_id: "Gaunlet 1",
+    student_id: "",
+    piece: "Gauntlet",
+    type: "Marching",
+    height: "",
+    chest: "",
+    waist: "",
+    head: "",
+    jacket_length: ""
+  },
+  {
+    id: uuid_v4(),
+    uniform_id: "Jacket 1",
+    student_id: "",
+    piece: "Jacket",
+    type: "MS Concert",
+    height: "",
+    chest: 34,
+    waist: "",
+    head: "",
+    jacket_length: "long"
+  },
+  {
+    id: uuid_v4(),
+    uniform_id: "Jacket 2",
+    student_id: "",
+    piece: "Jacket",
+    type: "HS Concert",
+    height: "",
+    chest: 30,
+    waist: "",
+    head: "",
+    jacket_length: "medium"
+  },
+  {
+    id: uuid_v4(),
+    uniform_id: "Jacket 3",
+    student_id: "",
+    piece: "Jacket",
+    type: "HS Concert",
+    height: "",
+    chest: 26,
+    waist: "",
+    head: "",
+    jacket_length: "short"
+  },
+  {
+    id: uuid_v4(),
+    uniform_id: "Pants 1",
+    student_id: "",
+    piece: "Pants",
+    type: "Marching",
+    height: "",
+    chest: "",
+    waist: "34",
+    head: "",
+    jacket_length: ""
+  },
+  {
+    id: uuid_v4(),
+    uniform_id: "Pants 2",
+    student_id: "",
+    piece: "Pants",
+    type: "MS Concert",
+    height: "",
+    chest: "",
+    waist: "30",
+    head: "",
+    jacket_length: ""
+  }
 ]
+
 async function getAllUniforms() {
     return new Promise((resolve, reject) => {
         if (Uniforms.length > 0) {

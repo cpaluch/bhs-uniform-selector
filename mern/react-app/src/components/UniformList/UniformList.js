@@ -7,9 +7,42 @@ export default function UniformList(props) {
 
   const columns = [
     { field: 'type', headerName: 'Piece', width:  150},
-    { field: 'uniform_id', headerName: 'Uniform ID', width: 150 },
-    { field: 'size', headerName: 'Size', width: 150 },
+    { field: 'uniform_id', headerName: 'Uniform ID', width: 150 }
   ];
+
+  const columns_jacket = [
+    { field: 'piece', headerName: 'Piece', width: 125 },
+    { field: 'uniform_id', headerName: 'ID', width: 125 },
+    { field: 'chest',  headerName: 'Chest',  width: 125 },
+    { field: 'jacket_length', headerName: 'Jacket Length', width: 125 },
+    { field: 'type', headerName: 'Type', width: 125}
+  ];
+
+  const columns_pants = [
+    { field: 'piece', headerName: 'Piece', width: 150 },
+    { field: 'uniform_id', headerName: 'ID', width: 150 },
+    { field: 'waist', headerName: 'Waist', width: 150}
+  ];
+
+  const columns_hat = [
+    { field: 'piece', headerName: 'Piece', width: 150 },
+    { field: 'uniform_id', headerName: 'ID', width: 150 },
+    { field: 'head', headerName: 'Head', width: 150}
+  ]
+
+  const getColumns = () => {
+    if (props.selectedPiece == "Jacket") {
+      return columns_jacket;
+    } else if (props.selectedPiece == "Pants") {
+      return columns_pants;
+    } else if (props.selectedPiece == "Hat") {
+      return columns_hat;
+    } else if (props.selectedPiece == "Gauntlet") {
+      return columns;
+    } else {
+      return columns;
+    }
+  }
 
   return (
     <div className={styles.wrapperComponent}>
@@ -21,7 +54,7 @@ export default function UniformList(props) {
       <div className={styles.boxLimits}>
         <DataGrid
           rows={props.uniforms}
-          columns={columns}
+          columns={getColumns()}
           pageSize={25}
           rowsPerPageOptions={[25]}
           checkboxSelection
