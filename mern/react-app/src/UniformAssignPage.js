@@ -88,12 +88,13 @@ export default function UniformAssignPage () {
     getAllUniforms();
   }, []);
 
-  // Update presented uniforms when allUniforms state changes
+  // Update presented uniforms when allUniforms state changes or when
+  // selectedPiece state changes
   useEffect(() => {
     setPresentedUniforms(allUniforms.filter(uniform => {
-      return uniform.type == selectedPiece;
+      return uniform.type == selectedPiece && uniform.student_id == "";
     }))
-  }, [allUniforms]);
+  }, [allUniforms, selectedPiece]);
 
   // Get all the students from the backend
   const getAllStudents = async () => {
@@ -108,9 +109,7 @@ export default function UniformAssignPage () {
   const getAllUniforms = async () => {
     axios.get("http://localhost:3000/uniforms/allUniforms").then(res => {
       const uniforms = res.data
-      setAllUniforms(uniforms.filter(uniform => {
-        return uniform.student_id == ""
-      }))
+      setAllUniforms(uniforms)
     });
   }
 
@@ -229,10 +228,6 @@ export default function UniformAssignPage () {
 
   const handleSelectedPieceChange = (piece) => {
     setSelectedPiece(piece)
-    // Set the list of presented uniforms
-    setPresentedUniforms(allUniforms.filter(uniform => {
-      return uniform.type == piece;
-    }))
   }
 
   return (
