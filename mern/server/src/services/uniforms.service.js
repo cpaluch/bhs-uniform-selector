@@ -7,16 +7,60 @@ module.exports = {
 
 let Uniforms = [
     {
-        "type" : "Gaunlet",
+        "type" : "Gauntlet",
         "uniform_id" : 10,
         "size" : "Small",
-        "student_id" : 5
+        "student_id" : "",
+        "id": uuid_v4()
     },
     {
         "type" : "Hat",
         "uniform_id" : 11,
-        "student_id" : 11,
-        "size" : "Large"
+        "student_id" : "",
+        "size" : "Large",
+        "id": uuid_v4()
+    },
+    {
+        "type" : "Jacket",
+        "uniform_id" : 12,
+        "size" : "Small",
+        "student_id" : "",
+        "id": uuid_v4()
+    },
+    {
+        "type" : "Jacket",
+        "uniform_id" : 13,
+        "student_id" : "",
+        "size" : "Large",
+        "id": uuid_v4()
+    },
+    {
+        "type" : "Jacket",
+        "uniform_id" : 14,
+        "size" : "Medium",
+        "student_id" : "",
+        "id": uuid_v4()
+    },
+    {
+        "type" : "Pants",
+        "uniform_id" : 15,
+        "student_id" : "",
+        "size" : "Large",
+        "id": uuid_v4()
+    },
+    {
+        "type" : "Pants",
+        "uniform_id" : 16,
+        "size" : "Medium",
+        "student_id" : "",
+        "id": uuid_v4()
+    },
+    {
+        "type" : "Gauntlet",
+        "uniform_id" : 17,
+        "student_id" : "",
+        "size" : "Small",
+        "id": uuid_v4()
     }
     /*
     {
@@ -70,7 +114,7 @@ async function updateUniforms(uniforms) {
         for (let index = 0; index < uniforms["uniform_id"].length; index++) {
             const uniform_id = uniforms.uniform_id[index];
 
-            if (uniform_element.uniform_id === uniform_id) {
+            if (uniform_element.id === uniform_id) {
                 uniform_element.student_id = uniforms.student_id
             }
         }

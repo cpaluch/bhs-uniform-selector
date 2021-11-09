@@ -32,7 +32,7 @@ export function StudentSelect (props) {
                   if (e.target.dataset.optionIndex === undefined) {
                     props.onSelectedStudentChange("");
                   } else {
-                    props.onSelectedStudentChange(props.allStudents[e.target.dataset.optionIndex].id);
+                    props.onSelectedStudentChange(props.allStudents[e.target.dataset.optionIndex].student_id);
                   }
                 }}/>
             </Grid>

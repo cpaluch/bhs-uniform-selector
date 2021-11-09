@@ -29,9 +29,9 @@ export function PieceSelect (props) {
                 }
                 onChange={(e) => {
                   if (e.target.dataset.optionIndex === undefined) {
-                    // props.onSelectedStudentChange("");
+                    props.onSelectedPieceChange("")
                   } else {
-                    // props.onSelectedStudentChange(props.allStudents[e.target.dataset.optionIndex].id);
+                    props.onSelectedPieceChange(props.allPieces[e.target.dataset.optionIndex].value)
                   }
                 }}/>
             </Grid>
