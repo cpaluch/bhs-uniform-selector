@@ -4,6 +4,7 @@ import styles from './ReportsPage.module.css';
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import { Button } from '@mui/material';
+import axios from 'axios';
 const { v4: uuid_v4 } = require('uuid');
 
 export default function ReportsPage() {
@@ -29,56 +30,62 @@ export default function ReportsPage() {
 
   const getAllStudents = async () => {
 
-    // API CALL HERE
+    axios.get('http://localhost:3000/students/allStudents').then(res => {
+      const students = res.data
+      setAllStudents(students)
+    });
 
-    setAllStudents([
-      {
-        first_name: "Noah",
-        last_name: "Hefner",
-        id: uuid_v4()
-      },
-      {
-        first_name: "Cole",
-        last_name: "Paluch",
-        id: uuid_v4()
-      },
-      {
-        first_name: "Jared",
-        last_name: "Anderson",
-        id: uuid_v4()
-      },
-      {
-        first_name: "Ashish",
-        last_name: "Nelli",
-        id: uuid_v4()
-      },
-      {
-        first_name: "Foad",
-        last_name: "Nachabe",
-        id: uuid_v4()
-      }
-    ]);
+    // setAllStudents([
+    //   {
+    //     first_name: "Noah",
+    //     last_name: "Hefner",
+    //     id: uuid_v4()
+    //   },
+    //   {
+    //     first_name: "Cole",
+    //     last_name: "Paluch",
+    //     id: uuid_v4()
+    //   },
+    //   {
+    //     first_name: "Jared",
+    //     last_name: "Anderson",
+    //     id: uuid_v4()
+    //   },
+    //   {
+    //     first_name: "Ashish",
+    //     last_name: "Nelli",
+    //     id: uuid_v4()
+    //   },
+    //   {
+    //     first_name: "Foad",
+    //     last_name: "Nachabe",
+    //     id: uuid_v4()
+    //   }
+    // ]);
 
   }
 
   const getAllUniforms = async () => {
 
-    // API CALL HERE
+    axios.get("http://localhost:3000/uniforms/allUniforms").then(res => {
+      const uniforms = res.data
+      setAllUniforms(uniforms)
+    });
 
-    setAllUniforms([
-      { type: 'Marching Band', piece: 'Hat', id: 'Hat 1', size: 'S', lastName: 'Nachabe', firstName: 'Foad', stdID: 1 },
-      { type: 'Marching Band', piece: 'Jumpsuit', id: 'Jumpsuit 2', size: 'M', lastName: 'Nelli', firstName: 'Ashish', stdID: 2 },
-      { type: 'Marching Band', piece: 'Jacket', id: 'Jacket 3', size: 'L', lastName: 'N/A', firstName: 'N/A', stdID: -1 },
-      { type: 'Marching Band', piece: 'Poncho', id: 'Poncho 4', size: 'XL', lastName: 'N/A', firstName: 'N/A', stdID: -1 },
-      { type: 'HS Concert Band', piece: 'Dress', id: 'Dress 5', size: 'XXL', lastName: 'Hefner', firstName: 'Noah', stdID: 3 },
-      { type: 'HS Concert Band', piece: 'Shirt', id: 'Shirt 6', size: 'S', lastName: 'Nachabe', firstName: 'Foad', stdID: 1 },
-      { type: 'HS Concert Band', piece: 'Jacket', id: 'Jacket 7', size: 'M', lastName: 'Nelli', firstName: 'Ashish', stdID: 2 },
-      { type: 'HS Concert Band', piece: 'Pants', id: 'Pants 8', size: 'L', lastName: 'Anderson', firstName: 'Jared', stdID: 4 },
-      { type: 'MS Concert Band', piece: 'Dress', id: 'Dress 9', size: 'XL', lastName: 'Paluch', firstName: 'Cole', stdID: 5 },
-      { type: 'MS Concert Band', piece: 'Shirt', id: 'Shirt 10', size: 'XXL', lastName: 'Hefner', firstName: 'Noah', stdID: 3 },
-      { type: 'MS Concert Band', piece: 'Jacket', id: 'Jacket 11', size: 'L', lastName: 'Anderson', firstName: 'Jared', stdID: 4 },
-      { type: 'MS Concert Band', piece: 'Pants', id: 'Pants 12', size: 'XL', lastName: 'Paluch', firstName: 'Cole', stdID: 5 },
-    ]);
+    // setAllUniforms([
+    //   { type: 'Marching Band', piece: 'Hat', id: 'Hat 1', size: 'S', lastName: 'Nachabe', firstName: 'Foad', stdID: 1 },
+    //   { type: 'Marching Band', piece: 'Jumpsuit', id: 'Jumpsuit 2', size: 'M', lastName: 'Nelli', firstName: 'Ashish', stdID: 2 },
+    //   { type: 'Marching Band', piece: 'Jacket', id: 'Jacket 3', size: 'L', lastName: 'N/A', firstName: 'N/A', stdID: -1 },
+    //   { type: 'Marching Band', piece: 'Poncho', id: 'Poncho 4', size: 'XL', lastName: 'N/A', firstName: 'N/A', stdID: -1 },
+    //   { type: 'HS Concert Band', piece: 'Dress', id: 'Dress 5', size: 'XXL', lastName: 'Hefner', firstName: 'Noah', stdID: 3 },
+    //   { type: 'HS Concert Band', piece: 'Shirt', id: 'Shirt 6', size: 'S', lastName: 'Nachabe', firstName: 'Foad', stdID: 1 },
+    //   { type: 'HS Concert Band', piece: 'Jacket', id: 'Jacket 7', size: 'M', lastName: 'Nelli', firstName: 'Ashish', stdID: 2 },
+    //   { type: 'HS Concert Band', piece: 'Pants', id: 'Pants 8', size: 'L', lastName: 'Anderson', firstName: 'Jared', stdID: 4 },
+    //   { type: 'MS Concert Band', piece: 'Dress', id: 'Dress 9', size: 'XL', lastName: 'Paluch', firstName: 'Cole', stdID: 5 },
+    //   { type: 'MS Concert Band', piece: 'Shirt', id: 'Shirt 10', size: 'XXL', lastName: 'Hefner', firstName: 'Noah', stdID: 3 },
+    //   { type: 'MS Concert Band', piece: 'Jacket', id: 'Jacket 11', size: 'L', lastName: 'Anderson', firstName: 'Jared', stdID: 4 },
+    //   { type: 'MS Concert Band', piece: 'Pants', id: 'Pants 12', size: 'XL', lastName: 'Paluch', firstName: 'Cole', stdID: 5 },
+    // ]);
   }
 
   // This function goes through the uniforms and matches the uniform id 
