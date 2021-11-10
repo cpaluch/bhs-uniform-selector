@@ -37,6 +37,7 @@ async function authenticate({username, password}) {
         }
     }
     else {
+        console.log("Authorized user");
         return user;
     }
 }
