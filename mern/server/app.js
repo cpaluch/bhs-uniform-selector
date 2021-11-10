@@ -10,8 +10,7 @@ var uniformRouter = require('./src/routes/uniforms.router');
 var app = express();
 
 var cors = require('cors')
-
-app.use(cors())
+app.use(cors()) // Use this after the variable declaration
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
