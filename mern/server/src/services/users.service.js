@@ -1,7 +1,8 @@
+/*
 const config = require('../config.json');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-
+*/
 module.exports = {
     authenticate
 }
@@ -27,8 +28,15 @@ async function authenticate({username, password}) {
     const user = Users.find(elem => elem["username"] == username && elem["password"] == password);
     if (typeof user == "undefined") {
         console.log("Unauthorized user");
+        return {
+            "username" : "",
+            "password" : "",
+            "privilege" : "accessDenied",
+            "f_name" : "",
+            "l_name" : ""
+        }
     }
     else {
-        
+        return user;
     }
 }

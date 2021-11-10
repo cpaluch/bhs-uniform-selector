@@ -12,6 +12,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Footer from "./components/Footer/Footer";
 import HeaderLogin from "./components/Header/HeaderLogin";
+import axios from 'axios';
 
 const theme = createTheme();
 
@@ -22,6 +23,16 @@ export default function SignIn() {
     console.log({
       email: data.get('email'),
       password: data.get('password'),
+    });
+    axios.post('/users/authenticateUser', {
+      username: data.get('email'),
+      password: data.get('password')
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
     });
   };
 
@@ -70,7 +81,6 @@ export default function SignIn() {
                 label="Remember me"
               />
               <Button
-                href="/assign-uniforms"
                 type="submit"
                 fullWidth
                 variant="contained"
