@@ -7,24 +7,24 @@ module.exports = {
 
 //Mock array
 let Students = [
-    {
-      "first_name" : "John",
-      "last_name" : "Doe",
-      "student_id" : uuid_v4()
-    },
-    {
-      "first_name" : "Jane",
-      "last_name" : "Doe",
-      "student_id" : uuid_v4()
-    }
-  ]
+  {
+    first_name: "John",
+    last_name: "Doe",
+    id : uuid_v4()
+  },
+  {
+    first_name : "Jane",
+    last_name : "Doe",
+    id : uuid_v4()
+  }
+]
 
 async function getAllStudents() {
     return new Promise((resolve, reject) => {
         if (Students.length>0) {
-            setTimeout(()=>{
+            setTimeout(() => {
                 resolve(Students);
-            },10);
+            }, 10);
         }
         else
             reject(false);
@@ -37,23 +37,17 @@ async function addStudent(body) {
   const first_name = body.first_name
   const last_name = body.last_name
 
-
   let new_student = {
-    "first_name" : first_name,
-    "last_name" : last_name,
-    "student_id" : uuid_v4()
+    first_name : first_name,
+    last_name : last_name,
+    id : uuid_v4()
   }
 
-  
-
   return new Promise((resolve, reject) => {
-
     Students.push(new_student)
-
     setTimeout(() => {
       resolve(new_student);
     }, 10);
   })
-  
 
 }

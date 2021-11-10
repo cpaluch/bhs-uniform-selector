@@ -6,49 +6,81 @@ module.exports = {
 }
 
 let Uniforms = [
-    {
-        "type" : "Gaunlet",
-        "uniform_id" : 10,
-        "size" : "Small",
-        "student_id" : 5
-    },
-    {
-        "type" : "Hat",
-        "uniform_id" : 11,
-        "student_id" : 11,
-        "size" : "Large"
-    }
-    /*
-    {
-      type: "Hat",
-      id: uuid_v4(),  // Unique garment ID for backend
-      bburg_id: 10,  // ID assigned by blacksburg school
-      student_id: "18fdd53c-61a4-410e-b68c-b90bba4fe1b4",  // Unique student ID for backend
-      size: {  // Sizing JSON that will differ for each garment type
-        head: 20
-      }
-    },
-    {
-      type: "Pant",
-      id: uuid_v4(),
-      bburg_id: 11,
-      student_id: "18fdd53c-61a4-410e-b68c-b90bba4fe1b4",
-      size: {
-        waist: 34
-      }
-    },
-    {
-      type: "Jacket",
-      id: uuid_v4(),
-      bburg_id: 12,
-      student_id: "",
-      size: {
-        chest: 30,
-        length: "medium"
-      }
-    }
-    */
+
+  {
+    id: uuid_v4(),
+    uniform_id: "Gaunlet 1",
+    student_id: "",
+    piece: "Gauntlet",
+    type: "Marching",
+    height: "",
+    chest: "",
+    waist: "",
+    head: "",
+    jacket_length: ""
+  },
+  {
+    id: uuid_v4(),
+    uniform_id: "Jacket 1",
+    student_id: "",
+    piece: "Jacket",
+    type: "MS Concert",
+    height: "",
+    chest: 34,
+    waist: "",
+    head: "",
+    jacket_length: "long"
+  },
+  {
+    id: uuid_v4(),
+    uniform_id: "Jacket 2",
+    student_id: "",
+    piece: "Jacket",
+    type: "HS Concert",
+    height: "",
+    chest: 30,
+    waist: "",
+    head: "",
+    jacket_length: "medium"
+  },
+  {
+    id: uuid_v4(),
+    uniform_id: "Jacket 3",
+    student_id: "",
+    piece: "Jacket",
+    type: "HS Concert",
+    height: "",
+    chest: 26,
+    waist: "",
+    head: "",
+    jacket_length: "short"
+  },
+  {
+    id: uuid_v4(),
+    uniform_id: "Pants 1",
+    student_id: "",
+    piece: "Pants",
+    type: "Marching",
+    height: "",
+    chest: "",
+    waist: "34",
+    head: "",
+    jacket_length: ""
+  },
+  {
+    id: uuid_v4(),
+    uniform_id: "Pants 2",
+    student_id: "",
+    piece: "Pants",
+    type: "MS Concert",
+    height: "",
+    chest: "",
+    waist: "30",
+    head: "",
+    jacket_length: ""
+  }
 ]
+
 async function getAllUniforms() {
     return new Promise((resolve, reject) => {
         if (Uniforms.length > 0) {
@@ -70,7 +102,7 @@ async function updateUniforms(uniforms) {
         for (let index = 0; index < uniforms["uniform_id"].length; index++) {
             const uniform_id = uniforms.uniform_id[index];
 
-            if (uniform_element.uniform_id === uniform_id) {
+            if (uniform_element.id === uniform_id) {
                 uniform_element.student_id = uniforms.student_id
             }
         }

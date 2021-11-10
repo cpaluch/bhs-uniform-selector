@@ -53,17 +53,29 @@
   align-items: center;
 }
 
-.uniformListComponentWrapper {
+.pieceSelectComponentWraper {
   float: left;
-  height: 75%;
+  height: 18%;
+  width: 60%;
+  right: 0px;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+}
+
+.uniformListComponentWrapper {
+  height: 60%;
   width: 60%;
   right: 0px;
   float: right;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
 }
 
 .buttonsWrapper {
   float: left;
-  height: 9%;
+  height: 6%;
   width: 60%;
   right: 0px;
   float: right;

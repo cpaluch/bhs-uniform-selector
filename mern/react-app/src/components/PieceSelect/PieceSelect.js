@@ -1,18 +1,17 @@
 import React from 'react';
-import styles from './StudentSelect.module.css';
+import styles from './PieceSelect.module.css';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 
-export function StudentSelect (props) {
-
+export function PieceSelect (props) {
   return (
     <div className={styles.wrapperComponent}>
       <div className={styles.wrapperHeader}>
         <Typography ml={2} mt={1} mb={1} variant="h6" color="white" fontWeight="bold" gutterBottom component="div">
-          Select Student
+          Select Piece
         </Typography>
       </div>
       <div className={styles.wrapperSelectSection}>
@@ -22,17 +21,17 @@ export function StudentSelect (props) {
               <Autocomplete
                 size="small"
                 disablePortal
-                id="cb-student-select"
-                options={props.allStudents}
-                getOptionLabel={option => option.first_name + " " + option.last_name}
+                id="cb-student-piece"
+                options={props.allPieces}
+                getOptionLabel={option => option.label}
                 renderInput={
-                  (params) => <TextField {...params} label="Select Student"/>
+                  (params) => <TextField {...params} label="Select Piece"/>
                 }
                 onChange={(e) => {
                   if (e.target.dataset.optionIndex === undefined) {
-                    props.onSelectedStudentChange("");
+                    props.onSelectedPieceChange("")
                   } else {
-                    props.onSelectedStudentChange(props.allStudents[e.target.dataset.optionIndex].student_id);
+                    props.onSelectedPieceChange(props.allPieces[e.target.dataset.optionIndex].value)
                   }
                 }}/>
             </Grid>
@@ -41,5 +40,4 @@ export function StudentSelect (props) {
       </div>
     </div>
   );
-
 }
