@@ -2,7 +2,7 @@ import React from 'react';
 import { DataGrid, GridToolbarContainer, GridToolbarExport, gridClasses, } from '@mui/x-data-grid';
 import styles from './ReportsTable.module.css';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 
 function CustomToolbar() {
   return (
@@ -43,6 +43,9 @@ export default function ReportsTable(props) {
           rowsPerPageOptions={[8]}
           isRowSelectable={(param) => param.row.stdID > 0}
           checkboxSelection
+          onSelectionModelChange={(newChange) => {
+            props.onSelectedUniformsChange(newChange);
+          }}
         />
       </div>
     </div>

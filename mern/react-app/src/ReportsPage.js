@@ -81,14 +81,41 @@ export default function ReportsPage() {
     ]);
   }
 
-  const unassign = async () => {
-    //POST Reponse
-    console.log("Unassign Uniform");
-    selectedUniformIDs.forEach((item, i) => {
-      console.log(item);
+  // This function goes through the uniforms and matches the uniform id 
+  // with the one selected on the table. If it matches then it makes the 
+  // lastName and firstName "n/a" and makes the student id "-1"
+  function updateUniformData(prop) {
+    prop.uniform_id.forEach((uni, j) => {
+      allUniforms.forEach((item, i) => {
+        if (uni == item.id) {
+          // console.log(item.lastName)
+          item.lastName = 'N/A'
+          item.firstName = 'N/A'
+          item.stdID = '-1'
+        }
+      });
     });
-    console.log("to student");
-    console.log();
+  }
+
+  const unassign = async () => {
+    // POST request here
+
+    const data = {
+      uniform_id: selectedUniformIDs
+      // student_id: selectedStudentID
+    }
+    // console.log(data.uniform_id)
+
+
+    const config = {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }
+
+    updateUniformData(data)
+    // axios.post("http://localhost:3000/uniforms/updateUniforms", data, config)
   }
 
   const handleSelectedUniformsChange = (uniform_ids) => {
@@ -106,9 +133,7 @@ export default function ReportsPage() {
           onSelectedUniformsChange={handleSelectedUniformsChange}
         />
         <div className={styles.buttonWrapper}>
-          <Button sx={{ ml: "auto", mr: "auto" }} variant="contained" onClick={() => {
-            unassign()
-          }}>
+          <Button sx={{ ml: "auto", mr: "auto" }} variant="contained" onClick={() => { unassign() }}>
             UnAssign
           </Button>
         </div>
