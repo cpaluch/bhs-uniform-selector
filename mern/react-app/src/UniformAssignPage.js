@@ -92,7 +92,7 @@ export default function UniformAssignPage () {
   // selectedPiece state changes
   useEffect(() => {
     setPresentedUniforms(allUniforms.filter(uniform => {
-      return uniform.piece == selectedPiece && uniform.student_id == "";
+      return uniform.piece === selectedPiece && uniform.student_id === "";
     }))
   }, [allUniforms, selectedPiece]);
 
@@ -120,10 +120,10 @@ export default function UniformAssignPage () {
   If any of these fail, show an alert with appropriate action needed.
   */
   const checkAssignmentPrerequisites = function () {
-    if (selectedStudentID == "") {
+    if (selectedStudentID === "") {
       alert("Please select a student.")
       return false;
-    } else if (selectedUniformIDs.length == 0) {
+    } else if (selectedUniformIDs.length === 0) {
       alert("Please select at least one uniform to assign.")
       return false;
     } else {
@@ -158,16 +158,16 @@ export default function UniformAssignPage () {
   If any of these fail, show an alert with appropriate action needed.
   */
   const checkSortPrerequisites = function () {
-    if (selectedPiece == "") {
+    if (selectedPiece === "") {
       alert("Please select a piece.");
       return false;
-    } else if (selectedPiece == "Jacket" && (studentInfo.chest == "")) {
+    } else if (selectedPiece === "Jacket" && (studentInfo.chest === "")) {
       alert("Please input height and chest measurements.")
       return false;
-    } else if (selectedPiece == "Hat" && studentInfo.head == "") {
+    } else if (selectedPiece === "Hat" && studentInfo.head === "") {
       alert("Please input head measurement.");
       return false;
-    } else if (selectedPiece == "Pants" && studentInfo.waist == "") {
+    } else if (selectedPiece === "Pants" && studentInfo.waist === "") {
       alert("Please input waist measurement.");
       return false;
     } else {
@@ -178,30 +178,27 @@ export default function UniformAssignPage () {
   // Sort the presented uniforms
   const sort = () => {
     if (checkSortPrerequisites()) {
-      if (selectedPiece == "Jacket") {
-        var sorted = JSON.parse(JSON.stringify(presentedUniforms));
+      var sorted = JSON.parse(JSON.stringify(presentedUniforms));
+      if (selectedPiece === "Jacket") {
         sorted.sort(function(a, b) {
           return (Math.abs(studentInfo.chest - a.chest) -
                   Math.abs(studentInfo.chest - b.chest));
         })
-        setPresentedUniforms(sorted);
-      } else if (selectedPiece == "Hat") {
-          var sorted = JSON.parse(JSON.stringify(presentedUniforms));
+
+      } else if (selectedPiece === "Hat") {
           sorted.sort(function(a, b) {
             return (Math.abs(studentInfo.head - a.head) -
                     Math.abs(studentInfo.head - b.head));
           })
-          setPresentedUniforms(sorted);
-      } else if (selectedPiece == "Pants") {
-          var sorted = JSON.parse(JSON.stringify(presentedUniforms));
+      } else if (selectedPiece === "Pants") {
           sorted.sort(function(a, b) {
             return (Math.abs(studentInfo.waist - a.waist) -
                     Math.abs(studentInfo.waist - b.waist));
           })
-          setPresentedUniforms(sorted);
-      } else if (selectedPiece == "Gauntlet") {
+      } else if (selectedPiece === "Gauntlet") {
         // Do nothing, gauntlets don't have sizes
       }
+      setPresentedUniforms(sorted);
     }
   }
 

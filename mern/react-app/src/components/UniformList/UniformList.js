@@ -31,13 +31,13 @@ export default function UniformList(props) {
   ]
 
   const getColumns = () => {
-    if (props.selectedPiece == "Jacket") {
+    if (props.selectedPiece === "Jacket") {
       return columns_jacket;
-    } else if (props.selectedPiece == "Pants") {
+    } else if (props.selectedPiece === "Pants") {
       return columns_pants;
-    } else if (props.selectedPiece == "Hat") {
+    } else if (props.selectedPiece === "Hat") {
       return columns_hat;
-    } else if (props.selectedPiece == "Gauntlet") {
+    } else if (props.selectedPiece === "Gauntlet") {
       return columns;
     } else {
       return columns;
