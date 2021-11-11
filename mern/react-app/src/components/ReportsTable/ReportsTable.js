@@ -16,10 +16,10 @@ export default function ReportsTable(props) {
   const columns = [
     { field: 'type', headerName: 'Type of Uniform', width: 200 },
     { field: 'piece', headerName: 'Piece of Uniform', width: 200 },
-    { field: 'id', headerName: 'Uniform ID', width: 200 },
-    { field: 'size', headerName: 'Size', width: 300 },
-    { field: 'lastName', headerName: 'Last name', width: 150 },
-    { field: 'firstName', headerName: 'First name', width: 150 },
+    { field: 'uniform_id', headerName: 'Uniform ID', width: 500 },
+    { field: 'last_name', headerName: 'Last name', width: 150 },
+    { field: 'first_name', headerName: 'First name', width: 150 },
+    // { field: 'id', width: 0}
     // { field: 'stdID', headerName: 'Meh', width: 150 },
   ];
 

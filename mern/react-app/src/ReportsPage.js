@@ -136,7 +136,7 @@ export default function ReportsPage() {
       <div className={styles.reportsPageComponentWrapper}>
         <ReportsTable
           uniforms={allUniforms}
-          allStudents={allStudents}
+          students={allStudents}
           onSelectedUniformsChange={handleSelectedUniformsChange}
         />
         <div className={styles.buttonWrapper}>

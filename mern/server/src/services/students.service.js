@@ -10,12 +10,12 @@ let Students = [
   {
     first_name: "John",
     last_name: "Doe",
-    id : uuid_v4()
+    id : "1"
   },
   {
     first_name : "Jane",
     last_name : "Doe",
-    id : uuid_v4()
+    id : "2"
   }
 ]
 

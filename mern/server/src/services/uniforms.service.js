@@ -10,7 +10,7 @@ let Uniforms = [
   {
     id: uuid_v4(),
     uniform_id: "Gaunlet 1",
-    student_id: "",
+    student_id: "1",
     piece: "Gauntlet",
     type: "Marching",
     height: "",
@@ -22,7 +22,7 @@ let Uniforms = [
   {
     id: uuid_v4(),
     uniform_id: "Jacket 1",
-    student_id: "",
+    student_id: "1",
     piece: "Jacket",
     type: "MS Concert",
     height: "",
@@ -46,7 +46,7 @@ let Uniforms = [
   {
     id: uuid_v4(),
     uniform_id: "Jacket 3",
-    student_id: "",
+    student_id: "2",
     piece: "Jacket",
     type: "HS Concert",
     height: "",
@@ -58,7 +58,7 @@ let Uniforms = [
   {
     id: uuid_v4(),
     uniform_id: "Pants 1",
-    student_id: "",
+    student_id: "2",
     piece: "Pants",
     type: "Marching",
     height: "",
@@ -70,7 +70,7 @@ let Uniforms = [
   {
     id: uuid_v4(),
     uniform_id: "Pants 2",
-    student_id: "",
+    student_id: "1",
     piece: "Pants",
     type: "MS Concert",
     height: "",
