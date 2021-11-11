@@ -28,43 +28,27 @@ export default function ReportsPage() {
     getAllUniforms();
   }, []);
 
+  // first_name: "John",
+  // last_name: "Doe",
+  // id : "1"
   const getAllStudents = async () => {
 
     axios.get('http://localhost:3000/students/allStudents').then(res => {
       const students = res.data
       setAllStudents(students)
     });
-
-    // setAllStudents([
-    //   {
-    //     first_name: "Noah",
-    //     last_name: "Hefner",
-    //     id: uuid_v4()
-    //   },
-    //   {
-    //     first_name: "Cole",
-    //     last_name: "Paluch",
-    //     id: uuid_v4()
-    //   },
-    //   {
-    //     first_name: "Jared",
-    //     last_name: "Anderson",
-    //     id: uuid_v4()
-    //   },
-    //   {
-    //     first_name: "Ashish",
-    //     last_name: "Nelli",
-    //     id: uuid_v4()
-    //   },
-    //   {
-    //     first_name: "Foad",
-    //     last_name: "Nachabe",
-    //     id: uuid_v4()
-    //   }
-    // ]);
-
   }
 
+  // id: uuid_v4(),
+  // uniform_id: "Pants 2",
+  // student_id: "1",
+  // piece: "Pants",
+  // type: "MS Concert",
+  // height: "",
+  // chest: "",
+  // waist: "30",
+  // head: "",
+  // jacket_length: ""
   const getAllUniforms = async () => {
 
     axios.get("http://localhost:3000/uniforms/allUniforms").then(res => {
@@ -72,20 +56,6 @@ export default function ReportsPage() {
       setAllUniforms(uniforms)
     });
 
-    // setAllUniforms([
-    //   { type: 'Marching Band', piece: 'Hat', id: 'Hat 1', size: 'S', lastName: 'Nachabe', firstName: 'Foad', stdID: 1 },
-    //   { type: 'Marching Band', piece: 'Jumpsuit', id: 'Jumpsuit 2', size: 'M', lastName: 'Nelli', firstName: 'Ashish', stdID: 2 },
-    //   { type: 'Marching Band', piece: 'Jacket', id: 'Jacket 3', size: 'L', lastName: 'N/A', firstName: 'N/A', stdID: -1 },
-    //   { type: 'Marching Band', piece: 'Poncho', id: 'Poncho 4', size: 'XL', lastName: 'N/A', firstName: 'N/A', stdID: -1 },
-    //   { type: 'HS Concert Band', piece: 'Dress', id: 'Dress 5', size: 'XXL', lastName: 'Hefner', firstName: 'Noah', stdID: 3 },
-    //   { type: 'HS Concert Band', piece: 'Shirt', id: 'Shirt 6', size: 'S', lastName: 'Nachabe', firstName: 'Foad', stdID: 1 },
-    //   { type: 'HS Concert Band', piece: 'Jacket', id: 'Jacket 7', size: 'M', lastName: 'Nelli', firstName: 'Ashish', stdID: 2 },
-    //   { type: 'HS Concert Band', piece: 'Pants', id: 'Pants 8', size: 'L', lastName: 'Anderson', firstName: 'Jared', stdID: 4 },
-    //   { type: 'MS Concert Band', piece: 'Dress', id: 'Dress 9', size: 'XL', lastName: 'Paluch', firstName: 'Cole', stdID: 5 },
-    //   { type: 'MS Concert Band', piece: 'Shirt', id: 'Shirt 10', size: 'XXL', lastName: 'Hefner', firstName: 'Noah', stdID: 3 },
-    //   { type: 'MS Concert Band', piece: 'Jacket', id: 'Jacket 11', size: 'L', lastName: 'Anderson', firstName: 'Jared', stdID: 4 },
-    //   { type: 'MS Concert Band', piece: 'Pants', id: 'Pants 12', size: 'XL', lastName: 'Paluch', firstName: 'Cole', stdID: 5 },
-    // ]);
   }
 
   // This function goes through the uniforms and matches the uniform id 
@@ -96,20 +66,21 @@ export default function ReportsPage() {
       allUniforms.forEach((item, i) => {
         if (uni == item.id) {
           // console.log(item.lastName)
-          item.lastName = 'N/A'
-          item.firstName = 'N/A'
-          item.stdID = '-1'
+          item.last_name = 'N/A'
+          item.first_name = 'N/A'
+          item.student_id = ''
         }
       });
     });
   }
 
+  // gathers the selected uniforms and always for them to be updated
   const unassign = async () => {
     // POST request here
-
+    console.log(selectedUniformIDs)
     const data = {
-      uniform_id: selectedUniformIDs
-      // student_id: selectedStudentID
+      uniform_id: selectedUniformIDs,
+      student_id: ""
     }
     // console.log(data.uniform_id)
 
@@ -122,11 +93,30 @@ export default function ReportsPage() {
     }
 
     updateUniformData(data)
-    // axios.post("http://localhost:3000/uniforms/updateUniforms", data, config)
+    // console.log(data)
+    axios.post("http://localhost:3000/uniforms/updateUniforms", data, config)
   }
 
+  // Always for selected uniforms to be handled
   const handleSelectedUniformsChange = (uniform_ids) => {
     setSelectedUniformIDs(uniform_ids);
+  }
+
+  // This function will combine the students and uniforms into one data
+  // structure so that the x grid data can correctly display the info
+  function combine(uniInfo, stdInfo) {
+    stdInfo.forEach((data, i) => {
+      if (data.id == uniInfo.student_id) {
+        uniInfo.first_name = data.first_name
+        uniInfo.last_name = data.last_name
+        // console.log(uniInfo)
+      }
+    });
+    if (uniInfo.student_id == "") {
+      uniInfo.first_name = "N/A"
+      uniInfo.last_name = "N/A"
+    }
+    return uniInfo
   }
 
 
@@ -135,8 +125,9 @@ export default function ReportsPage() {
       <Header className={styles.headerWrapper} />
       <div className={styles.reportsPageComponentWrapper}>
         <ReportsTable
-          uniforms={allUniforms}
-          students={allStudents}
+          combined={allUniforms.map(uni => combine(uni, allStudents))}
+          // uniforms={allUniforms}
+          // students={allStudents}
           onSelectedUniformsChange={handleSelectedUniformsChange}
         />
         <div className={styles.buttonWrapper}>

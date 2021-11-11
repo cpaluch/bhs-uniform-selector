@@ -23,6 +23,11 @@ export default function ReportsTable(props) {
     // { field: 'stdID', headerName: 'Meh', width: 150 },
   ];
 
+  const rows = [
+    { type: 'holder1', piece: 'holder2', id: '1' }
+  ]
+
+  // console.log(props.combined)
 
 
   return (
@@ -37,11 +42,11 @@ export default function ReportsTable(props) {
           components={{
             Toolbar: CustomToolbar,
           }}
-          rows={props.uniforms}
+          rows={props.combined}
           columns={columns.map((columns) => ({ ...columns, sortable: false, }))}
           pageSize={8}
           rowsPerPageOptions={[8]}
-          isRowSelectable={(param) => param.row.stdID > 0}
+          isRowSelectable={(param) => param.row.student_id != ""}
           checkboxSelection
           onSelectionModelChange={(newChange) => {
             props.onSelectedUniformsChange(newChange);
