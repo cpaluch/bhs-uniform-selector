@@ -5,8 +5,14 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import AddStudent from '../AddStudent/AddStudent';
 
 export function StudentSelect (props) {
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
     <div className={styles.wrapperComponent}>
@@ -32,10 +38,14 @@ export function StudentSelect (props) {
                   if (e.target.dataset.optionIndex === undefined) {
                     props.onSelectedStudentChange("");
                   } else {
-                    props.onSelectedStudentChange(props.allStudents[e.target.dataset.optionIndex].student_id);
+                    props.onSelectedStudentChange(props.allStudents[e.target.dataset.optionIndex].id);
                   }
                 }}/>
             </Grid>
+            <AddStudent
+              onOpen={open}
+              handleClose={handleClose}/>
+            <Button onClick={handleOpen}>Open modal</Button>
           </Grid>
         </Box>
       </div>
