@@ -88,7 +88,39 @@ export default function AddUniforms() {
               <TextField
                 fullWidth
                 id="outlined-basic"
-                label="Size"
+                label="Length"
+                variant="outlined"
+              />
+            </Grid>
+            <Grid item xs={12} align="center" justify="center">
+              <TextField
+                fullWidth
+                id="outlined-basic"
+                label="Chest"
+                variant="outlined"
+              />
+            </Grid>
+            <Grid item xs={12} align="center" justify="center">
+              <TextField
+                fullWidth
+                id="outlined-basic"
+                label="Head"
+                variant="outlined"
+              />
+            </Grid>
+            <Grid item xs={12} align="center" justify="center">
+              <TextField
+                fullWidth
+                id="outlined-basic"
+                label="Waist"
+                variant="outlined"
+              />
+            </Grid>
+            <Grid item xs={12} align="center" justify="center">
+              <TextField
+                fullWidth
+                id="outlined-basic"
+                label="Uniform ID"
                 variant="outlined"
               />
             </Grid>
