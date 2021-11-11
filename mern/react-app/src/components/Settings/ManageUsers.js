@@ -55,7 +55,7 @@ export default function ManageUsers() {
             rowsPerPageOptions={[8]}
             checkboxSelection
           />
-          <Button>Remove User</Button>
+          <Button variant="contained">Remove User</Button>
         </div>
       </div>
       <div className={styles.wrapperAddUser}>
