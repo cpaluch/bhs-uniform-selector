@@ -16,25 +16,7 @@ import axios from 'axios';
 
 const theme = createTheme();
 
-export default function SignIn() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-    axios.post('/users/authenticateUser', {
-      username: data.get('email'),
-      password: data.get('password')
-    })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-  };
+export default function SignIn (props) {
 
   return (
     <div>
@@ -55,7 +37,7 @@ export default function SignIn() {
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
-            <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            <Box component="form" onSubmit={props.onAuthenticationAttempt} noValidate sx={{ mt: 1 }}>
               <TextField
                 margin="normal"
                 required

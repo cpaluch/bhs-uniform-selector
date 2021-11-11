@@ -54,6 +54,7 @@ export default function UniformList(props) {
       <div className={styles.boxLimits}>
         <DataGrid
           rows={props.uniforms}
+          getRowId={(row) => row._id}
           columns={getColumns()}
           pageSize={25}
           rowsPerPageOptions={[25]}
