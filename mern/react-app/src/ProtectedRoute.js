@@ -5,7 +5,7 @@ const ProtectedRoute = ({ children, ...rest }) => {
     <Route
       {...rest}
       render={({ location }) =>
-        localStorage.getItem("token") ? (
+        localStorage.getItem("jwtToken") ? (
           children
         ) : (
           <Redirect

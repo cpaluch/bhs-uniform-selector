@@ -1,11 +1,13 @@
 const express = require("express");
-const app = express();
+const passport = require("passport");
 const cors = require("cors");
+const app = express();
 require("dotenv").config({ path: "./config.env" });
 const port = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
+app.use(passport.initialize());
 app.use(require("./routes/uniform"));
 app.use(require("./routes/student"));
 app.use(require("./routes/user"));

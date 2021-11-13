@@ -1,6 +1,8 @@
 const express = require("express");
+const passport = require("passport");
+require('../passport')(passport)
 
-const studentRoutes = express.Router();
+const router = express.Router();
 
 const dbo = require("../db/conn");
 
@@ -8,30 +10,38 @@ const dbo = require("../db/conn");
 const ObjectId = require("mongodb").ObjectId;
 
 // Get all students
-studentRoutes.route("/student").get(function (req, res) {
-  let db_connect = dbo.getDb();
-  db_connect
-    .collection("students")
-    .find({})
-    .toArray(function (err, result) {
-      if (err) throw err;
-      res.json(result)
-    });
-});
+router.get(
+  "/student",
+  passport.authenticate('jwt', { session: false }),
+  function (req, res) {
+    let db_connect = dbo.getDb();
+    db_connect
+      .collection("students")
+      .find({})
+      .toArray(function (err, result) {
+        if (err) throw err;
+        res.json(result)
+      });
+  }
+);
 
 // Add a single student
-studentRoutes.route("/student/add").post(function (req, res) {
-  let db_connect = dbo.getDb();
-  let obj = {
-    f_name: req.body.f_name,
-    l_name: req.body.l_name
-  };
-  db_connect
-    .collection("students")
-    .insertOne(obj, function (err, response) {
-      if (err) throw err;
-      res.json(response);
-    })
-})
+router.post(
+  "/student/add",
+  passport.authenticate('jwt', { session : false }),
+  function (req, res) {
+    let db_connect = dbo.getDb();
+    let obj = {
+      f_name: req.body.f_name,
+      l_name: req.body.l_name
+    };
+    db_connect
+      .collection("students")
+      .insertOne(obj, function (err, response) {
+        if (err) throw err;
+        res.json(response);
+      })
+  }
+);
 
-module.exports = studentRoutes;
+module.exports = router;

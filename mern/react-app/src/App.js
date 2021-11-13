@@ -7,60 +7,69 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 import ProtectedRoute from "./ProtectedRoute";
 import AddUniformsPage from "./AddUniformsPage";
 import ManageUsersPage from "./ManageUsersPage";
-import * as Realm from "realm-web";
+import jwt_decode from "jwt-decode";
+import axios from 'axios';
 import { strict as assert } from 'assert';
 import { useHistory } from "react-router-dom";
 
-const REALM_APP_ID = "bhs-uniform-assign-utshb"; // e.g. myapp-abcde
-const app = new Realm.App({ id: REALM_APP_ID });
-
 export default function App () {
 
-  const [authenticated, setAuthenticated] = useState(false);
   const history = useHistory();
-
-  console.log(history)
+  const [currentUser, setCurrentUser] = useState({});
+  const [authenticated, setAuthenticated] = useState(false);
 
   useEffect(() => {
-    if (authenticated) {
+    if (currentUser != {} && authenticated) {
       history.push("/assign-uniforms");
+      console.log("yes")
     } else {
-      history.push("/");
+      console.log("NO")
     }
-  }, [authenticated]);
+  }, [currentUser, authenticated]);
 
   async function handleAuthenticationAttempt (event) {
-
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const credentials = Realm.Credentials.emailPassword(data.get('email'),
-                                                        data.get('password'));
-
-    try {
-      // Authenticate the user
-      const user = await app.logIn(credentials);
-      // `App.currentUser` updates to match the logged in user
-      assert(user.id === app.currentUser.id)
-      localStorage.setItem("token", user._accessToken)
-      setAuthenticated(true)
-
-    } catch(err) {
-      console.log(err)
-      alert("Invalid email or password!")
-    }
+    // Extract email and password from the input fields
+    const formData = new FormData(event.currentTarget);
+    const data = {
+      email : formData.get('email'),
+      password : formData.get('password'),
+    };
+    // Login and save JWT
+    const config = {
+      headers : {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    };
+    axios
+      .post("http://localhost:5000/user/login", data, config)
+      .then(res => {
+        // Store JWT in local storage
+        console.log(res)
+        const { token } = res.data;
+        localStorage.setItem("jwtToken", token);
+        // Set token as Authorization header for axios requests
+        axios.defaults.headers.common["Authorization"] = token;
+        // Store current user in currentUser state
+        const decoded = jwt_decode(token);
+        setCurrentUser(decoded);
+        setAuthenticated(true);
+      })
+      .catch(
+        err => console.log(err)
+      );
   }
 
   async function handleLogoutAttempt (event) {
-    try {
-      // Authenticate the user
-      const user = await app.currentUser.logOut();
-      localStorage.removeItem("token")
-      setAuthenticated(false)
-      history.push("/");
-    } catch(err) {
-      console.log(err)
-      alert("Logout failed!")
-    }
+    event.preventDefault();
+    // Remove JWT from local storage
+    localStorage.removeItem("jwtToken");
+    // Remove Authorization header from axios requests
+    delete axios.defaults.headers.common["Authorization"];
+    // Remove current user from currentUser state
+    setCurrentUser({});
+    setAuthenticated(false);
   }
 
   return (
@@ -68,6 +77,7 @@ export default function App () {
       <Switch>
         <Route exact path="/">
           <LoginPage
+            currentUser={currentUser}
             onAuthenticationAttempt={handleAuthenticationAttempt}
           />
         </Route>
