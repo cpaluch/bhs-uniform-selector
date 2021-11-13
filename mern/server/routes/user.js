@@ -1,22 +1,44 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const passport = require("passport");
+require('../passport')(passport)
 require("dotenv").config({ path: "./config.env" });
 
-const userRoutes = express.Router();
+const router = express.Router();
 
 const dbo = require("../db/conn");
 
 const ObjectId = require("mongodb").ObjectId;
 
+// Get all users
+router.get(
+  "/user",
+  passport.authenticate('jwt', { session : false }),
+  function(req, res) {
+    let db_connect = dbo.getDb();
+    db_connect
+      .collection("users")
+      .find({})
+      .toArray(function (err, result) {
+        if (err) throw err;
+        res.json(result)
+      });
+  }
+);
+
 // Register a single user
-userRoutes.route("/user/register").post(function (req, res) {
+router.route("/user/register").post(function (req, res) {
+
+  // TODO: Require JWT to access this endpoint
 
   // TODO: Validate request here
 
   // Extract email and password
   const email = req.body.email;
   const password = req.body.password;
+  const f_name = req.body.f_name;
+  const l_name = req.body.l_name;
 
   let db_connect = dbo.getDb();
 
@@ -32,6 +54,8 @@ userRoutes.route("/user/register").post(function (req, res) {
         const salt = bcrypt.genSaltSync(10);
         const encrypted_password = bcrypt.hashSync(password, salt);
         const newUser = {
+          f_name: f_name,
+          l_name: l_name,
           email: email,
           password: encrypted_password
         };
@@ -46,7 +70,7 @@ userRoutes.route("/user/register").post(function (req, res) {
 })
 
 // Login a user
-userRoutes.route("/user/login").post(function (req, res) {
+router.route("/user/login").post(function (req, res) {
 
   // TODO: Validate request here
 
@@ -93,4 +117,4 @@ userRoutes.route("/user/login").post(function (req, res) {
     })
 })
 
-module.exports = userRoutes;
+module.exports = router;

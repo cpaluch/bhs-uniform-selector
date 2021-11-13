@@ -5,6 +5,7 @@ const ProtectedRoute = ({ children, ...rest }) => {
     <Route
       {...rest}
       render={({ location }) =>
+        localStorage.getItem("authenticated") &&
         localStorage.getItem("jwtToken") ? (
           children
         ) : (

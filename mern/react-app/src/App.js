@@ -12,20 +12,26 @@ import axios from 'axios';
 import { strict as assert } from 'assert';
 import { useHistory } from "react-router-dom";
 
+// Keeps user logged in through page reloads
+if (localStorage.jwtToken) {
+  // Set Authorization header for axios
+  const token = localStorage.jwtToken;
+  axios.defaults.headers.common["Authorization"] = token;
+
+  // Check for token timeout
+  const decoded = jwt_decode(token);
+  const currentTime = Date.now() / 1000;
+  if (decoded.exp < currentTime) {
+    localStorage.removeItem("jwtToken");
+    localStorage.removeItem("authenticated");
+    // Remove Authorization header from axios requests
+    delete axios.defaults.headers.common["Authorization"];
+  }
+}
+
 export default function App () {
 
   const history = useHistory();
-  const [currentUser, setCurrentUser] = useState({});
-  const [authenticated, setAuthenticated] = useState(false);
-
-  useEffect(() => {
-    if (currentUser != {} && authenticated) {
-      history.push("/assign-uniforms");
-      console.log("yes")
-    } else {
-      console.log("NO")
-    }
-  }, [currentUser, authenticated]);
 
   async function handleAuthenticationAttempt (event) {
     event.preventDefault();
@@ -49,27 +55,29 @@ export default function App () {
         console.log(res)
         const { token } = res.data;
         localStorage.setItem("jwtToken", token);
+        localStorage.setItem("authenticated", true);
         // Set token as Authorization header for axios requests
         axios.defaults.headers.common["Authorization"] = token;
         // Store current user in currentUser state
         const decoded = jwt_decode(token);
-        setCurrentUser(decoded);
-        setAuthenticated(true);
+        // Send user to assign page upon successful login
+        history.push("/assign-uniforms");
       })
-      .catch(
-        err => console.log(err)
-      );
+      .catch(err => {
+        alert("Invalid email and/or password!")
+        console.log(err)
+      });
   }
 
   async function handleLogoutAttempt (event) {
     event.preventDefault();
     // Remove JWT from local storage
     localStorage.removeItem("jwtToken");
+    localStorage.removeItem("authenticated");
+    localStorage.removeItem("currentUser");
     // Remove Authorization header from axios requests
     delete axios.defaults.headers.common["Authorization"];
-    // Remove current user from currentUser state
-    setCurrentUser({});
-    setAuthenticated(false);
+    history.push("/");
   }
 
   return (
@@ -77,25 +85,29 @@ export default function App () {
       <Switch>
         <Route exact path="/">
           <LoginPage
-            currentUser={currentUser}
             onAuthenticationAttempt={handleAuthenticationAttempt}
           />
         </Route>
-        <ProtectedRoute path="/reports">
+        <ProtectedRoute
+          path="/reports">
           <ReportsPage/>
         </ProtectedRoute>
-        <ProtectedRoute path="/assign-uniforms">
+        <ProtectedRoute
+          path="/assign-uniforms">
           <UniformAssignPage/>
         </ProtectedRoute>
-        <ProtectedRoute path='/help'>
+        <ProtectedRoute
+          path='/help'>
           <HelpPage
             onLogoutAttempt={handleLogoutAttempt}
           />
         </ProtectedRoute>
-        <ProtectedRoute path="/add-uniforms">
+        <ProtectedRoute
+          path="/add-uniforms">
           <AddUniformsPage/>
         </ProtectedRoute>
-        <ProtectedRoute path="/manage-users">
+        <ProtectedRoute
+          path="/manage-users">
           <ManageUsersPage/>
         </ProtectedRoute>
       </Switch>
