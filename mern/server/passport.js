@@ -14,7 +14,7 @@ module.exports = passport => {
       let db_connect = dbo.getDb();
       db_connect
         .collection("users")
-        .findOne({ _id : ObjectId(jwt_payload.id)})
+        .findOne({ _id : ObjectId(jwt_payload._id)})
         .then(user => {
           if (user) {
             return done(null, user);

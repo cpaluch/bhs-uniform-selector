@@ -92,7 +92,7 @@ router.route("/user/login").post(function (req, res) {
       bcrypt.compare(password, user.password).then(isMatch => {
         if (isMatch) {
           const payload = {
-            id: user._id
+            _id: user._id
           }
           // Sign token
           jwt.sign(

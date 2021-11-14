@@ -17,13 +17,9 @@ export default function ReportsTable(props) {
     { field: 'type', headerName: 'Type of Uniform', width: 200 },
     { field: 'piece', headerName: 'Piece of Uniform', width: 200 },
     { field: 'id', headerName: 'Uniform ID', width: 200 },
-    { field: 'size', headerName: 'Size', width: 300 },
-    { field: 'lastName', headerName: 'Last name', width: 150 },
-    { field: 'firstName', headerName: 'First name', width: 150 },
-    // { field: 'stdID', headerName: 'Meh', width: 150 },
+    { field: 'l_name', headerName: 'Last name', width: 150 },
+    { field: 'f_name', headerName: 'First name', width: 150 },
   ];
-
-
 
   return (
     <div className={styles.wrapperComponent}>

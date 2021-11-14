@@ -19,6 +19,26 @@ export default function ReportsPage() {
   // List of all uniforms, from database
   const [allUniforms, setAllUniforms] = useState([]);
 
+  // Combine uniform and student lists to make the rows that are sent to
+  // ReportsTable component as a prop
+  const [reportsTableRows, setReportsTableRows] = useState([]);
+
+  useEffect(() => {
+    const combined = allUniforms.map(uniform => {
+      allStudents.forEach((student, i) => {
+        if (student._id == uniform._id) {
+          uniform.f_name = student.f_name;
+          uniform.l_name = student.l_name;
+        }
+      });
+      if (uniform.student_id == "") {
+        uniform.f_name = "N/A";
+        uniform.l_name = "N/A";
+      }
+    });
+    setReportsTableRows(combined);
+  }, [allUniforms]);
+
   useEffect(() => {
     // This is where we will make the API call to the DB and load the list of
     // students into the allStudents state and load the list of all uniforms
@@ -30,7 +50,7 @@ export default function ReportsPage() {
 
   const getAllStudents = async () => {
 
-    axios.get('http://localhost:3000/students/allStudents').then(res => {
+    axios.get('http://localhost:5000/student').then(res => {
       const students = res.data
       setAllStudents(students)
     });
@@ -67,7 +87,7 @@ export default function ReportsPage() {
 
   const getAllUniforms = async () => {
 
-    axios.get("http://localhost:3000/uniforms/allUniforms").then(res => {
+    axios.get("http://localhost:5000/uniform").then(res => {
       const uniforms = res.data
       setAllUniforms(uniforms)
     });
@@ -88,8 +108,8 @@ export default function ReportsPage() {
     // ]);
   }
 
-  // This function goes through the uniforms and matches the uniform id 
-  // with the one selected on the table. If it matches then it makes the 
+  // This function goes through the uniforms and matches the uniform id
+  // with the one selected on the table. If it matches then it makes the
   // lastName and firstName "n/a" and makes the student id "-1"
   function updateUniformData(prop) {
     prop.uniform_id.forEach((uni, j) => {
@@ -105,24 +125,19 @@ export default function ReportsPage() {
   }
 
   const unassign = async () => {
-    // POST request here
-
     const data = {
-      uniform_id: selectedUniformIDs
-      // student_id: selectedStudentID
+      uniform_ids: selectedUniformIDs,
+      student_id: selectedStudentID
     }
-    // console.log(data.uniform_id)
-
-
     const config = {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       }
     }
-
-    updateUniformData(data)
-    // axios.post("http://localhost:3000/uniforms/updateUniforms", data, config)
+    axios.post("http://localhost:5000/uniform/unassign").then(res => {
+      getAllUniforms()
+    });
   }
 
   const handleSelectedUniformsChange = (uniform_ids) => {
@@ -135,8 +150,7 @@ export default function ReportsPage() {
       <Header className={styles.headerWrapper} />
       <div className={styles.reportsPageComponentWrapper}>
         <ReportsTable
-          uniforms={allUniforms}
-          allStudents={allStudents}
+          rows={reportsTableRows}
           onSelectedUniformsChange={handleSelectedUniformsChange}
         />
         <div className={styles.buttonWrapper}>
