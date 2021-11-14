@@ -12,11 +12,11 @@ function CustomToolbar() {
   );
 }
 
-export default function ReportsTable(props) {
+export default function ReportsTable (props) {
   const columns = [
     { field: 'type', headerName: 'Type of Uniform', width: 200 },
     { field: 'piece', headerName: 'Piece of Uniform', width: 200 },
-    { field: 'id', headerName: 'Uniform ID', width: 200 },
+    { field: 'uniform_id', headerName: 'Uniform ID', width: 200 },
     { field: 'l_name', headerName: 'Last name', width: 150 },
     { field: 'f_name', headerName: 'First name', width: 150 },
   ];
@@ -33,12 +33,13 @@ export default function ReportsTable(props) {
           components={{
             Toolbar: CustomToolbar,
           }}
-          rows={props.uniforms}
+          rows={props.rows}
           columns={columns.map((columns) => ({ ...columns, sortable: false, }))}
           pageSize={8}
           rowsPerPageOptions={[8]}
-          isRowSelectable={(param) => param.row.stdID > 0}
+          isRowSelectable={(param) => param.row.student_id !== ""}
           checkboxSelection
+          getRowId={(row) => row._id}
           onSelectionModelChange={(newChange) => {
             props.onSelectedUniformsChange(newChange);
           }}

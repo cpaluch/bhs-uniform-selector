@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import LoginPage from './LoginPage'
 import UniformAssignPage from './UniformAssignPage'
 import ReportsPage from './ReportsPage'
 import HelpPage from './components/HelpPage/HelpPage'
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
 import AddUniformsPage from "./AddUniformsPage";
 import ManageUsersPage from "./ManageUsersPage";
 import jwt_decode from "jwt-decode";
 import axios from 'axios';
-import { strict as assert } from 'assert';
 import { useHistory } from "react-router-dom";
 
 // Keeps user logged in through page reloads
@@ -52,14 +51,11 @@ export default function App () {
       .post("http://localhost:5000/user/login", data, config)
       .then(res => {
         // Store JWT in local storage
-        console.log(res)
         const { token } = res.data;
         localStorage.setItem("jwtToken", token);
         localStorage.setItem("authenticated", true);
         // Set token as Authorization header for axios requests
         axios.defaults.headers.common["Authorization"] = token;
-        // Store current user in currentUser state
-        const decoded = jwt_decode(token);
         // Send user to assign page upon successful login
         history.push("/assign-uniforms");
       })

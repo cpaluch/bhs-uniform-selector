@@ -9,7 +9,6 @@ import UniformList from './components/UniformList/UniformList';
 import { PieceSelect } from './components/PieceSelect/PieceSelect';
 import Button from '@mui/material/Button';
 import axios from 'axios';
-const { v4: uuid_v4 } = require('uuid');
 
 export default function UniformAssignPage () {
 
