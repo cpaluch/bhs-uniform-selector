@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./AddUniforms.module.css";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -15,20 +15,103 @@ import {
 
 export default function AddUniforms() {
   const [selectVal, setSelectedVal] = useState("");
-
-  const handleChange = (e) => setSelectedVal(e.target.value);
+  const [selectValPiece, setSelectedValPiece] = useState("");
+  const [headVisibility, disableHeadBox] = useState(false);
+  const [waistVisibility, disableWaistBox] = useState(false);
+  const [lengthVisibility, disableLengthBox] = useState(false);
+  const [chestVisibility, disableChestBox] = useState(false);
 
   let select;
+  let hat = "hat";
+  let jumpsuit = "jumpsuit";
+  let jacket = "jacket";
+  let poncho = "poncho";
+
+  useEffect(() => {});
+
+  function handleChange(e) {
+    setSelectedVal(e.target.value);
+  }
+
+  function handlePieceChange(e) {
+    setSelectedValPiece(e.target.value);
+    console.log(selectValPiece);
+
+    if (selectValPiece == hat) {
+      disableChestBox(true);
+      disableLengthBox(true);
+      disableWaistBox(true);
+      disableHeadBox(false);
+    }
+    if (selectValPiece == jumpsuit) {
+      console.log("2");
+      disableWaistBox(true);
+      disableHeadBox(true);
+      disableLengthBox(true);
+      disableChestBox(false);
+    }
+    if (selectValPiece == jacket) {
+      console.log("3");
+      disableWaistBox(true);
+      disableHeadBox(true);
+      disableLengthBox(true);
+      disableChestBox(false);
+    }
+    if (selectValPiece == poncho) {
+      console.log("4");
+      disableWaistBox(true);
+      disableHeadBox(true);
+      disableLengthBox(true);
+      disableChestBox(false);
+    }
+    // switch (selectValPiece) {
+    //   case hat:
+    //     console.log("1");
+    //     disableChestBox(true);
+    //     disableLengthBox(true);
+    //     disableWaistBox(true);
+    //     disableHeadBox(false);
+    //   case jumpsuit:
+    //     console.log("2");
+    //     disableWaistBox(true);
+    //     disableHeadBox(true);
+    //     disableLengthBox(true);
+    //     disableChestBox(false);
+    //   case jacket:
+    //     console.log("3");
+    //     disableWaistBox(true);
+    //     disableHeadBox(true);
+    //     disableLengthBox(true);
+    //     disableChestBox(false);
+    //   case poncho:
+    //     console.log("4");
+    //     disableWaistBox(true);
+    //     disableHeadBox(true);
+    //     disableLengthBox(true);
+    //     disableChestBox(false);
+    //   case "shirt":
+    //     disableWaistBox(true);
+    //     disableHeadBox(true);
+    //     disableLengthBox(true);
+    //   case "dress":
+    //     disableWaistBox(true);
+    //     disableHeadBox(true);
+    //   case "pants":
+    //     disableHeadBox(true);
+    //     disableChestBox(true);
+    //   default:
+    // }
+  }
 
   if (selectVal == "10") {
     select = (
       <FormControl fullWidth>
         <InputLabel>Uniform Piece</InputLabel>
-        <Select label="add uniform">
-          <MenuItem value={10}>Hat</MenuItem>
-          <MenuItem value={20}>JumpSuit</MenuItem>
-          <MenuItem value={30}>Jacket</MenuItem>
-          <MenuItem value={40}>Poncho</MenuItem>
+        <Select label="add uniform" onChange={handlePieceChange}>
+          <MenuItem value={hat}>Hat</MenuItem>
+          <MenuItem value={jumpsuit}>JumpSuit</MenuItem>
+          <MenuItem value={jacket}>Jacket</MenuItem>
+          <MenuItem value={poncho}>Poncho</MenuItem>
         </Select>
       </FormControl>
     );
@@ -36,11 +119,11 @@ export default function AddUniforms() {
     select = (
       <FormControl fullWidth>
         <InputLabel>Uniform Piece</InputLabel>
-        <Select label="add uniform">
-          <MenuItem value={10}>Dress</MenuItem>
-          <MenuItem value={20}>Shirt</MenuItem>
-          <MenuItem value={30}>Jacket</MenuItem>
-          <MenuItem value={40}>Pants</MenuItem>
+        <Select label="add uniform" onChange={handlePieceChange}>
+          <MenuItem value="dress">Dress</MenuItem>
+          <MenuItem value="shirt">Shirt</MenuItem>
+          <MenuItem value="jacket">Jacket</MenuItem>
+          <MenuItem value="pants">Pants</MenuItem>
         </Select>
       </FormControl>
     );
@@ -91,6 +174,7 @@ export default function AddUniforms() {
                 id="outlined-basic"
                 label="Length"
                 variant="outlined"
+                disabled={lengthVisibility}
               />
             </Grid>
             <Grid item xs={12} align="center" justify="center">
@@ -99,6 +183,7 @@ export default function AddUniforms() {
                 id="outlined-basic"
                 label="Chest"
                 variant="outlined"
+                disabled={chestVisibility}
               />
             </Grid>
             <Grid item xs={12} align="center" justify="center">
@@ -107,6 +192,7 @@ export default function AddUniforms() {
                 id="outlined-basic"
                 label="Head"
                 variant="outlined"
+                disabled={headVisibility}
               />
             </Grid>
             <Grid item xs={12} align="center" justify="center">
@@ -115,6 +201,7 @@ export default function AddUniforms() {
                 id="outlined-basic"
                 label="Waist"
                 variant="outlined"
+                disabled={waistVisibility}
               />
             </Grid>
             <Grid item xs={12} align="center" justify="center">

@@ -9,7 +9,6 @@ export default function ManageUsers() {
     { field: "firstName", headerName: "First Name", width: 200 },
     { field: "lastName", headerName: "Last Name", width: 200 },
     { field: "email", headerName: "Email", width: 200 },
-    { field: "password", headerName: "Password", width: 200 },
   ];
 
   const rows = [
@@ -18,35 +17,30 @@ export default function ManageUsers() {
       firstName: "Ashish",
       lastName: "Nelli",
       email: "123@gmail.com",
-      password: "******",
     },
     {
       id: "2",
       firstName: "Cole",
       lastName: "Paluch",
       email: "abcd@gmail.com",
-      password: "******",
     },
     {
       id: "3",
       firstName: "Noah",
       lastName: "Hefner",
       email: "efg@gmail.com",
-      password: "******",
     },
     {
       id: "4",
       firstName: "Jared",
       lastName: "Anderson",
       email: "678@gmail.com",
-      password: "******",
     },
     {
       id: "5",
       firstName: "Foad",
       lastName: "Nachabe",
       email: "1009@yahoo.com",
-      password: "******",
     },
   ];
 
