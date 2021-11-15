@@ -14,9 +14,9 @@ function CustomToolbar() {
 
 export default function ReportsTable (props) {
   const columns = [
-    { field: 'type', headerName: 'Type of Uniform', width: 200 },
-    { field: 'piece', headerName: 'Piece of Uniform', width: 200 },
-    { field: 'uniform_id', headerName: 'Uniform ID', width: 200 },
+    { field: 'type', headerName: 'Type', width: 150 },
+    { field: 'piece', headerName: 'Piece', width: 150 },
+    { field: 'uniform_id', headerName: 'ID', width: 150 },
     { field: 'l_name', headerName: 'Last name', width: 150 },
     { field: 'f_name', headerName: 'First name', width: 150 },
   ];

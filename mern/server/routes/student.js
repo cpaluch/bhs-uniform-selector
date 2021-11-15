@@ -44,4 +44,20 @@ router.post(
   }
 );
 
+// Delete one or more students
+router.post(
+  "/student/delete",
+  passport.authenticate('jwt', { session : false }),
+  function (req, res) {
+    let db_connect = dbo.getDb();
+    const query = {_id : { $in : req.body.student_ids.map(id => ObjectId(id)) } }
+    db_connect
+      .collection("students")
+      .deleteMany(query, function (err, response) {
+        if (err) throw err;
+        res.json(response);
+      });
+  }
+);
+
 module.exports = router;

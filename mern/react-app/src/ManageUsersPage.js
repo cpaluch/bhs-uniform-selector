@@ -22,6 +22,7 @@ export default function ManageUsersPage () {
   };
 
   const addUser = async (event) => {
+    console.log(event)
     const formData = new FormData(event.currentTarget);
     const credentials = {
       email: formData.get('email'),
