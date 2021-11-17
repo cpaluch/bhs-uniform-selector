@@ -9,7 +9,6 @@ import UniformList from './components/UniformList/UniformList';
 import { PieceSelect } from './components/PieceSelect/PieceSelect';
 import Button from '@mui/material/Button';
 import axios from 'axios';
-const { v4: uuid_v4 } = require('uuid');
 
 export default function UniformAssignPage () {
 
@@ -98,7 +97,7 @@ export default function UniformAssignPage () {
 
   // Get all the students from the backend
   const getAllStudents = async () => {
-    axios.get('http://localhost:3000/students/allStudents').then(res => {
+    axios.get('http://localhost:5000/student').then(res => {
       const students = res.data
       setAllStudents(students)
     });
@@ -107,7 +106,7 @@ export default function UniformAssignPage () {
   // Get all the uniforms from the backend. Set the allUniforms state with only
   // the uniforms that are not assigned
   const getAllUniforms = async () => {
-    axios.get("http://localhost:3000/uniforms/allUniforms").then(res => {
+    axios.get("http://localhost:5000/uniform").then(res => {
       const uniforms = res.data
       setAllUniforms(uniforms)
     });
@@ -135,7 +134,7 @@ export default function UniformAssignPage () {
   const assign = async () => {
     if (checkAssignmentPrerequisites()) {
       const data = {
-        uniform_id: selectedUniformIDs,
+        uniform_ids: selectedUniformIDs,
         student_id: selectedStudentID
       }
       const config = {
@@ -144,7 +143,7 @@ export default function UniformAssignPage () {
           'Content-Type': 'application/json'
         }
       }
-      axios.post("http://localhost:3000/uniforms/updateUniforms", data, config)
+      axios.post("http://localhost:5000/uniform/assign", data, config)
         .then(function (results) {
           getAllUniforms()
         })

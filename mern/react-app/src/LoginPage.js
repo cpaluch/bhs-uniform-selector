@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from 'react';
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -15,7 +15,8 @@ import HeaderLogin from "./components/Header/HeaderLogin";
 
 const theme = createTheme();
 
-export default function SignIn() {
+export default function SignIn (props) {
+
   return (
     <div>
       <HeaderLogin />
@@ -35,7 +36,7 @@ export default function SignIn() {
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
-            <Box component="form">
+            <Box component="form" onSubmit={props.onAuthenticationAttempt} noValidate sx={{ mt: 1 }}>
               <TextField
                 margin="normal"
                 required
@@ -61,7 +62,6 @@ export default function SignIn() {
                 label="Remember me"
               />
               <Button
-                href="/assign-uniforms"
                 type="submit"
                 fullWidth
                 variant="contained"

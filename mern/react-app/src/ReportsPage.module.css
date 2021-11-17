@@ -32,3 +32,10 @@
   vertical-align: middle;
   align-items: center;
 }
+
+.buttonWrapper {
+  flex: auto;
+  display: flex;
+  align-items: center;
+  margin-top: -4%;
+}
