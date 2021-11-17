@@ -23,7 +23,7 @@ export function StudentInfo (props) {
               <Autocomplete
                   size="small"
                   disablePortal
-                  id="cb-student-select"
+                  id="cb-uniform_type-select"
                   options={props.allUniformTypes}
                   getOptionLabel={option => option.label}
                   renderInput={
@@ -31,9 +31,9 @@ export function StudentInfo (props) {
                   }
                   onChange={(e) => {
                     if (e.target.value === undefined) {
-                      props.onGradeChange("");
+                      props.onUniformTypeChange("");
                     } else {
-                      props.onGradeChange(props.allUniformTypes[e.target.value].value);
+                      props.onUniformTypeChange(props.allUniformTypes[e.target.dataset.optionIndex].value);
                     }
                   }}/>
             </Grid>

@@ -58,8 +58,7 @@ export default function UniformAssignPage () {
 
   // Student information fields
   const [studentInfo, setStudentInfo] = useState({
-    grade: "",
-    instrument: "",
+    uniform_type: "",
     height: "",
     chest: 0,
     waist: "",
@@ -209,12 +208,8 @@ export default function UniformAssignPage () {
     setSelectedStudentID(student_id);
   }
 
-  const handleGradeChange = (grade) => {
-    setStudentInfo({...studentInfo, grade: grade});
-  }
-
-  const handleInstrumentChange = (instrument) => {
-    setStudentInfo({...studentInfo, instrument: instrument});
+  const handleUniformTypeChange = (uniform_type) => {
+    setStudentInfo({...studentInfo, uniform_type: uniform_type});
   }
 
   const handleHeightChange = (height) => {
@@ -263,8 +258,7 @@ export default function UniformAssignPage () {
       <div className={styles.studentInfoComponentWrapper}>
         <StudentInfo
           allUniformTypes={allUniformTypes}
-          onGradeChange={handleGradeChange}
-          onInstrumentChange={handleInstrumentChange}
+          onUniformTypeChange={handleUniformTypeChange}
           onHeightChange={handleHeightChange}
           onChestChange={handleChestChange}
           onWaistChange={handleWaistChange}
