@@ -10,7 +10,7 @@ import { PieceSelect } from './components/PieceSelect/PieceSelect';
 import Button from '@mui/material/Button';
 import axios from 'axios';
 
-export default function UniformAssignPage () {
+export default function UniformAssignPage() {
 
   // List of all possible piece types
   const allPieces = [
@@ -138,7 +138,7 @@ export default function UniformAssignPage () {
         student_id: selectedStudentID
       }
       const config = {
-        headers : {
+        headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         }
@@ -179,21 +179,21 @@ export default function UniformAssignPage () {
     if (checkSortPrerequisites()) {
       var sorted = JSON.parse(JSON.stringify(presentedUniforms));
       if (selectedPiece === "Jacket") {
-        sorted.sort(function(a, b) {
+        sorted.sort(function (a, b) {
           return (Math.abs(studentInfo.chest - a.chest) -
-                  Math.abs(studentInfo.chest - b.chest));
+            Math.abs(studentInfo.chest - b.chest));
         })
 
       } else if (selectedPiece === "Hat") {
-          sorted.sort(function(a, b) {
-            return (Math.abs(studentInfo.head - a.head) -
-                    Math.abs(studentInfo.head - b.head));
-          })
+        sorted.sort(function (a, b) {
+          return (Math.abs(studentInfo.head - a.head) -
+            Math.abs(studentInfo.head - b.head));
+        })
       } else if (selectedPiece === "Pants") {
-          sorted.sort(function(a, b) {
-            return (Math.abs(studentInfo.waist - a.waist) -
-                    Math.abs(studentInfo.waist - b.waist));
-          })
+        sorted.sort(function (a, b) {
+          return (Math.abs(studentInfo.waist - a.waist) -
+            Math.abs(studentInfo.waist - b.waist));
+        })
       } else if (selectedPiece === "Gauntlet") {
         // Do nothing, gauntlets don't have sizes
       }
@@ -210,27 +210,27 @@ export default function UniformAssignPage () {
   }
 
   const handleGradeChange = (grade) => {
-    setStudentInfo({...studentInfo, grade: grade});
+    setStudentInfo({ ...studentInfo, grade: grade });
   }
 
   const handleInstrumentChange = (instrument) => {
-    setStudentInfo({...studentInfo, instrument: instrument});
+    setStudentInfo({ ...studentInfo, instrument: instrument });
   }
 
   const handleHeightChange = (height) => {
-    setStudentInfo({...studentInfo, height: height});
+    setStudentInfo({ ...studentInfo, height: height });
   }
 
   const handleChestChange = (chest) => {
-    setStudentInfo({...studentInfo, chest: chest});
+    setStudentInfo({ ...studentInfo, chest: chest });
   }
 
   const handleWaistChange = (waist) => {
-    setStudentInfo({...studentInfo, waist: waist});
+    setStudentInfo({ ...studentInfo, waist: waist });
   }
 
   const handleHeadChange = (head) => {
-    setStudentInfo({...studentInfo, head: head});
+    setStudentInfo({ ...studentInfo, head: head });
   }
 
   const handleAdditionalNotesChange = (notes) => {
@@ -242,50 +242,52 @@ export default function UniformAssignPage () {
   }
 
   return (
-    <div className={styles.float_container}>
-      <Header/>
-      <div className={styles.studentSelectComponentWrapper}>
-        <StudentSelect
-          allStudents={allStudents}
-          onSelectedStudentChange={handleSelectedStudentChange}/>
+    <div>
+      <div className={styles.float_container}>
+        <Header />
+        <div className={styles.studentSelectComponentWrapper}>
+          <StudentSelect
+            allStudents={allStudents}
+            onSelectedStudentChange={handleSelectedStudentChange} />
+        </div>
+        <div className={styles.pieceSelectComponentWraper}>
+          <PieceSelect
+            allPieces={allPieces}
+            onSelectedPieceChange={handleSelectedPieceChange} />
+        </div>
+        <div className={styles.uniformListComponentWrapper}>
+          <UniformList
+            uniforms={presentedUniforms}
+            selectedPiece={selectedPiece}
+            onSelectedUniformsChange={handleSelectedUniformsChange} />
+        </div>
+        <div className={styles.studentInfoComponentWrapper}>
+          <StudentInfo
+            allUniformTypes={allUniformTypes}
+            onGradeChange={handleGradeChange}
+            onInstrumentChange={handleInstrumentChange}
+            onHeightChange={handleHeightChange}
+            onChestChange={handleChestChange}
+            onWaistChange={handleWaistChange}
+            onHeadChange={handleHeadChange} />
+        </div>
+        <div className={styles.additionalNotesComponentWrapper}>
+          <AdditionalNotes
+            onAdditionalNotesChange={handleAdditionalNotesChange} />
+        </div>
+        <div className={styles.buttonsWrapper}>
+          <Button sx={{ ml: "auto", mr: "auto" }} variant="contained" onClick={() => { sort() }}>
+            Sort by Best Fit
+          </Button>
+          <Button sx={{ ml: "auto", mr: "auto" }} variant="contained" onClick={() => {
+            assign()
+          }}>
+            Assign
+          </Button>
+        </div>
       </div>
-      <div className={styles.pieceSelectComponentWraper}>
-        <PieceSelect
-          allPieces={allPieces}
-          onSelectedPieceChange={handleSelectedPieceChange}/>
-      </div>
-      <div className={styles.uniformListComponentWrapper}>
-        <UniformList
-          uniforms={presentedUniforms}
-          selectedPiece={selectedPiece}
-          onSelectedUniformsChange={handleSelectedUniformsChange}/>
-      </div>
-      <div className={styles.studentInfoComponentWrapper}>
-        <StudentInfo
-          allUniformTypes={allUniformTypes}
-          onGradeChange={handleGradeChange}
-          onInstrumentChange={handleInstrumentChange}
-          onHeightChange={handleHeightChange}
-          onChestChange={handleChestChange}
-          onWaistChange={handleWaistChange}
-          onHeadChange={handleHeadChange}/>
-      </div>
-      <div className={styles.additionalNotesComponentWrapper}>
-        <AdditionalNotes
-          onAdditionalNotesChange={handleAdditionalNotesChange}/>
-      </div>
-      <div className={styles.buttonsWrapper}>
-        <Button sx={{ml:"auto", mr:"auto"}} variant="contained" onClick={() => {sort()}}>
-          Sort by Best Fit
-        </Button>
-        <Button sx={{ml:"auto", mr:"auto"}} variant="contained" onClick={() => {
-          assign()
-        }}>
-          Assign
-        </Button>
-      </div>
-      <div className={styles.footerWrapper}>
-        <Footer/>
+      <div className={styles.uniformSelectFooter}>
+        <Footer />
       </div>
     </div>
   );

@@ -12,13 +12,13 @@ function CustomToolbar() {
   );
 }
 
-export default function ReportsTable (props) {
+export default function ReportsTable(props) {
   const columns = [
     { field: 'type', headerName: 'Type', width: 150 },
     { field: 'piece', headerName: 'Piece', width: 150 },
-    { field: 'uniform_id', headerName: 'ID', width: 150 },
-    { field: 'l_name', headerName: 'Last name', width: 150 },
-    { field: 'f_name', headerName: 'First name', width: 150 },
+    { field: 'uniform_id', headerName: 'ID', width: 500 },
+    { field: 'l_name', headerName: 'Last name', width: 200 },
+    { field: 'f_name', headerName: 'First name', width: 200 },
   ];
 
   return (

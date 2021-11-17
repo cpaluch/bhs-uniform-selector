@@ -7,12 +7,16 @@ import styles from "./AddUniformsPage.module.css";
 export class Settings extends Component {
   render() {
     return (
-      <div className={styles.float_container}>
-        <Header className={styles.headerWrapper} />
-        <div className={styles.settingsComponentWrapper}>
-          <AddUniforms />
+      <div>
+        <div className={styles.float_container}>
+          <Header className={styles.headerWrapper} />
+          <div className={styles.settingsComponentWrapper}>
+            <AddUniforms />
+          </div>
         </div>
-        <Footer className={styles.footerWrapper} />
+        <div className={styles.addUniformFooter}>
+          <Footer />
+        </div>
       </div>
     );
   }

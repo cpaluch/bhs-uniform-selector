@@ -7,7 +7,7 @@
 
 .headerWrapper {
   float: left;
-  height: 10%;
+  /* height: 10%; */
   width: 100%;
   top: 0px;
   margin-bottom: 20px;
@@ -16,7 +16,7 @@
 }
 
 .footerWrapper {
-  height: 6%;
+  /* height: 6%; */
   width: 100%;
   bottom: 0px;
   left: 0px;
@@ -27,7 +27,13 @@
   margin-top: 20px;
   margin-bottom: 100px;
   float: middle;
-  height: 94%;
+  /* height: 10%; */
   vertical-align: middle;
   align-items: center;
+}
+
+.addUniformFooter{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
