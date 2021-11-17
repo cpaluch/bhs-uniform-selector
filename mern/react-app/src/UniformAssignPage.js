@@ -6,14 +6,51 @@ import { StudentInfo } from './components/StudentInfo/StudentInfo';
 import { AdditionalNotes } from './components/AdditionalNotes/AdditionalNotes';
 import { StudentSelect } from './components/StudentSelect/StudentSelect';
 import UniformList from './components/UniformList/UniformList';
+import { PieceSelect } from './components/PieceSelect/PieceSelect';
 import Button from '@mui/material/Button';
-const { v4: uuid_v4 } = require('uuid');
+import axios from 'axios';
 
 export default function UniformAssignPage () {
 
+  // List of all possible piece types
+  const allPieces = [
+    {
+      value: "Hat",
+      label: "Hat"
+    },
+    {
+      value: "Jacket",
+      label: "Jacket"
+    },
+    {
+      value: "Pants",
+      label: "Pants"
+    },
+    {
+      value: "Gauntlet",
+      label: "Gauntlet"
+    }
+  ];
+
+  // List of all possible uniform types
+  const allUniformTypes = [
+    {
+      value: 'marching',
+      label: 'Marching',
+    },
+    {
+      value: 'concert_hs',
+      label: 'HS Concert'
+    },
+    {
+      value: 'concert_ms',
+      label: 'MS Concert'
+    },
+  ];
+
   // Student that is selected in select student component
   // Stored as string
-  const [selectedStudentID, setSelectedStudentID] = useState({});
+  const [selectedStudentID, setSelectedStudentID] = useState("");
 
   // List of selected uniforms in UniformList component
   // Stored as array of strings
@@ -24,7 +61,7 @@ export default function UniformAssignPage () {
     grade: "",
     instrument: "",
     height: "",
-    chest: "",
+    chest: 0,
     waist: "",
     head: "",
   });
@@ -38,125 +75,130 @@ export default function UniformAssignPage () {
   // List of all uniforms, from database
   const [allUniforms, setAllUniforms] = useState([]);
 
+  // List of garments that should be displayed in the UniformList component
+  const [presentedUniforms, setPresentedUniforms] = useState([]);
+
+  // Selected piece, as a string
+  const [selectedPiece, setSelectedPiece] = useState("");
+
+  // Load all the uniforms and students on page load
   useEffect(() => {
-    // This is where we will make the API call to the DB and load the list of
-    // students into the allStudents state and load the list of all uniforms
-    // into the allUniforms state. For now, we just use some dummy data. This
-    // code will only run once when the page loads.
     getAllStudents();
     getAllUniforms();
   }, []);
 
+  // Update presented uniforms when allUniforms state changes or when
+  // selectedPiece state changes
+  useEffect(() => {
+    setPresentedUniforms(allUniforms.filter(uniform => {
+      return uniform.piece === selectedPiece && uniform.student_id === "";
+    }))
+  }, [allUniforms, selectedPiece]);
+
+  // Get all the students from the backend
   const getAllStudents = async () => {
-
-    // API CALL HERE
-
-    setAllStudents([
-      {
-        first_name: "Noah",
-        last_name: "Hefner",
-        id: uuid_v4()
-      },
-      {
-        first_name: "Cole",
-        last_name: "Paluch",
-        id: uuid_v4()
-      },
-      {
-        first_name: "Jared",
-        last_name: "Anderson",
-        id: uuid_v4()
-      },
-      {
-        first_name: "Ashish",
-        last_name: "Nelli",
-        id: uuid_v4()
-      },
-      {
-        first_name: "Foad",
-        last_name: "Nachabe",
-        id: uuid_v4()
-      }
-    ]);
-
-  }
-
-  const getAllUniforms = async () => {
-
-    // API CALL HERE
-
-    setAllUniforms([
-      {
-        type: 'Gauntlet',
-        id: uuid_v4(),
-        bburg_id: 1,
-        size: 'Small'
-      },
-      {
-        type: 'Gauntlet',
-        id: uuid_v4(),
-        bburg_id: 2,
-        size: 'Medium'
-      },
-      {
-        type: 'Gauntlet',
-        id: uuid_v4(),
-        bburg_id: 3,
-        size: 'Large'
-      },
-      {
-        type: 'Hat',
-        id: uuid_v4(),
-        bburg_id: 4,
-        size: 'X-Large'
-      },
-      {
-        type: 'Hat',
-        id: uuid_v4(),
-        bburg_id: 5,
-        size: 'XX-Large'
-      },
-      {
-        type: 'Hat',
-        id: uuid_v4(),
-        bburg_id: 6,
-        size: 'Small'
-      },
-      {
-        type: 'Jacket',
-        id: uuid_v4(),
-        bburg_id: 7,
-        size: 'Medium'
-      },
-      {
-        type: 'Jacket',
-        id: uuid_v4(),
-        bburg_id: 8,
-        size: 'Large'
-      },
-      {
-        type: 'Jacket',
-        id: uuid_v4(),
-        bburg_id: 9,
-        size: 'X-Large'
-      },
-      {
-        type: 'Jacket',
-        id: uuid_v4(),
-        bburg_id: 10,
-        size: 'XX-Large'
-      },
-    ]);
-  }
-
-  const assign = async () => {
-    // POST request here
-    console.log("Assigning uniforms");
-    selectedUniformIDs.forEach((item, i) => {
-      console.log(item);
+    axios.get('http://localhost:5000/student').then(res => {
+      const students = res.data
+      setAllStudents(students)
     });
-    console.log("to student");
-    console.log(selectedStudentID);
+  }
+
+  // Get all the uniforms from the backend. Set the allUniforms state with only
+  // the uniforms that are not assigned
+  const getAllUniforms = async () => {
+    axios.get("http://localhost:5000/uniform").then(res => {
+      const uniforms = res.data
+      setAllUniforms(uniforms)
+    });
+  }
+
+  /*
+  Check if all prerequisites for assigning a uniform have been met.
+    (1) A student has been selected.
+    (2) At least one uniform has been selected.
+  If any of these fail, show an alert with appropriate action needed.
+  */
+  const checkAssignmentPrerequisites = function () {
+    if (selectedStudentID === "") {
+      alert("Please select a student.")
+      return false;
+    } else if (selectedUniformIDs.length === 0) {
+      alert("Please select at least one uniform to assign.")
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  // Assign uniform(s) to the selected student
+  const assign = async () => {
+    if (checkAssignmentPrerequisites()) {
+      const data = {
+        uniform_ids: selectedUniformIDs,
+        student_id: selectedStudentID
+      }
+      const config = {
+        headers : {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      }
+      axios.post("http://localhost:5000/uniform/assign", data, config)
+        .then(function (results) {
+          getAllUniforms()
+        })
+    }
+  }
+
+  /*
+  Check if all prerequisites for sorting available uniforms have been met.
+    (1) A piece has been selected.
+    (2) For that piece, the appropriate measurements have been input.
+  If any of these fail, show an alert with appropriate action needed.
+  */
+  const checkSortPrerequisites = function () {
+    if (selectedPiece === "") {
+      alert("Please select a piece.");
+      return false;
+    } else if (selectedPiece === "Jacket" && (studentInfo.chest === "")) {
+      alert("Please input height and chest measurements.")
+      return false;
+    } else if (selectedPiece === "Hat" && studentInfo.head === "") {
+      alert("Please input head measurement.");
+      return false;
+    } else if (selectedPiece === "Pants" && studentInfo.waist === "") {
+      alert("Please input waist measurement.");
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  // Sort the presented uniforms
+  const sort = () => {
+    if (checkSortPrerequisites()) {
+      var sorted = JSON.parse(JSON.stringify(presentedUniforms));
+      if (selectedPiece === "Jacket") {
+        sorted.sort(function(a, b) {
+          return (Math.abs(studentInfo.chest - a.chest) -
+                  Math.abs(studentInfo.chest - b.chest));
+        })
+
+      } else if (selectedPiece === "Hat") {
+          sorted.sort(function(a, b) {
+            return (Math.abs(studentInfo.head - a.head) -
+                    Math.abs(studentInfo.head - b.head));
+          })
+      } else if (selectedPiece === "Pants") {
+          sorted.sort(function(a, b) {
+            return (Math.abs(studentInfo.waist - a.waist) -
+                    Math.abs(studentInfo.waist - b.waist));
+          })
+      } else if (selectedPiece === "Gauntlet") {
+        // Do nothing, gauntlets don't have sizes
+      }
+      setPresentedUniforms(sorted);
+    }
   }
 
   const handleSelectedUniformsChange = (uniform_ids) => {
@@ -195,6 +237,10 @@ export default function UniformAssignPage () {
     setAdditionalNotes(notes);
   }
 
+  const handleSelectedPieceChange = (piece) => {
+    setSelectedPiece(piece)
+  }
+
   return (
     <div className={styles.float_container}>
       <Header/>
@@ -203,13 +249,20 @@ export default function UniformAssignPage () {
           allStudents={allStudents}
           onSelectedStudentChange={handleSelectedStudentChange}/>
       </div>
+      <div className={styles.pieceSelectComponentWraper}>
+        <PieceSelect
+          allPieces={allPieces}
+          onSelectedPieceChange={handleSelectedPieceChange}/>
+      </div>
       <div className={styles.uniformListComponentWrapper}>
         <UniformList
-          uniforms={allUniforms}
+          uniforms={presentedUniforms}
+          selectedPiece={selectedPiece}
           onSelectedUniformsChange={handleSelectedUniformsChange}/>
       </div>
       <div className={styles.studentInfoComponentWrapper}>
         <StudentInfo
+          allUniformTypes={allUniformTypes}
           onGradeChange={handleGradeChange}
           onInstrumentChange={handleInstrumentChange}
           onHeightChange={handleHeightChange}
@@ -222,7 +275,7 @@ export default function UniformAssignPage () {
           onAdditionalNotesChange={handleAdditionalNotesChange}/>
       </div>
       <div className={styles.buttonsWrapper}>
-        <Button sx={{ml:"auto", mr:"auto"}} variant="contained">
+        <Button sx={{ml:"auto", mr:"auto"}} variant="contained" onClick={() => {sort()}}>
           Sort by Best Fit
         </Button>
         <Button sx={{ml:"auto", mr:"auto"}} variant="contained" onClick={() => {

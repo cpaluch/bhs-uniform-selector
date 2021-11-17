@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import InputAdornment from '@mui/material/InputAdornment';
 import Typography from '@mui/material/Typography';
+import Autocomplete from '@mui/material/Autocomplete';
 
 export function StudentInfo (props) {
 
@@ -18,22 +19,23 @@ export function StudentInfo (props) {
       <div className={styles.wrapperInputSection}>
         <Box sx={{ flexGrow: 1, ml: 2, mr:2, mb: 2, mt: 2 }}>
           <Grid container spacing={2} columns={12}>
-            <Grid item xs={6} align="center" justify="center">
-              <TextField
-                type="number"
-                size="small"
-                id="tf-grade"
-                label="Grade"
-                variant="outlined"
-                onChange={(e) => props.onGradeChange(e.target.value)}/>
-            </Grid>
-            <Grid item xs={6} align="center" justify="center">
-              <TextField
-                size="small"
-                id="tf-instrument"
-                label="Instrument"
-                variant="outlined"
-                onChange={(e) => props.onInstrumentChange(e.target.value)}/>
+            <Grid item xs={12} align="center" justify="center">
+              <Autocomplete
+                  size="small"
+                  disablePortal
+                  id="cb-student-select"
+                  options={props.allUniformTypes}
+                  getOptionLabel={option => option.label}
+                  renderInput={
+                    (params) => <TextField {...params} label="Uniform Type"/>
+                  }
+                  onChange={(e) => {
+                    if (e.target.value === undefined) {
+                      props.onGradeChange("");
+                    } else {
+                      props.onGradeChange(props.allUniformTypes[e.target.value].value);
+                    }
+                  }}/>
             </Grid>
             <Grid item xs={6} align="center" justify="center">
               <TextField
