@@ -4,10 +4,13 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import axios from 'axios';
 import styles from "./AddUniformsPage.module.css";
+import validator from 'validator';
 
 export default function ManageUsersPage () {
 
   const [users, setUsers] = useState([]);
+
+  const [selectedUserIDs, setSelectedUserIDs] = useState([]);
 
   // Get all users on page load
   useEffect(() => {
@@ -30,6 +33,35 @@ export default function ManageUsersPage () {
       f_name: formData.get('f_name'),
       l_name: formData.get('l_name'),
     };
+
+    // Check for empty fields
+    if (credentials.email == null || credentials.email === "") {
+      alert("Please enter an email address for the user.");
+      return
+    } else if (credentials.password == null || credentials.password === "") {
+      alert("Please enter a password for the user.");
+      return
+    } else if (credentials.f_name == null || credentials.l_name === "") {
+      alert("Please enter a first name for the user.");
+      return
+    } else if (credentials.l_name == null || credentials.l_name === "") {
+      alert("Please enter a last name for the user.");
+      return
+    }
+
+    // Check for invalid email address
+    if (!validator.isEmail(credentials.email)) {
+      alert("Please enter a valid email address.")
+      return
+    }
+
+    // Check if user already exists
+    if (users.find(u => u.email === credentials.email).length !== 0) {
+      alert("User with email " + credentials.email + " already exists.")
+      return
+    }
+
+    // All checks passed, create new user
     const config = {
       headers : {
         'Accept': 'application/json',
@@ -39,8 +71,22 @@ export default function ManageUsersPage () {
     axios
       .post('http://localhost:5000/user/register', credentials, config)
       .then(function(results) {
-        getAllUsers();
+        alert("1")
+      })
+      .catch((error) => {
+        console.log(error.response.status)
+        alert("2")
       });
+  }
+
+  const handleSelectedUsersChange = (user_ids) => {
+    setSelectedUserIDs(user_ids);
+  }
+
+  const delete = async () => {
+    const data = {
+      user_ids: selectedUserIDs
+    }
   }
 
   return (
@@ -49,6 +95,7 @@ export default function ManageUsersPage () {
       <div className={styles.settingsComponentWrapper}>
         <ManageUsers
           users={users}
+          onSelectedUsersChange={handleSelectedUsersChange}
           onRegisterUser={addUser}/>
       </div>
       <Footer className={styles.footerWrapper} />

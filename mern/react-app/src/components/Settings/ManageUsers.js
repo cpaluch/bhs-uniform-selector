@@ -34,9 +34,12 @@ export default function ManageUsers (props) {
             rows={props.users}
             getRowId={(row) => row._id}
             columns={columns}
-            pageemail={8}
-            rowsPerPageOptions={[8]}
+            pageSize={25}
+            rowsPerPageOptions={[25]}
             checkboxSelection
+            onSelectionModelChange={(newSelection) => {
+              props.onSelectedUsersChange(newSelection);
+            }}
           />
           <Button variant="contained">Delete User</Button>
         </div>

@@ -119,4 +119,6 @@ router.route("/user/login").post(function (req, res) {
     })
 })
 
+// Delete a User
+
 module.exports = router;
