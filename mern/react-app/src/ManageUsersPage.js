@@ -12,6 +12,13 @@ export default function ManageUsersPage () {
 
   const [selectedUserIDs, setSelectedUserIDs] = useState([]);
 
+  const [newUserInfo, setNewUserInfo] = useState({
+    email : "",
+    password : "",
+    f_name : "",
+    l_name : ""
+  });
+
   // Get all users on page load
   useEffect(() => {
     getAllUsers();
@@ -24,14 +31,15 @@ export default function ManageUsersPage () {
     });
   };
 
-  const addUser = async (event) => {
-    console.log(event)
-    const formData = new FormData(event.currentTarget);
+  const addUser = async () => {
+
+    console.log(users)
+
     const credentials = {
-      email: formData.get('email'),
-      password: formData.get('password'),
-      f_name: formData.get('f_name'),
-      l_name: formData.get('l_name'),
+      email: newUserInfo.email,
+      password: newUserInfo.password,
+      f_name: newUserInfo.f_name,
+      l_name: newUserInfo.l_name,
     };
 
     // Check for empty fields
@@ -55,8 +63,10 @@ export default function ManageUsersPage () {
       return
     }
 
+    console.log(users.find(u => u.email === credentials.email));
+
     // Check if user already exists
-    if (users.find(u => u.email === credentials.email).length !== 0) {
+    if (users.find(u => u.email === credentials.email) !== undefined) {
       alert("User with email " + credentials.email + " already exists.")
       return
     }
@@ -71,11 +81,10 @@ export default function ManageUsersPage () {
     axios
       .post('http://localhost:5000/user/register', credentials, config)
       .then(function(results) {
-        alert("1")
+        getAllUsers();
       })
       .catch((error) => {
-        console.log(error.response.status)
-        alert("2")
+        console.log(error);
       });
   }
 
@@ -83,10 +92,40 @@ export default function ManageUsersPage () {
     setSelectedUserIDs(user_ids);
   }
 
-  const delete = async () => {
+  const deleteUsers = async () => {
     const data = {
       user_ids: selectedUserIDs
     }
+    const config = {
+      headers : {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    };
+    axios
+      .post('http://localhost:5000/user/delete', data, config)
+      .then(function(results) {
+        getAllUsers();
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
+
+  const handleFNameChange = (f_name) => {
+    setNewUserInfo({...newUserInfo, f_name : f_name });
+  }
+
+  const handleLNameChange = (l_name) => {
+    setNewUserInfo({...newUserInfo, l_name : l_name });
+  }
+
+  const handleEmailChange = (email) => {
+    setNewUserInfo({...newUserInfo, email: email });
+  }
+
+  const handlePasswordChange = (password) => {
+    setNewUserInfo({...newUserInfo, password : password })
   }
 
   return (
@@ -96,7 +135,12 @@ export default function ManageUsersPage () {
         <ManageUsers
           users={users}
           onSelectedUsersChange={handleSelectedUsersChange}
-          onRegisterUser={addUser}/>
+          onRegisterUser={addUser}
+          onDeleteUsers={deleteUsers}
+          onFNameChange={handleFNameChange}
+          onLNameChange={handleLNameChange}
+          onEmailChange={handleEmailChange}
+          onPasswordChange={handlePasswordChange}/>
       </div>
       <Footer className={styles.footerWrapper} />
     </div>

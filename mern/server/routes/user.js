@@ -120,5 +120,19 @@ router.route("/user/login").post(function (req, res) {
 })
 
 // Delete a User
+router.post(
+  "/user/delete",
+  passport.authenticate('jwt', { session : false }),
+  function (req, res) {
+    let db_connect = dbo.getDb();
+    const query = {_id : { $in : req.body.user_ids.map(id => ObjectId(id)) } }
+    db_connect
+      .collection("users")
+      .deleteMany(query, function(err, response) {
+        if (err) throw err;
+        res.json(response);
+      })
+  }
+)
 
 module.exports = router;

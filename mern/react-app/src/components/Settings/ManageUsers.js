@@ -41,7 +41,7 @@ export default function ManageUsers (props) {
               props.onSelectedUsersChange(newSelection);
             }}
           />
-          <Button variant="contained">Delete User</Button>
+          <Button variant="contained" onClick={props.onDeleteUsers}>Delete Users</Button>
         </div>
       </div>
       <div className={styles.wrapperAddUser}>
@@ -69,6 +69,7 @@ export default function ManageUsers (props) {
                   name="f_name"
                   label="First Name"
                   variant="outlined"
+                  onChange={(e) => props.onFNameChange(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12} align="center" justify="center">
@@ -78,6 +79,7 @@ export default function ManageUsers (props) {
                   name="l_name"
                   label="Last Name"
                   variant="outlined"
+                  onChange={(e) => props.onLNameChange(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12} align="center" justify="center">
@@ -87,6 +89,7 @@ export default function ManageUsers (props) {
                   name="email"
                   label="Email"
                   variant="outlined"
+                  onChange={(e) => props.onEmailChange(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12} align="center" justify="center">
@@ -96,10 +99,11 @@ export default function ManageUsers (props) {
                   name="password"
                   label="Password"
                   variant="outlined"
+                  onChange={(e) => props.onPasswordChange(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12} align="right" justify="right">
-                <Button type="submit" variant="contained">Add</Button>
+                <Button variant="contained" onClick={props.onRegisterUser}>Add</Button>
               </Grid>
             </Grid>
           </Box>
