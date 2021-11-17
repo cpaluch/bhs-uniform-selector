@@ -89,8 +89,6 @@ export default function ManageUsers (props) {
               <Grid item xs={12} align="center" justify="center">
                 <TextField
                   fullWidth
-                  id="password"
-                  name="password"
                   label="Password"
                   variant="outlined"
                 />
