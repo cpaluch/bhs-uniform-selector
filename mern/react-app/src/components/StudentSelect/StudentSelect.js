@@ -42,10 +42,12 @@ export function StudentSelect (props) {
                   }
                 }}/>
             </Grid>
+           
             <AddStudent
               onOpen={open}
               handleClose={handleClose}/>
-            <Button onClick={handleOpen}>Open modal</Button>
+            <Typography ml={3} mt={1} mb={1} gutterBottom>Can't find your Student?</Typography>
+            <Button onClick={handleOpen}>Add Student</Button>
           </Grid>
         </Box>
       </div>
