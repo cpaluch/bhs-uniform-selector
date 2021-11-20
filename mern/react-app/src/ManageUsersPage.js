@@ -3,7 +3,7 @@ import ManageUsers from "./components/Settings/ManageUsers";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import axios from 'axios';
-import styles from "./AddUniformsPage.module.css";
+import styles from "./ManageUsersPage.module.css";
 
 export default function ManageUsersPage() {
 
