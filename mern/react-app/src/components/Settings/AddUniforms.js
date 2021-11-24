@@ -25,8 +25,54 @@ export default function AddUniforms() {
   let jumpsuit = "jumpsuit";
   let jacket = "jacket";
   let poncho = "poncho";
+  let dress = "dress";
+  let shirt = "shirt";
+  let pants = "pants";
 
-  useEffect(() => {});
+  useEffect(() => {
+    if (selectValPiece == hat) {
+      disableChestBox(true);
+      disableLengthBox(true);
+      disableWaistBox(true);
+      disableHeadBox(false);
+    }
+    if (selectValPiece == jumpsuit) {
+      disableWaistBox(false);
+      disableHeadBox(true);
+      disableLengthBox(false);
+      disableChestBox(true);
+    }
+    if (selectValPiece == jacket) {
+      disableWaistBox(true);
+      disableHeadBox(true);
+      disableLengthBox(false);
+      disableChestBox(false);
+    }
+    if (selectValPiece == poncho) {
+      disableWaistBox(true);
+      disableHeadBox(true);
+      disableLengthBox(true);
+      disableChestBox(false);
+    }
+    if (selectValPiece == dress) {
+      disableWaistBox(false);
+      disableHeadBox(true);
+      disableLengthBox(false);
+      disableChestBox(false);
+    }
+    if (selectValPiece == shirt) {
+      disableWaistBox(true);
+      disableHeadBox(true);
+      disableLengthBox(true);
+      disableChestBox(false);
+    }
+    if (selectValPiece == pants) {
+      disableWaistBox(false);
+      disableHeadBox(true);
+      disableLengthBox(false);
+      disableChestBox(true);
+    }
+  }, [selectValPiece]);
 
   function handleChange(e) {
     setSelectedVal(e.target.value);
@@ -35,74 +81,9 @@ export default function AddUniforms() {
   function handlePieceChange(e) {
     setSelectedValPiece(e.target.value);
     console.log(selectValPiece);
-
-    if (selectValPiece == hat) {
-      disableChestBox(true);
-      disableLengthBox(true);
-      disableWaistBox(true);
-      disableHeadBox(false);
-    }
-    if (selectValPiece == jumpsuit) {
-      console.log("2");
-      disableWaistBox(true);
-      disableHeadBox(true);
-      disableLengthBox(true);
-      disableChestBox(false);
-    }
-    if (selectValPiece == jacket) {
-      console.log("3");
-      disableWaistBox(true);
-      disableHeadBox(true);
-      disableLengthBox(true);
-      disableChestBox(false);
-    }
-    if (selectValPiece == poncho) {
-      console.log("4");
-      disableWaistBox(true);
-      disableHeadBox(true);
-      disableLengthBox(true);
-      disableChestBox(false);
-    }
-    // switch (selectValPiece) {
-    //   case hat:
-    //     console.log("1");
-    //     disableChestBox(true);
-    //     disableLengthBox(true);
-    //     disableWaistBox(true);
-    //     disableHeadBox(false);
-    //   case jumpsuit:
-    //     console.log("2");
-    //     disableWaistBox(true);
-    //     disableHeadBox(true);
-    //     disableLengthBox(true);
-    //     disableChestBox(false);
-    //   case jacket:
-    //     console.log("3");
-    //     disableWaistBox(true);
-    //     disableHeadBox(true);
-    //     disableLengthBox(true);
-    //     disableChestBox(false);
-    //   case poncho:
-    //     console.log("4");
-    //     disableWaistBox(true);
-    //     disableHeadBox(true);
-    //     disableLengthBox(true);
-    //     disableChestBox(false);
-    //   case "shirt":
-    //     disableWaistBox(true);
-    //     disableHeadBox(true);
-    //     disableLengthBox(true);
-    //   case "dress":
-    //     disableWaistBox(true);
-    //     disableHeadBox(true);
-    //   case "pants":
-    //     disableHeadBox(true);
-    //     disableChestBox(true);
-    //   default:
-    // }
   }
 
-  if (selectVal === "10") {
+  if (selectVal == "10") {
     select = (
       <FormControl fullWidth>
         <InputLabel>Uniform Piece</InputLabel>
@@ -114,7 +95,7 @@ export default function AddUniforms() {
         </Select>
       </FormControl>
     );
-  } else if (selectVal === "20" || selectVal === "30") {
+  } else if (selectVal == "20" || selectVal == "30") {
     select = (
       <FormControl fullWidth>
         <InputLabel>Uniform Piece</InputLabel>
@@ -127,6 +108,7 @@ export default function AddUniforms() {
       </FormControl>
     );
   } else {
+    console.log(selectVal);
     select = (
       <FormControl fullWidth disabled>
         <InputLabel>Uniform Piece</InputLabel>
