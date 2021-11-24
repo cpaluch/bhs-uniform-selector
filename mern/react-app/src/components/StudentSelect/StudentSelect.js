@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './StudentSelect.module.css';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -10,7 +10,7 @@ import AddStudent from '../AddStudent/AddStudent';
 
 export function StudentSelect (props) {
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -45,7 +45,8 @@ export function StudentSelect (props) {
            
             <AddStudent
               onOpen={open}
-              handleClose={handleClose}/>
+              handleClose={handleClose}
+              setStudents={props.setStudents}/>
             <Typography ml={3} mt={1} mb={1} gutterBottom>Can't find your Student?</Typography>
             <Button onClick={handleOpen}>Add Student</Button>
           </Grid>

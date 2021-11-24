@@ -101,6 +101,8 @@ export default function UniformAssignPage () {
       const students = res.data
       setAllStudents(students)
     });
+
+    
   }
 
   // Get all the uniforms from the backend. Set the allUniforms state with only
@@ -241,12 +243,17 @@ export default function UniformAssignPage () {
     setSelectedPiece(piece)
   }
 
+  const handleAllStudentChange = (students) => {
+    setAllStudents(students)
+  }
+
   return (
     <div className={styles.float_container}>
       <Header/>
       <div className={styles.studentSelectComponentWrapper}>
         <StudentSelect
           allStudents={allStudents}
+          setStudents={handleAllStudentChange}
           onSelectedStudentChange={handleSelectedStudentChange}/>
       </div>
       <div className={styles.pieceSelectComponentWraper}>

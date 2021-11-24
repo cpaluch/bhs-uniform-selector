@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import styles from './AddStudent.module.css';
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
+import axios from 'axios';
 import {
   Select,
   MenuItem,
@@ -27,6 +28,48 @@ const style = {
   };
 export default function AddStudent(props) {
 
+
+  const [studentNames, setStudentNames] = useState({
+    f_name: "",
+    l_name: ""
+  })
+
+
+  const setLastName = (name) => {
+    setStudentNames({...studentNames, l_name: name})
+  }
+
+  const setFirstName = (name) => {
+    setStudentNames({...studentNames, f_name: name})
+  }
+
+
+  const getAllStudents = async () => {
+    axios.get('http://localhost:5000/student').then(res => {
+      const students = res.data
+      props.setStudents(students)
+    });
+    
+  }
+
+  const add = async () => {
+    const data = {
+      f_name: studentNames.f_name, 
+      l_name: studentNames.l_name
+    }
+
+    const config = {
+      "Accept": "application/json",
+      "Content-Type": "application/json"
+    }
+
+    axios.post("http://localhost:5000/student/add", data, config)
+        .then(function (results) {
+          getAllStudents()
+        })
+    
+    props.handleClose()
+  }
     
     return (
 
@@ -62,6 +105,7 @@ export default function AddStudent(props) {
                   id="outlined-basic"
                   label="First Name"
                   variant="outlined"
+                  onChange={(e) => setFirstName(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12} align="center" justify="center">
@@ -70,6 +114,7 @@ export default function AddStudent(props) {
                   id="outlined-basic"
                   label="Last Name"
                   variant="outlined"
+                  onChange={(e) => setLastName(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12} align="center" justify="center">
@@ -89,7 +134,7 @@ export default function AddStudent(props) {
                 />
               </Grid>
               <Grid item xs={12} align="right" justify="right">
-                <Button variant="contained">Add</Button>
+                <Button onClick={() => {add()}} variant="contained">Add</Button>
               </Grid>
             </Grid>
           </Box>
