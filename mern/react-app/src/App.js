@@ -76,13 +76,23 @@ export default function App () {
     history.push("/");
   }
 
+  async function checkLogin () {
+    if (localStorage.authenticated) {
+      history.push("/assign-uniforms");
+    }
+  }
+
   return (
     <div className="App">
       <Switch>
         <Route exact path="/">
+          {localStorage.authenticated ? 
           <LoginPage
             onAuthenticationAttempt={handleAuthenticationAttempt}
-          />
+            checkLogin={checkLogin}
+          />:
+          <UniformAssignPage/>
+          }
         </Route>
         <ProtectedRoute
           path="/reports">
