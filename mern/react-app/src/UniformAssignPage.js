@@ -101,6 +101,8 @@ export default function UniformAssignPage() {
       const students = res.data
       setAllStudents(students)
     });
+
+    
   }
 
   // Get all the uniforms from the backend. Set the allUniforms state with only
@@ -239,6 +241,10 @@ export default function UniformAssignPage() {
 
   const handleSelectedPieceChange = (piece) => {
     setSelectedPiece(piece)
+  }
+
+  const handleAllStudentChange = (students) => {
+    setAllStudents(students)
   }
 
   return (

@@ -15,8 +15,8 @@ import styles from './ReportsPage.module.css';
 
 const theme = createTheme();
 
-export default function SignIn(props) {
-
+export default function SignIn (props) {
+  props.checkLogin();
   return (
     <div>
       <HeaderLogin />
