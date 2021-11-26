@@ -16,6 +16,7 @@
   }
   
   .footerWrapper {
+    float: left;
     /* height: 6%; */
     width: 100%;
     bottom: 0px;
@@ -23,18 +24,30 @@
     background-color: blue;
   }
   
-  .settingsComponentWrapper {
-    /* margin-top: 10px; */
-    /* margin-bottom: 100px; */
+  .reportsPageComponentWrapper {
+    margin-top: 20px;
+    margin-bottom: -85px;
     float: middle;
-    /* height: 10%; */
+    /* height: 94%; */
     vertical-align: middle;
     align-items: center;
   }
   
-  .addUniformFooter{
-    /* position: fixed; */
+  .buttonWrapper {
+    flex: auto;
+    display: flex;
+    align-items: center;
+    margin-top: -4%;
+  }
+  
+  .loginPageWrapper{
+    height: 100%;
+    margin: 0;
+    /* margin-bottom: -150px; */
+  }
+  
+  .loginPageFooter{
+    position: absolute;
     bottom: 0;
     width: 100%;
   }
-  

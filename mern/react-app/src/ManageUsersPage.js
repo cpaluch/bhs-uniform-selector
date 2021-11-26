@@ -3,9 +3,9 @@ import ManageUsers from "./components/Settings/ManageUsers";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import axios from 'axios';
-import styles from "./AddUniformsPage.module.css";
+import styles from "./ManageUsersPage.module.css";
 
-export default function ManageUsersPage () {
+export default function ManageUsersPage() {
 
   const [users, setUsers] = useState([]);
 
@@ -31,14 +31,14 @@ export default function ManageUsersPage () {
       l_name: formData.get('l_name'),
     };
     const config = {
-      headers : {
+      headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       }
     };
     axios
       .post('http://localhost:5000/user/register', credentials, config)
-      .then(function(results) {
+      .then(function (results) {
         getAllUsers();
       });
   }
@@ -49,9 +49,11 @@ export default function ManageUsersPage () {
       <div className={styles.settingsComponentWrapper}>
         <ManageUsers
           users={users}
-          onRegisterUser={addUser}/>
+          onRegisterUser={addUser} />
       </div>
-      <Footer className={styles.footerWrapper} />
+      <div className={styles.addUniformFooter}>
+        <Footer />
+      </div>
     </div>
   );
 };
