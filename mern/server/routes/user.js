@@ -101,7 +101,7 @@ router.route("/user/login").post(function (req, res) {
             payload,
             process.env.SECRET_OR_KEY,
             {
-              expiresIn: 31556926 // 1 year in seconds
+              expiresIn: 86400 // 1 day in seconds
             },
             (err, token) => {
               res.json({
