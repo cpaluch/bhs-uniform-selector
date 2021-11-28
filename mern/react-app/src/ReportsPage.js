@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import ReportsTable from './components/ReportsTable/ReportsTable';
-import styles from './ReportsPage.module.css';
-import Header from './components/Header/Header'
-import Footer from './components/Footer/Footer'
-import { Button } from '@mui/material';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import ReportsTable from "./components/ReportsTable/ReportsTable";
+import styles from "./ReportsPage.module.css";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import { Button } from "@mui/material";
+import axios from "axios";
 
-export default function ReportsPage() {
-
+export default function ReportsPage(props) {
   // List of selected uniforms in UniformList component
   // Stored as array of strings
   const [selectedUniformIDs, setSelectedUniformIDs] = useState([]);
@@ -32,8 +31,12 @@ export default function ReportsPage() {
         uniform.f_name = "N/A";
         uniform.l_name = "N/A";
       } else {
-        uniform.f_name = allStudents.find(elem => elem._id === uniform.student_id).f_name;
-        uniform.l_name = allStudents.find(elem => elem._id === uniform.student_id).l_name;
+        uniform.f_name = allStudents.find(
+          (elem) => elem._id === uniform.student_id
+        ).f_name;
+        uniform.l_name = allStudents.find(
+          (elem) => elem._id === uniform.student_id
+        ).l_name;
       }
     });
     // Update state for ReportsTable component
@@ -47,49 +50,60 @@ export default function ReportsPage() {
   }, []);
 
   const getAllStudents = async () => {
-    axios.get('http://localhost:5000/student').then(res => {
-      const students = res.data
-      setAllStudents(students)
+    axios.get("http://localhost:5000/student").then((res) => {
+      const students = res.data;
+      setAllStudents(students);
     });
-  }
+  };
 
   const getAllUniforms = async () => {
-    axios.get("http://localhost:5000/uniform").then(res => {
-      const uniforms = res.data
-      setAllUniforms(uniforms)
+    axios.get("http://localhost:5000/uniform").then((res) => {
+      const uniforms = res.data;
+      setAllUniforms(uniforms);
     });
-  }
+  };
 
   // Unassign uniforms from students and run GET request for all uniforms
   const unassign = async () => {
     const data = {
-      uniform_ids: selectedUniformIDs
-    }
+      uniform_ids: selectedUniformIDs,
+    };
     const config = {
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-    }
-    axios.post("http://localhost:5000/uniform/unassign", data, config).then(res => {
-      getAllUniforms()
-    });
-  }
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    };
+    axios
+      .post("http://localhost:5000/uniform/unassign", data, config)
+      .then((res) => {
+        getAllUniforms();
+      });
+  };
 
   const handleSelectedUniformsChange = (uniform_ids) => {
     setSelectedUniformIDs(uniform_ids);
-  }
+  };
 
   return (
     <div className={styles.float_container}>
-      <Header className={styles.headerWrapper} />
+      <Header
+        className={styles.headerWrapper}
+        onLogoutAttempt={props.onLogoutAttempt}
+      />
       <div className={styles.reportsPageComponentWrapper}>
         <ReportsTable
           rows={reportsTableRows}
           onSelectedUniformsChange={handleSelectedUniformsChange}
         />
         <div className={styles.buttonWrapper}>
-          <Button sx={{ ml: "auto", mr: "auto" }} variant="contained" onClick={() => { unassign() }}>
+          <Button
+            sx={{ ml: "auto", mr: "auto" }}
+            variant="contained"
+            onClick={() => {
+              unassign();
+            }}
+          >
             UNASSIGN
           </Button>
         </div>

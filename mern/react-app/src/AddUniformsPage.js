@@ -4,18 +4,17 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import styles from "./AddUniformsPage.module.css";
 
-export class Settings extends Component {
-  render() {
-    return (
-      <div className={styles.float_container}>
-        <Header className={styles.headerWrapper} />
-        <div className={styles.settingsComponentWrapper}>
-          <AddUniforms />
-        </div>
-        <Footer className={styles.footerWrapper} />
+export default function AddUniformsPage(props) {
+  return (
+    <div className={styles.float_container}>
+      <Header
+        className={styles.headerWrapper}
+        onLogoutAttempt={props.onLogoutAttempt}
+      />
+      <div className={styles.settingsComponentWrapper}>
+        <AddUniforms />
       </div>
-    );
-  }
+      <Footer className={styles.footerWrapper} />
+    </div>
+  );
 }
-
-export default Settings;

@@ -1,14 +1,14 @@
-import React from 'react';
-import LoginPage from './LoginPage'
-import UniformAssignPage from './UniformAssignPage'
-import ReportsPage from './ReportsPage'
-import HelpPage from './components/HelpPage/HelpPage'
+import React from "react";
+import LoginPage from "./LoginPage";
+import UniformAssignPage from "./UniformAssignPage";
+import ReportsPage from "./ReportsPage";
+import HelpPage from "./components/HelpPage/HelpPage";
 import { Switch, Route } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
 import AddUniformsPage from "./AddUniformsPage";
 import ManageUsersPage from "./ManageUsersPage";
 import jwt_decode from "jwt-decode";
-import axios from 'axios';
+import axios from "axios";
 import { useHistory } from "react-router-dom";
 
 // Keeps user logged in through page reloads
@@ -28,28 +28,27 @@ if (localStorage.jwtToken) {
   }
 }
 
-export default function App () {
-
+export default function App() {
   const history = useHistory();
 
-  async function handleAuthenticationAttempt (event) {
+  async function handleAuthenticationAttempt(event) {
     event.preventDefault();
     // Extract email and password from the input fields
     const formData = new FormData(event.currentTarget);
     const data = {
-      email : formData.get('email'),
-      password : formData.get('password'),
+      email: formData.get("email"),
+      password: formData.get("password"),
     };
     // Login and save JWT
     const config = {
-      headers : {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
     };
     axios
       .post("http://localhost:5000/user/login", data, config)
-      .then(res => {
+      .then((res) => {
         // Store JWT in local storage
         const { token } = res.data;
         localStorage.setItem("jwtToken", token);
@@ -59,13 +58,13 @@ export default function App () {
         // Send user to assign page upon successful login
         history.push("/assign-uniforms");
       })
-      .catch(err => {
-        alert("Invalid email and/or password!")
-        console.log(err)
+      .catch((err) => {
+        alert("Invalid email and/or password!");
+        console.log(err);
       });
   }
 
-  async function handleLogoutAttempt (event) {
+  async function handleLogoutAttempt(event) {
     event.preventDefault();
     // Remove JWT from local storage
     localStorage.removeItem("jwtToken");
@@ -80,34 +79,24 @@ export default function App () {
     <div className="App">
       <Switch>
         <Route exact path="/">
-          <LoginPage
-            onAuthenticationAttempt={handleAuthenticationAttempt}
-          />
+          <LoginPage onAuthenticationAttempt={handleAuthenticationAttempt} />
         </Route>
-        <ProtectedRoute
-          path="/reports">
-          <ReportsPage/>
+        <ProtectedRoute path="/reports">
+          <ReportsPage onLogoutAttempt={handleLogoutAttempt} />
         </ProtectedRoute>
-        <ProtectedRoute
-          path="/assign-uniforms">
-          <UniformAssignPage/>
+        <ProtectedRoute path="/assign-uniforms">
+          <UniformAssignPage onLogoutAttempt={handleLogoutAttempt} />
         </ProtectedRoute>
-        <ProtectedRoute
-          path='/help'>
-          <HelpPage
-            onLogoutAttempt={handleLogoutAttempt}
-          />
+        <ProtectedRoute path="/help">
+          <HelpPage onLogoutAttempt={handleLogoutAttempt} />
         </ProtectedRoute>
-        <ProtectedRoute
-          path="/add-uniforms">
-          <AddUniformsPage/>
+        <ProtectedRoute path="/add-uniforms">
+          <AddUniformsPage onLogoutAttempt={handleLogoutAttempt} />
         </ProtectedRoute>
-        <ProtectedRoute
-          path="/manage-users">
-          <ManageUsersPage/>
+        <ProtectedRoute path="/manage-users">
+          <ManageUsersPage onLogoutAttempt={handleLogoutAttempt} />
         </ProtectedRoute>
       </Switch>
     </div>
   );
-
 }
