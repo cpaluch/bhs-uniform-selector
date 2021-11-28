@@ -39,3 +39,15 @@
   align-items: center;
   margin-top: -4%;
 }
+
+.loginPageWrapper{
+  height: 100%;
+  margin: 0;
+  /* margin-bottom: -150px; */
+}
+
+.loginPageFooter{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}

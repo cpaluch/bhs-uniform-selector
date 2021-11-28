@@ -13,14 +13,16 @@ import { useHistory } from "react-router-dom";
 
 // Keeps user logged in through page reloads
 if (localStorage.jwtToken) {
-  // Set Authorization header for axios
+  // Get token from localStorage
   const token = localStorage.jwtToken;
+  // Set Authorization header for axios
   axios.defaults.headers.common["Authorization"] = token;
 
   // Check for token timeout
   const decoded = jwt_decode(token);
   const currentTime = Date.now() / 1000;
   if (decoded.exp < currentTime) {
+    // Remove JWT from local storage
     localStorage.removeItem("jwtToken");
     localStorage.removeItem("authenticated");
     // Remove Authorization header from axios requests
@@ -64,22 +66,37 @@ export default function App() {
       });
   }
 
-  async function handleLogoutAttempt(event) {
-    event.preventDefault();
+  async function clearLocalStorage () {
     // Remove JWT from local storage
     localStorage.removeItem("jwtToken");
     localStorage.removeItem("authenticated");
-    localStorage.removeItem("currentUser");
     // Remove Authorization header from axios requests
     delete axios.defaults.headers.common["Authorization"];
+  }
+
+  async function handleLogoutAttempt (event) {
+    // Make sure local storage clearing is complete before navigating back to
+    // sign in page
+    await clearLocalStorage();
     history.push("/");
+  }
+
+  // If user has credentials saved, automatically navigate to uniform assign
+  // page
+  async function checkLogin () {
+    if (localStorage.authenticated) {
+      history.push("/assign-uniforms");
+    }
   }
 
   return (
     <div className="App">
       <Switch>
         <Route exact path="/">
-          <LoginPage onAuthenticationAttempt={handleAuthenticationAttempt} />
+          <LoginPage
+            onAuthenticationAttempt={handleAuthenticationAttempt}
+            checkLogin={checkLogin}
+          />
         </Route>
         <ProtectedRoute path="/reports">
           <ReportsPage onLogoutAttempt={handleLogoutAttempt} />

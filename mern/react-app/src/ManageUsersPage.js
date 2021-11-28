@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import ManageUsers from "./components/Settings/ManageUsers";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import axios from "axios";
-import styles from "./AddUniformsPage.module.css";
+import axios from 'axios';
+import styles from "./ManageUsersPage.module.css";
 
 export default function ManageUsersPage(props) {
+
   const [users, setUsers] = useState([]);
 
   // Get all users on page load
@@ -31,12 +32,12 @@ export default function ManageUsersPage(props) {
     };
     const config = {
       headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
     };
     axios
-      .post("http://localhost:5000/user/register", credentials, config)
+      .post('http://localhost:5000/user/register', credentials, config)
       .then(function (results) {
         getAllUsers();
       });
@@ -49,9 +50,13 @@ export default function ManageUsersPage(props) {
         onLogoutAttempt={props.onLogoutAttempt}
       />
       <div className={styles.settingsComponentWrapper}>
-        <ManageUsers users={users} onRegisterUser={addUser} />
+        <ManageUsers
+          users={users}
+          onRegisterUser={addUser} />
       </div>
-      <Footer className={styles.footerWrapper} />
+      <div className={styles.addUniformFooter}>
+        <Footer />
+      </div>
     </div>
   );
 }
