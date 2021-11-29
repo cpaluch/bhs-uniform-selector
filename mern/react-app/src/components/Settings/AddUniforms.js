@@ -31,12 +31,12 @@ export default function AddUniforms() {
 
   let select;
   let hat = "hat";
-  let jumpsuit = "jumpsuit";
   let jacket = "jacket";
   let poncho = "poncho";
   let dress = "dress";
   let shirt = "shirt";
   let pants = "pants";
+  let gauntlet = "gauntlet";
 
   useEffect(() => {
     if (selectValPiece == hat) {
@@ -45,10 +45,10 @@ export default function AddUniforms() {
       disableWaistBox(true);
       disableHeadBox(false);
     }
-    if (selectValPiece == jumpsuit) {
-      disableWaistBox(false);
+    if (selectValPiece == gauntlet) {
+      disableWaistBox(true);
       disableHeadBox(true);
-      disableLengthBox(false);
+      disableLengthBox(true);
       disableChestBox(true);
     }
     if (selectValPiece == jacket) {
@@ -111,7 +111,7 @@ export default function AddUniforms() {
   const addUniform = async () => {
     const data = {
       uniform_id: uniformID,
-      student_id: null,
+      student_id: "",
       piece: selectValPiece,
       type: selectVal,
       chest: uniformChest,
@@ -134,9 +134,10 @@ export default function AddUniforms() {
         <InputLabel>Uniform Piece</InputLabel>
         <Select label="add uniform" onChange={handlePieceChange}>
           <MenuItem value={hat}>Hat</MenuItem>
-          <MenuItem value={jumpsuit}>JumpSuit</MenuItem>
+          <MenuItem value={pants}>Pants</MenuItem>
           <MenuItem value={jacket}>Jacket</MenuItem>
           <MenuItem value={poncho}>Poncho</MenuItem>
+          <MenuItem value={gauntlet}>Gauntlet</MenuItem>
         </Select>
       </FormControl>
     );
@@ -149,6 +150,7 @@ export default function AddUniforms() {
           <MenuItem value="shirt">Shirt</MenuItem>
           <MenuItem value="jacket">Jacket</MenuItem>
           <MenuItem value="pants">Pants</MenuItem>
+          <MenuItem value={gauntlet}>Gauntlet</MenuItem>
         </Select>
       </FormControl>
     );
