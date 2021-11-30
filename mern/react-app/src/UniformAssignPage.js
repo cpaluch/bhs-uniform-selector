@@ -293,7 +293,7 @@ export default function UniformAssignPage(props) {
         </div>
         <div className={styles.buttonsWrapper}>
           <Button
-            className={styles.buttonsStyle}
+            style={{ color: "#0000e0", backgroundColor: "#efc500" }}
             sx={{ ml: "auto", mr: "auto" }}
             variant="contained"
             onClick={() => {
@@ -303,7 +303,7 @@ export default function UniformAssignPage(props) {
             Sort by Best Fit
           </Button>
           <Button
-            className={styles.buttonsStyle}
+            style={{ color: "#0000e0", backgroundColor: "#efc500" }}
             sx={{ ml: "auto", mr: "auto" }}
             variant="contained"
             onClick={() => {

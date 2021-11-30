@@ -64,7 +64,7 @@ export default function SignIn(props) {
                 label="Remember me"
               />
               <Button
-                className={styles.buttonsStyle}
+                style={{ color: "#0000e0", backgroundColor: "#efc500" }}
                 type="submit"
                 fullWidth
                 variant="contained"

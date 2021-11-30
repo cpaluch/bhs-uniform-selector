@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import AppBar from "@mui/material/AppBar";
 import ToolBar from "@mui/material/Toolbar";
 import { Typography, Button } from "@mui/material";
-import styles from "./Header.module.css";
 import { NavLink } from "react-router-dom";
+import styles from "./Header.module.css";
 
 export default function Header(props) {
   return (
@@ -56,7 +56,7 @@ export default function Header(props) {
           </li>
           <li className={styles.nav_link}>
             <Button
-              className={styles.buttonsStyle}
+              style={{ color: "#0000e0", backgroundColor: "#efc500" }}
               variant="contained"
               onClick={props.onLogoutAttempt}
             >

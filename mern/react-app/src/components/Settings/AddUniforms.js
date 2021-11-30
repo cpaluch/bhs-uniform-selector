@@ -260,7 +260,7 @@ export default function AddUniforms() {
             </Grid>
             <Grid item xs={12} align="right" justify="right">
               <Button
-                className={styles.addButton}
+                style={{ color: "#0000e0", backgroundColor: "#efc500" }}
                 variant="contained"
                 onClick={() => {
                   onClickAdd();

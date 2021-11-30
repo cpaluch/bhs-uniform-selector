@@ -37,7 +37,10 @@ export default function ManageUsers(props) {
             rowsPerPageOptions={[8]}
             checkboxSelection
           />
-          <Button className={styles.buttonsStyle} variant="contained">
+          <Button
+            style={{ color: "#0000e0", backgroundColor: "#efc500" }}
+            variant="contained"
+          >
             Delete User
           </Button>
         </div>
@@ -97,7 +100,7 @@ export default function ManageUsers(props) {
               </Grid>
               <Grid item xs={12} align="right" justify="right">
                 <Button
-                  className={styles.buttonsStyle}
+                  style={{ color: "#0000e0", backgroundColor: "#efc500" }}
                   type="submit"
                   variant="contained"
                 >

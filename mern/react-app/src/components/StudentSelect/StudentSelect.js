@@ -62,7 +62,7 @@ export function StudentSelect(props) {
             <Typography ml={3} mt={1} mb={1} gutterBottom>
               Can't find your Student?
             </Typography>
-            <Button className={styles.buttonsStyle} onClick={handleOpen}>
+            <Button style={{ color: "#0000e0" }} onClick={handleOpen}>
               Add Student
             </Button>
           </Grid>

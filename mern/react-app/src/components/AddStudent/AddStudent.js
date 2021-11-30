@@ -123,7 +123,7 @@ export default function AddStudent(props) {
                 </Grid>
                 <Grid item xs={12} align="right" justify="right">
                   <Button
-                    className={styles.buttonsStyle}
+                    style={{ color: "#0000e0", backgroundColor: "#efc500" }}
                     onClick={() => {
                       add();
                     }}
