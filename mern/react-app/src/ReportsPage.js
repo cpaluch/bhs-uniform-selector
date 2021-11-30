@@ -98,6 +98,7 @@ export default function ReportsPage(props) {
         />
         <div className={styles.buttonWrapper}>
           <Button
+            style={{ color: "#0000e0", backgroundColor: "#efc500" }}
             sx={{ ml: "auto", mr: "auto" }}
             variant="contained"
             onClick={() => {

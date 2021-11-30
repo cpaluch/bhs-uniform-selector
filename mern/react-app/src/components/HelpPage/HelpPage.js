@@ -1,4 +1,3 @@
-
 import React from "react";
 import styles from "../HelpPage/HelpPage.module.css";
 import Header from "../Header/Header";
@@ -13,7 +12,16 @@ export default function HelpPage(props) {
         onLogoutAttempt={props.onLogoutAttempt}
       />
       <div className={styles.reportsPageComponentWrapper}>
-        <p style={{ fontSize: "80px" }}>FAQs</p>
+        <p
+          style={{
+            fontSize: "80px",
+            marginLeft: "20px",
+            marginTop: "20px",
+            marginBottom: "20px",
+          }}
+        >
+          FAQs
+        </p>
         <p style={{ marginLeft: "20px" }}>
           How do I assign a uniform to a student?
         </p>
@@ -83,7 +91,7 @@ export default function HelpPage(props) {
           of the chart, then you can download it as a csv file.
         </p>
         <p style={{ marginLeft: "20px" }}>How can I add a new uniform?</p>
-        <p style={{ marginLeft: "40px" }}>
+        <p style={{ marginLeft: "40px", marginBottom: "60px" }}>
           To add a new unifrom go to the add uniform page and then select the{" "}
           <br></br>
           uniform type and the peice and then enter in the necessary
