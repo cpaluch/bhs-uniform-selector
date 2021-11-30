@@ -3,8 +3,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import styles from "./ManageUsers.module.css";
 import { Typography, Button, Grid, TextField, Box } from "@mui/material";
 
-export default function ManageUsers (props) {
-
+export default function ManageUsers(props) {
   const columns = [
     { field: "f_name", headerName: "First Name", width: 125 },
     { field: "l_name", headerName: "Last Name", width: 125 },
@@ -38,7 +37,9 @@ export default function ManageUsers (props) {
             rowsPerPageOptions={[8]}
             checkboxSelection
           />
-          <Button variant="contained">Delete User</Button>
+          <Button className={styles.buttonsStyle} variant="contained">
+            Delete User
+          </Button>
         </div>
       </div>
       <div className={styles.wrapperAddUser}>
@@ -57,7 +58,12 @@ export default function ManageUsers (props) {
           </Typography>
         </div>
         <div className={styles.boxLimits}>
-          <Box component="form" onSubmit={props.onRegisterUser} noValidate sx={{ flexGrow: 1, ml: 2, mr: 2, mb: 2, mt: 2 }}>
+          <Box
+            component="form"
+            onSubmit={props.onRegisterUser}
+            noValidate
+            sx={{ flexGrow: 1, ml: 2, mr: 2, mb: 2, mt: 2 }}
+          >
             <Grid container spacing={2} columns={2}>
               <Grid item xs={12} align="center" justify="center">
                 <TextField
@@ -87,14 +93,16 @@ export default function ManageUsers (props) {
                 />
               </Grid>
               <Grid item xs={12} align="center" justify="center">
-                <TextField
-                  fullWidth
-                  label="Password"
-                  variant="outlined"
-                />
+                <TextField fullWidth label="Password" variant="outlined" />
               </Grid>
               <Grid item xs={12} align="right" justify="right">
-                <Button type="submit" variant="contained">Add</Button>
+                <Button
+                  className={styles.buttonsStyle}
+                  type="submit"
+                  variant="contained"
+                >
+                  Add
+                </Button>
               </Grid>
             </Grid>
           </Box>

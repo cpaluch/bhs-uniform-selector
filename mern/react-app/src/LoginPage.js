@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -11,11 +11,11 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Footer from "./components/Footer/Footer";
 import HeaderLogin from "./components/Header/HeaderLogin";
-import styles from './ReportsPage.module.css';
+import styles from "./ReportsPage.module.css";
 
 const theme = createTheme();
 
-export default function SignIn (props) {
+export default function SignIn(props) {
   props.checkLogin();
   return (
     <div>
@@ -33,7 +33,12 @@ export default function SignIn (props) {
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
-            <Box component="form" onSubmit={props.onAuthenticationAttempt} noValidate sx={{ mt: 1 }}>
+            <Box
+              component="form"
+              onSubmit={props.onAuthenticationAttempt}
+              noValidate
+              sx={{ mt: 1 }}
+            >
               <TextField
                 margin="normal"
                 required
@@ -59,6 +64,7 @@ export default function SignIn (props) {
                 label="Remember me"
               />
               <Button
+                className={styles.buttonsStyle}
                 type="submit"
                 fullWidth
                 variant="contained"

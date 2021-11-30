@@ -30,13 +30,13 @@ export default function AddUniforms() {
   const [uniformID, setUniformID] = useState("");
 
   let select;
-  let hat = "hat";
-  let jacket = "jacket";
-  let poncho = "poncho";
-  let dress = "dress";
-  let shirt = "shirt";
-  let pants = "pants";
-  let gauntlet = "gauntlet";
+  let hat = "Hat";
+  let jacket = "Jacket";
+  let poncho = "Poncho";
+  let dress = "Dress";
+  let shirt = "Shirt";
+  let pants = "Pants";
+  let gauntlet = "Gauntlet";
 
   useEffect(() => {
     if (selectValPiece == hat) {
@@ -108,6 +108,15 @@ export default function AddUniforms() {
     setUniformID(e.target.value);
   }
 
+  function onClickAdd() {
+    addUniform();
+    setUniformChest("");
+    setUniformID("");
+    setUniformHead("");
+    setUniformLength("");
+    setUniformWaist("");
+  }
+
   const addUniform = async () => {
     const data = {
       uniform_id: uniformID,
@@ -146,10 +155,10 @@ export default function AddUniforms() {
       <FormControl fullWidth>
         <InputLabel>Uniform Piece</InputLabel>
         <Select label="add uniform" onChange={handlePieceChange}>
-          <MenuItem value="dress">Dress</MenuItem>
-          <MenuItem value="shirt">Shirt</MenuItem>
-          <MenuItem value="jacket">Jacket</MenuItem>
-          <MenuItem value="pants">Pants</MenuItem>
+          <MenuItem value={dress}>Dress</MenuItem>
+          <MenuItem value={shirt}>Shirt</MenuItem>
+          <MenuItem value={jacket}>Jacket</MenuItem>
+          <MenuItem value={pants}>Pants</MenuItem>
           <MenuItem value={gauntlet}>Gauntlet</MenuItem>
         </Select>
       </FormControl>
@@ -198,6 +207,7 @@ export default function AddUniforms() {
             </Grid>
             <Grid item xs={12} align="center" justify="center">
               <TextField
+                value={uniformLength}
                 onChange={handleLengthChange}
                 fullWidth
                 id="outlined-basic"
@@ -208,6 +218,7 @@ export default function AddUniforms() {
             </Grid>
             <Grid item xs={12} align="center" justify="center">
               <TextField
+                value={uniformChest}
                 onChange={handleChestChange}
                 fullWidth
                 id="outlined-basic"
@@ -218,6 +229,7 @@ export default function AddUniforms() {
             </Grid>
             <Grid item xs={12} align="center" justify="center">
               <TextField
+                value={uniformHead}
                 onChange={handleHeadChange}
                 fullWidth
                 id="outlined-basic"
@@ -238,6 +250,7 @@ export default function AddUniforms() {
             </Grid>
             <Grid item xs={12} align="center" justify="center">
               <TextField
+                value={uniformID}
                 onChange={handleIDChange}
                 fullWidth
                 id="outlined-basic"
@@ -247,9 +260,10 @@ export default function AddUniforms() {
             </Grid>
             <Grid item xs={12} align="right" justify="right">
               <Button
+                className={styles.addButton}
                 variant="contained"
                 onClick={() => {
-                  addUniform();
+                  onClickAdd();
                 }}
               >
                 Add

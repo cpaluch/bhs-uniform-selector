@@ -9,12 +9,18 @@
   padding: 0;
 }
 
-.button_style {
-  background-color: white;
-  color: black;
+.bar_style {
+  background-color: #0000e0;
+}
+
+.buttonsStyle {
+  background-color: #efc500;
+  color: #0000e0;
   font-weight: 600;
 }
 
-.bar_style {
-  background-color: blue;
+.buttonsStyle:hover {
+  background-color: #efc500;
+  opacity: 0.8;
+  font-weight: 600;
 }

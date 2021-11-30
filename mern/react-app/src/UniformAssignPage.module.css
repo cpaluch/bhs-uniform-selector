@@ -84,7 +84,17 @@
   align-items: center;
 }
 
-.uniformSelectFooter{
+.buttonsStyle {
+  background-color: #efc500;
+  color: #0000e0;
+}
+
+.buttonsStyle:hover {
+  background-color: #efc500;
+  opacity: 0.8;
+}
+
+.uniformSelectFooter {
   /* position: absolute; */
   /* margin-top: 100px; */
   bottom: 0;

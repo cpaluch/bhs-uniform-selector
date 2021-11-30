@@ -8,7 +8,7 @@ import { NavLink } from "react-router-dom";
 export default function Header(props) {
   return (
     <AppBar position="static">
-      <ToolBar>
+      <ToolBar className={styles.bar_style}>
         <img src="images/bruins.png" alt="logo" height="50" width="50" />
         <Typography variant="h6" flexGrow="1" margin="20px">
           Blacksburg Bands Uniform Select
@@ -56,7 +56,7 @@ export default function Header(props) {
           </li>
           <li className={styles.nav_link}>
             <Button
-              className={styles.button_style}
+              className={styles.buttonsStyle}
               variant="contained"
               onClick={props.onLogoutAttempt}
             >
