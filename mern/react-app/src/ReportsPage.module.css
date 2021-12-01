@@ -52,6 +52,12 @@
   width: 100%;
 }
 
+.reportsPageFooter {
+  /* position: absolute; */
+  bottom: 0;
+  width: 100%;
+}
+
 .buttonsStyle {
   background-color: #efc500;
   color: #0000e0;

@@ -22,3 +22,10 @@
   left: 0px;
   margin-top: 20px;
 }
+
+.helpPageFooter {
+  /* position: absolute; */
+  /* margin-top: 100px; */
+  bottom: 0;
+  width: 100%;
+}

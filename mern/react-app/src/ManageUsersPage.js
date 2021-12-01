@@ -44,15 +44,17 @@ export default function ManageUsersPage(props) {
   };
 
   return (
-    <div className={styles.float_container}>
-      <Header
-        className={styles.headerWrapper}
-        onLogoutAttempt={props.onLogoutAttempt}
-      />
-      <div className={styles.settingsComponentWrapper}>
-        <ManageUsers
-          users={users}
-          onRegisterUser={addUser} />
+    <div>
+      <div className={styles.float_container}>
+        <Header
+          className={styles.headerWrapper}
+          onLogoutAttempt={props.onLogoutAttempt}
+        />
+        <div className={styles.settingsComponentWrapper}>
+          <ManageUsers
+            users={users}
+            onRegisterUser={addUser} />
+        </div>
       </div>
       <div className={styles.addUniformFooter}>
         <Footer />
