@@ -6,15 +6,19 @@ import styles from "./AddUniformsPage.module.css";
 
 export default function AddUniformsPage(props) {
   return (
-    <div className={styles.float_container}>
-      <Header
-        className={styles.headerWrapper}
-        onLogoutAttempt={props.onLogoutAttempt}
-      />
-      <div className={styles.settingsComponentWrapper}>
-        <AddUniforms />
+    <div>
+      <div className={styles.float_container}>
+        <Header
+          className={styles.headerWrapper}
+          onLogoutAttempt={props.onLogoutAttempt}
+        />
+        <div className={styles.settingsComponentWrapper}>
+          <AddUniforms />
+        </div>
       </div>
-      <Footer className={styles.footerWrapper} />
+      <div className={styles.addUniformFooter}>
+        <Footer />
+      </div>
     </div>
   );
 }

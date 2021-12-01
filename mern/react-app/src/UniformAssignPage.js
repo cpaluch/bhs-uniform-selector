@@ -14,6 +14,14 @@ export default function UniformAssignPage(props) {
   // List of all possible piece types
   const allPieces = [
     {
+      value: "Dress",
+      label: "Dress",
+    },
+    {
+      value: "Gauntlet",
+      label: "Gauntlet",
+    },
+    {
       value: "Hat",
       label: "Hat",
     },
@@ -26,8 +34,12 @@ export default function UniformAssignPage(props) {
       label: "Pants",
     },
     {
-      value: "Gauntlet",
-      label: "Gauntlet",
+      value: "Poncho",
+      label: "Poncho",
+    },
+    {
+      value: "Shirt",
+      label: "Shirt",
     },
   ];
 
@@ -171,6 +183,12 @@ export default function UniformAssignPage(props) {
     } else if (selectedPiece === "Pants" && studentInfo.waist === "") {
       alert("Please input waist measurement.");
       return false;
+    } else if (selectedPiece === "Shirt" && studentInfo.chest === "") {
+      alert("Please input chest measurement.");
+      return false;
+    } else if (selectedPiece === "Poncho" && studentInfo.chest === "") {
+      alert("Please input chest measurement.");
+      return false;
     } else {
       return true;
     }
@@ -199,6 +217,20 @@ export default function UniformAssignPage(props) {
           return (
             Math.abs(studentInfo.waist - a.waist) -
             Math.abs(studentInfo.waist - b.waist)
+          );
+        });
+      } else if (selectedPiece === "Shirt") {
+        sorted.sort(function (a, b) {
+          return (
+            Math.abs(studentInfo.chest - a.chest) -
+            Math.abs(studentInfo.chest - b.chest)
+          );
+        });
+      } else if (selectedPiece === "Poncho") {
+        sorted.sort(function (a, b) {
+          return (
+            Math.abs(studentInfo.chest - a.chest) -
+            Math.abs(studentInfo.chest - b.chest)
           );
         });
       } else if (selectedPiece === "Gauntlet") {

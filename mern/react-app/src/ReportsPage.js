@@ -86,30 +86,34 @@ export default function ReportsPage(props) {
   };
 
   return (
-    <div className={styles.float_container}>
-      <Header
-        className={styles.headerWrapper}
-        onLogoutAttempt={props.onLogoutAttempt}
-      />
-      <div className={styles.reportsPageComponentWrapper}>
-        <ReportsTable
-          rows={reportsTableRows}
-          onSelectedUniformsChange={handleSelectedUniformsChange}
+    <div>
+      <div className={styles.float_container}>
+        <Header
+          className={styles.headerWrapper}
+          onLogoutAttempt={props.onLogoutAttempt}
         />
-        <div className={styles.buttonWrapper}>
-          <Button
-            style={{ color: "#0000e0", backgroundColor: "#efc500" }}
-            sx={{ ml: "auto", mr: "auto" }}
-            variant="contained"
-            onClick={() => {
-              unassign();
-            }}
-          >
-            UNASSIGN
-          </Button>
+        <div className={styles.reportsPageComponentWrapper}>
+          <ReportsTable
+            rows={reportsTableRows}
+            onSelectedUniformsChange={handleSelectedUniformsChange}
+          />
+          <div className={styles.buttonWrapper}>
+            <Button
+              style={{ color: "#0000e0", backgroundColor: "#efc500" }}
+              sx={{ ml: "auto", mr: "auto" }}
+              variant="contained"
+              onClick={() => {
+                unassign();
+              }}
+            >
+              UNASSIGN
+            </Button>
+          </div>
         </div>
       </div>
-      <Footer className={styles.footerWrapper} />
+      <div className={styles.reportsPageFooter}>
+        <Footer />
+      </div>
     </div>
   );
 }
