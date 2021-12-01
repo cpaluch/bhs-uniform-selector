@@ -58,6 +58,7 @@ export default function ManageUsersPage(props) {
     // Check for invalid email address
     if (!validator.isEmail(credentials.email)) {
       alert("Please enter a valid email address.");
+
       return;
     }
 
