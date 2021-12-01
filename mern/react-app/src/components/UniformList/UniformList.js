@@ -24,14 +24,14 @@ export default function UniformList(props) {
     { field: 'chest', headerName: 'Chest', width: 100 },
     { field: 'length', headerName: 'Dress Length', width: 125 },
     { field: 'waist', headerName: 'Waist', width: 100 },
-    { field: 'type', headerName: 'Type', width: 100 }
+    { field: 'type', headerName: 'Type', width: 150 }
   ];
 
   const columns_shirt = [
     { field: 'piece', headerName: 'Piece', width: 125 },
     { field: 'uniform_id', headerName: 'ID', width: 125 },
     { field: 'chest', headerName: 'Chest', width: 125 },
-    { field: 'type', headerName: 'Type', width: 125 }
+    { field: 'type', headerName: 'Type', width: 150 }
   ];
 
   const columns_poncho = [
