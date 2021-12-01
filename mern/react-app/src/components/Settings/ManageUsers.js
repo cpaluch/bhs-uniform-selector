@@ -96,7 +96,12 @@ export default function ManageUsers(props) {
                 />
               </Grid>
               <Grid item xs={12} align="center" justify="center">
-                <TextField fullWidth label="Password" variant="outlined" />
+                <TextField
+                  fullWidth
+                  id="password"
+                  name="password"
+                  label="Password"
+                  variant="outlined" />
               </Grid>
               <Grid item xs={12} align="right" justify="right">
                 <Button
