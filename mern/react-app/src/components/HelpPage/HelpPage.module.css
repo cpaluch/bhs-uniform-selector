@@ -11,7 +11,7 @@
   width: 100%;
   top: 0px;
   left: 0px;
-  background-color: blue;
+  background-color: #0000e0;
 }
 
 .footerWrapper {
@@ -21,4 +21,11 @@
   bottom: 0px;
   left: 0px;
   margin-top: 20px;
+}
+
+.helpPageFooter {
+  /* position: absolute; */
+  /* margin-top: 100px; */
+  bottom: 0;
+  width: 100%;
 }

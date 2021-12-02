@@ -15,8 +15,16 @@
   padding: 0px;
   border: 0px;
   display: flex;
-  background-color: blue;
+  background-color: #0000e0;
   border-bottom: 1px solid black;
+}
+
+.buttonsStyle {
+  color: #0000e0;
+}
+
+.buttonsStyle:hover {
+  opacity: 0.8;
 }
 
 .wrapperSelectSection {

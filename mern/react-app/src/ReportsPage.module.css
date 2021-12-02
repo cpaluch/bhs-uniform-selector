@@ -12,7 +12,7 @@
   top: 0px;
   margin-bottom: 20px;
   left: 0px;
-  background-color: blue;
+  background-color: #0000e0;
 }
 
 .footerWrapper {
@@ -21,7 +21,7 @@
   width: 100%;
   bottom: 0px;
   left: 0px;
-  background-color: blue;
+  background-color: #0000e0;
 }
 
 .reportsPageComponentWrapper {
@@ -40,14 +40,30 @@
   margin-top: -4%;
 }
 
-.loginPageWrapper{
+.loginPageWrapper {
   height: 100%;
   margin: 0;
   /* margin-bottom: -150px; */
 }
 
-.loginPageFooter{
+.loginPageFooter {
   position: absolute;
   bottom: 0;
   width: 100%;
+}
+
+.reportsPageFooter {
+  /* position: absolute; */
+  bottom: 0;
+  width: 100%;
+}
+
+.buttonsStyle {
+  background-color: #efc500;
+  color: #0000e0;
+}
+
+.buttonsStyle:hover {
+  background-color: #efc500;
+  opacity: 0.8;
 }

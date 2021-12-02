@@ -1,19 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import styles from './UniformAssignPage.module.css';
-import Header from './components/Header/Header'
-import Footer from './components/Footer/Footer'
-import { StudentInfo } from './components/StudentInfo/StudentInfo';
-import { AdditionalNotes } from './components/AdditionalNotes/AdditionalNotes';
-import { StudentSelect } from './components/StudentSelect/StudentSelect';
-import UniformList from './components/UniformList/UniformList';
-import { PieceSelect } from './components/PieceSelect/PieceSelect';
-import Button from '@mui/material/Button';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import styles from "./UniformAssignPage.module.css";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import { StudentInfo } from "./components/StudentInfo/StudentInfo";
+import { AdditionalNotes } from "./components/AdditionalNotes/AdditionalNotes";
+import { StudentSelect } from "./components/StudentSelect/StudentSelect";
+import UniformList from "./components/UniformList/UniformList";
+import { PieceSelect } from "./components/PieceSelect/PieceSelect";
+import Button from "@mui/material/Button";
+import axios from "axios";
 
 export default function UniformAssignPage(props) {
-  
   // List of all possible piece types
   const allPieces = [
+    {
+      value: "Dress",
+      label: "Dress",
+    },
+    {
+      value: "Gauntlet",
+      label: "Gauntlet",
+    },
     {
       value: "Hat",
       label: "Hat",
@@ -27,8 +34,12 @@ export default function UniformAssignPage(props) {
       label: "Pants",
     },
     {
-      value: "Gauntlet",
-      label: "Gauntlet",
+      value: "Poncho",
+      label: "Poncho",
+    },
+    {
+      value: "Shirt",
+      label: "Shirt",
     },
   ];
 
@@ -102,9 +113,8 @@ export default function UniformAssignPage(props) {
     axios.get("http://localhost:5000/student").then((res) => {
       const students = res.data;
       setAllStudents(students);
-    }); 
-  }
-
+    });
+  };
 
   // Get all the uniforms from the backend. Set the allUniforms state with only
   // the uniforms that are not assigned
@@ -142,11 +152,12 @@ export default function UniformAssignPage(props) {
       };
       const config = {
         headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
-      }
-      axios.post("http://localhost:5000/uniform/assign", data, config)
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      };
+      axios
+        .post("http://localhost:5000/uniform/assign", data, config)
         .then(function (results) {
           getAllUniforms();
         });
@@ -172,6 +183,12 @@ export default function UniformAssignPage(props) {
     } else if (selectedPiece === "Pants" && studentInfo.waist === "") {
       alert("Please input waist measurement.");
       return false;
+    } else if (selectedPiece === "Shirt" && studentInfo.chest === "") {
+      alert("Please input chest measurement.");
+      return false;
+    } else if (selectedPiece === "Poncho" && studentInfo.chest === "") {
+      alert("Please input chest measurement.");
+      return false;
     } else {
       return true;
     }
@@ -183,20 +200,39 @@ export default function UniformAssignPage(props) {
       var sorted = JSON.parse(JSON.stringify(presentedUniforms));
       if (selectedPiece === "Jacket") {
         sorted.sort(function (a, b) {
-          return (Math.abs(studentInfo.chest - a.chest) -
-            Math.abs(studentInfo.chest - b.chest));
-        })
-
+          return (
+            Math.abs(studentInfo.chest - a.chest) -
+            Math.abs(studentInfo.chest - b.chest)
+          );
+        });
       } else if (selectedPiece === "Hat") {
         sorted.sort(function (a, b) {
-          return (Math.abs(studentInfo.head - a.head) -
-            Math.abs(studentInfo.head - b.head));
-        })
+          return (
+            Math.abs(studentInfo.head - a.head) -
+            Math.abs(studentInfo.head - b.head)
+          );
+        });
       } else if (selectedPiece === "Pants") {
         sorted.sort(function (a, b) {
-          return (Math.abs(studentInfo.waist - a.waist) -
-            Math.abs(studentInfo.waist - b.waist));
-        })
+          return (
+            Math.abs(studentInfo.waist - a.waist) -
+            Math.abs(studentInfo.waist - b.waist)
+          );
+        });
+      } else if (selectedPiece === "Shirt") {
+        sorted.sort(function (a, b) {
+          return (
+            Math.abs(studentInfo.chest - a.chest) -
+            Math.abs(studentInfo.chest - b.chest)
+          );
+        });
+      } else if (selectedPiece === "Poncho") {
+        sorted.sort(function (a, b) {
+          return (
+            Math.abs(studentInfo.chest - a.chest) -
+            Math.abs(studentInfo.chest - b.chest)
+          );
+        });
       } else if (selectedPiece === "Gauntlet") {
         // Do nothing, gauntlets don't have sizes
       }
@@ -214,27 +250,27 @@ export default function UniformAssignPage(props) {
 
   const handleGradeChange = (grade) => {
     setStudentInfo({ ...studentInfo, grade: grade });
-  }
+  };
 
   const handleInstrumentChange = (instrument) => {
     setStudentInfo({ ...studentInfo, instrument: instrument });
-  }
+  };
 
   const handleHeightChange = (height) => {
     setStudentInfo({ ...studentInfo, height: height });
-  }
+  };
 
   const handleChestChange = (chest) => {
     setStudentInfo({ ...studentInfo, chest: chest });
-  }
+  };
 
   const handleWaistChange = (waist) => {
     setStudentInfo({ ...studentInfo, waist: waist });
-  }
+  };
 
   const handleHeadChange = (head) => {
     setStudentInfo({ ...studentInfo, head: head });
-  }
+  };
 
   const handleAdditionalNotesChange = (notes) => {
     setAdditionalNotes(notes);
@@ -245,13 +281,13 @@ export default function UniformAssignPage(props) {
   };
 
   const handleAllStudentChange = (students) => {
-    setAllStudents(students)
-  }
+    setAllStudents(students);
+  };
 
   return (
     <div>
       <div className={styles.float_container}>
-        <Header onLogoutAttempt={props.onLogoutAttempt}/>
+        <Header onLogoutAttempt={props.onLogoutAttempt} />
         <div className={styles.studentSelectComponentWrapper}>
           <StudentSelect
             allStudents={allStudents}
@@ -261,13 +297,15 @@ export default function UniformAssignPage(props) {
         <div className={styles.pieceSelectComponentWraper}>
           <PieceSelect
             allPieces={allPieces}
-            onSelectedPieceChange={handleSelectedPieceChange} />
+            onSelectedPieceChange={handleSelectedPieceChange}
+          />
         </div>
         <div className={styles.uniformListComponentWrapper}>
           <UniformList
             uniforms={presentedUniforms}
             selectedPiece={selectedPiece}
-            onSelectedUniformsChange={handleSelectedUniformsChange} />
+            onSelectedUniformsChange={handleSelectedUniformsChange}
+          />
         </div>
         <div className={styles.studentInfoComponentWrapper}>
           <StudentInfo
@@ -277,19 +315,33 @@ export default function UniformAssignPage(props) {
             onHeightChange={handleHeightChange}
             onChestChange={handleChestChange}
             onWaistChange={handleWaistChange}
-            onHeadChange={handleHeadChange} />
+            onHeadChange={handleHeadChange}
+          />
         </div>
         <div className={styles.additionalNotesComponentWrapper}>
           <AdditionalNotes
-            onAdditionalNotesChange={handleAdditionalNotesChange} />
+            onAdditionalNotesChange={handleAdditionalNotesChange}
+          />
         </div>
         <div className={styles.buttonsWrapper}>
-          <Button sx={{ ml: "auto", mr: "auto" }} variant="contained" onClick={() => { sort() }}>
+          <Button
+            style={{ color: "#0000e0", backgroundColor: "#efc500" }}
+            sx={{ ml: "auto", mr: "auto" }}
+            variant="contained"
+            onClick={() => {
+              sort();
+            }}
+          >
             Sort by Best Fit
           </Button>
-          <Button sx={{ ml: "auto", mr: "auto" }} variant="contained" onClick={() => {
-            assign()
-          }}>
+          <Button
+            style={{ color: "#0000e0", backgroundColor: "#efc500" }}
+            sx={{ ml: "auto", mr: "auto" }}
+            variant="contained"
+            onClick={() => {
+              assign();
+            }}
+          >
             Assign
           </Button>
         </div>
