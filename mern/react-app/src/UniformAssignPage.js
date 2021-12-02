@@ -291,8 +291,8 @@ export default function UniformAssignPage(props) {
         <div className={styles.studentSelectComponentWrapper}>
           <StudentSelect
             allStudents={allStudents}
-            onSelectedStudentChange={handleSelectedStudentChange}
-          />
+            setStudents={handleAllStudentChange}
+            onSelectedStudentChange={handleSelectedStudentChange} />
         </div>
         <div className={styles.pieceSelectComponentWraper}>
           <PieceSelect
