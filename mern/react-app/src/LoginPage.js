@@ -59,10 +59,6 @@ export default function SignIn(props) {
                 id="password"
                 autoComplete="current-password"
               />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
               <Button
                 style={{ color: "#0000e0", backgroundColor: "#efc500" }}
                 type="submit"
