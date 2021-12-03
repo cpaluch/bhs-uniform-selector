@@ -7,7 +7,6 @@ import styles from "./AddStudent.module.css";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import axios from "axios";
-import { Select, MenuItem, InputLabel, FormControl } from "@mui/material";
 
 const style = {
   position: "absolute",
