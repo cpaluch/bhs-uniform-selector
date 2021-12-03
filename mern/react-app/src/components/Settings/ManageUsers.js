@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import styles from "./ManageUsers.module.css";
 import { Typography, Button, Grid, TextField, Box } from "@mui/material";

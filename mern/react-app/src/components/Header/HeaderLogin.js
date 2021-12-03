@@ -3,7 +3,6 @@ import AppBar from "@mui/material/AppBar";
 import ToolBar from "@mui/material/Toolbar";
 import { Typography } from "@mui/material";
 import styles from "./Header.module.css";
-import { NavLink } from "react-router-dom";
 
 export default class Header extends Component {
   render() {

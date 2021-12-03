@@ -30,52 +30,52 @@ export default function AddUniforms() {
   const [uniformID, setUniformID] = useState("");
 
   let select;
-  let hat = "Hat";
-  let jacket = "Jacket";
-  let poncho = "Poncho";
-  let dress = "Dress";
-  let shirt = "Shirt";
-  let pants = "Pants";
-  let gauntlet = "Gauntlet";
+  const hat = "Hat";
+  const jacket = "Jacket";
+  const poncho = "Poncho";
+  const dress = "Dress";
+  const shirt = "Shirt";
+  const pants = "Pants";
+  const gauntlet = "Gauntlet";
 
   useEffect(() => {
-    if (selectValPiece == hat) {
+    if (selectValPiece === hat) {
       disableChestBox(true);
       disableLengthBox(true);
       disableWaistBox(true);
       disableHeadBox(false);
     }
-    if (selectValPiece == gauntlet) {
+    if (selectValPiece === gauntlet) {
       disableWaistBox(true);
       disableHeadBox(true);
       disableLengthBox(true);
       disableChestBox(true);
     }
-    if (selectValPiece == jacket) {
+    if (selectValPiece === jacket) {
       disableWaistBox(true);
       disableHeadBox(true);
       disableLengthBox(false);
       disableChestBox(false);
     }
-    if (selectValPiece == poncho) {
+    if (selectValPiece === poncho) {
       disableWaistBox(true);
       disableHeadBox(true);
       disableLengthBox(true);
       disableChestBox(false);
     }
-    if (selectValPiece == dress) {
+    if (selectValPiece === dress) {
       disableWaistBox(false);
       disableHeadBox(true);
       disableLengthBox(false);
       disableChestBox(false);
     }
-    if (selectValPiece == shirt) {
+    if (selectValPiece === shirt) {
       disableWaistBox(true);
       disableHeadBox(true);
       disableLengthBox(true);
       disableChestBox(false);
     }
-    if (selectValPiece == pants) {
+    if (selectValPiece === pants) {
       disableWaistBox(false);
       disableHeadBox(true);
       disableLengthBox(false);
@@ -89,7 +89,6 @@ export default function AddUniforms() {
 
   function handlePieceChange(e) {
     setSelectedValPiece(e.target.value);
-    console.log(selectValPiece);
   }
 
   function handleLengthChange(e) {
@@ -137,7 +136,7 @@ export default function AddUniforms() {
     axios.post("http://localhost:5000/uniform/add", data, config);
   };
 
-  if (selectVal == "Marching Band") {
+  if (selectVal === "Marching Band") {
     select = (
       <FormControl fullWidth>
         <InputLabel>Uniform Piece</InputLabel>
@@ -150,7 +149,7 @@ export default function AddUniforms() {
         </Select>
       </FormControl>
     );
-  } else if (selectVal == "MS Concert Band" || selectVal == "HS Concert Band") {
+  } else if (selectVal === "MS Concert Band" || selectVal === "HS Concert Band") {
     select = (
       <FormControl fullWidth>
         <InputLabel>Uniform Piece</InputLabel>

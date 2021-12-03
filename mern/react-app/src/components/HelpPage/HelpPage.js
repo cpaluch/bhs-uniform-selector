@@ -2,7 +2,6 @@ import React from "react";
 import styles from "../HelpPage/HelpPage.module.css";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import Button from "@mui/material/Button";
 
 export default function HelpPage(props) {
   return (

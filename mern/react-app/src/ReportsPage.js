@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ReportsTable from "./components/ReportsTable/ReportsTable";
 import styles from "./ReportsPage.module.css";
 import Header from "./components/Header/Header";
@@ -21,8 +21,17 @@ export default function ReportsPage(props) {
   // ReportsTable component as a prop
   const [reportsTableRows, setReportsTableRows] = useState([]);
 
+  const firstPageLoad = useRef(true);
+
   // Updates ReportsTable rows every time allUniforms or allStudents changes
   useEffect(() => {
+
+    // Don't run this update on initial page load because it causes errors  
+    if (firstPageLoad.current) {
+      firstPageLoad.current = false;
+      return;
+    }
+
     // Copy uniform array
     var rows = JSON.parse(JSON.stringify(allUniforms));
     // Insert first and last name into each row or N/A if unassigned
